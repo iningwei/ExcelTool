@@ -41,12 +41,9 @@ namespace ExcelTool
 
         public string primaryKeyName;
         public string primaryKeyType;
-        public bool outputKVPair = false;
-        public string valueKeyType;//当outputKVPair为true的时候，Value字段的类型
-        /// <summary>
-        /// 用来存储KeyValueTable中KeyDes字段数据的，用于生成代码时候增加备注文字
-        /// </summary>
-        public List<string> keyDesList = new List<string>();
+        public bool isKVPairTable = false;
+        public string valueKeyType;//当isKVPairTable为true的时候，Value字段的类型
+
     }
 
 
@@ -59,7 +56,8 @@ namespace ExcelTool
         static string[] excelFiles;
 
         static string outputTableDir;//excel导出表 目录
-        static string outputCodeDir;//导出代码 目录
+        static string outputCSCodeDir;//CS导出代码 目录
+        static string outputLuaCodeDir;//Lua导出代码 目录
         static void Main(string[] args)
         {
             Console.WriteLine("begin handle excel file");
@@ -71,7 +69,8 @@ namespace ExcelTool
             string curDir = Environment.CurrentDirectory;
             excelFileDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
             outputTableDir = excelFileDir + @"\table_output";
-            outputCodeDir = excelFileDir + @"\code_output";
+            outputCSCodeDir = excelFileDir + @"\code_output_cs";
+            outputLuaCodeDir = excelFileDir + @"\code_output_lua";
 
             excelFileDir = excelFileDir + @"\table";
             Console.WriteLine("tableDir:" + excelFileDir);
@@ -120,8 +119,7 @@ namespace ExcelTool
                                     et.primaryKeyType = table.Rows[1][j].ToString();
                                     if (table.Rows[2][j].ToString().Contains("KVT"))
                                     {
-                                        et.outputKVPair = true;
-                                        et.keyDesList.Clear();
+                                        et.isKVPairTable = true;
                                         et.valueKeyType = table.Rows[1][1].ToString();
                                         if (table.Rows[0][1].ToString() != "Value" || table.Rows[0][2].ToString() != "KeyDes")
                                         {
@@ -131,7 +129,7 @@ namespace ExcelTool
                                     }
                                     else
                                     {
-                                        et.outputKVPair = false;
+                                        et.isKVPairTable = false;
                                     }
                                 }
 
@@ -160,23 +158,17 @@ namespace ExcelTool
                                 string key = table.Rows[0][k].ToString();
                                 string property = table.Rows[i][k].ToString();
                                 Console.WriteLine("table:" + et.tableName + " , key: " + key + " , property：" + property);
-                                if (key != "KeyDes")
+                       
+                                //主键的数据要保持唯一性
+                                if (k == 0 && i > 4 && et.tableContent[key].Contains(property))
                                 {
-                                    //主键的数据要保持唯一性
-                                    if (k == 0 && i > 4 && et.tableContent[key].Contains(property))
-                                    {
-                                        throw new Exception("fatal error, table:" + et.tableName + "的主键" + key + "，property:" + property);
-                                    }
-                                    else
-                                    {
-                                        et.tableContent[key].Add(property);
-                                    }
+                                    throw new Exception("fatal error, table:" + et.tableName + "的主键" + key + "，property:" + property);
                                 }
                                 else
                                 {
-                                    et.keyDesList.Add(property);
+                                    et.tableContent[key].Add(property);
                                 }
-
+                                 
                             }
 
 
@@ -190,16 +182,32 @@ namespace ExcelTool
 
 
 
-            //生成代码
-            if (!Directory.Exists(outputCodeDir))
+
+
+            #region  导出C#代码
+            outputCSCode(outputCSCodeDir, outputTableDir, excelTables);
+            #endregion
+
+            #region 导出lua代码
+            outputLuaCode(outputLuaCodeDir, excelTables);
+            #endregion
+
+
+            Console.ReadLine();
+        }
+
+        static void outputCSCode(string outputCSCodeDir,string outputTableDir, List<ExcelTable> tables)
+        {
+            //生成CS代码
+            if (!Directory.Exists(outputCSCodeDir))
             {
-                Directory.CreateDirectory(outputCodeDir);
+                Directory.CreateDirectory(outputCSCodeDir);
             }
-            int tableCount2 = excelTables.Count;
+            int tableCount2 = tables.Count;
             for (int jj = 0; jj < tableCount2; jj++)//生成数据类代码(对于需要生成KeyConstStr的，还需要生成对应辅助类)
             {
                 string content = string.Empty;
-                ExcelTable et = excelTables[jj];
+                ExcelTable et = tables[jj];
                 int columnCount = et.keys.Count;
 
 
@@ -209,14 +217,14 @@ namespace ExcelTool
 
                 content += "namespace SelfTable{\r\n";
 
-                if (et.outputKVPair)//生成对应辅助类
+                if (et.isKVPairTable)//生成对应辅助类
                 {
                     content += "public class " + et.tableName + "KVP{\r\n";
                     for (int k = 4; k < et.tableContent[et.primaryKeyName].Count; k++)
                     {
                         var tmp = et.tableContent[et.primaryKeyName][k];
                         content += "\t/// <summary>\r\n";
-                        content += "\t/// " + et.keyDesList[k].ToString() + "\r\n";
+                        content += "\t/// " + et.tableContent["KeyDes"][k].ToString() + "\r\n";//备注文字
                         content += "\t/// </summary>\r\n";
                         content += "\tpublic static " + et.valueKeyType + " " + tmp + "{\r\n";
                         content += "\t\tget{\r\n";
@@ -252,13 +260,13 @@ namespace ExcelTool
                 content += "}";
 
 
-                File.WriteAllText(outputCodeDir + @"\" + et.tableName + ".cs", content.TrimEnd(), Encoding.UTF8);
+                File.WriteAllText(outputCSCodeDir + @"\" + et.tableName + ".cs", content.TrimEnd(), Encoding.UTF8);
             }
 
             for (int kk = 0; kk < tableCount2; kk++)//生成文件加载和数据读取代码
             {
                 string content = string.Empty;
-                ExcelTable et = excelTables[kk];
+                ExcelTable et = tables[kk];
                 int columnCount = et.keys.Count;
 
                 content += "using UnityEngine;\r\n";
@@ -318,7 +326,7 @@ namespace ExcelTool
                     string typeStr = et.tableContent[et.keys[i]][0];
                     if (typeStr == "int" || typeStr == "float" || typeStr == "bool")
                     {
-                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";//Trim（）不知道为什么从excel里面读的数据不trim的话，有时候数据不干净
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                     }
                     else
                     {
@@ -369,7 +377,7 @@ namespace ExcelTool
                 content += "}";//namespace
 
 
-                File.WriteAllText(outputCodeDir + @"\" + et.tableName + "_table.cs", content.TrimEnd(), Encoding.UTF8);
+                File.WriteAllText(outputCSCodeDir + @"\" + et.tableName + "_table.cs", content.TrimEnd(), Encoding.UTF8);
             }
 
 
@@ -383,20 +391,21 @@ namespace ExcelTool
                 Directory.CreateDirectory(outputTableDir);
             }
 
-            int tableCount = excelTables.Count;
+            int tableCount = tables.Count;
             for (int i = 0; i < tableCount; i++)
             {
                 string content = string.Empty;
-                ExcelTable et = excelTables[i];
-                //输出二进制文件时，需要把KeyDes字段删除
-                et.keys.Remove("KeyDes");
+                ExcelTable et = tables[i];
+
                 int columnCount = et.keys.Count;
                 int rowCount = et.usedRowsCount;
                 for (int j = 4; j < rowCount + 4; j++)
                 {
                     for (int k = 0; k < columnCount; k++)
                     {
-                        //et.tableContent[et.keys[j]]
+                        if (et.keys[k].Equals("KeyDes"))  //输出CS对应的.txt文本文件时，不输出KeyDes字段                            
+                            continue;
+
                         if (k == columnCount - 1)
                         {
                             content += (et.tableContent[et.keys[k]][j].Trim() + "\r\n");
@@ -429,8 +438,87 @@ namespace ExcelTool
                 }
             }
 
-            Console.WriteLine("导表结束，按任意键退出！");
-            Console.ReadLine();
+            Console.WriteLine("CS导表结束！！！");
+
+        }
+
+        static void outputLuaCode(string outputFolderPath, List<ExcelTable> tables)
+        {
+            string outputFile = outputFolderPath + @"\SettingTable.lua";
+            string luaContent = "---@class SettingTable\r\n";
+            luaContent += "local SettingTable={}\r\n";
+            for (int i = 0; i < tables.Count; i++)
+            {
+                var table = tables[i];
+                if (table.isKVPairTable)
+                {
+                    luaContent += "\r\n";
+                    luaContent += "---@field public " + table.tableName + " table\r\n";
+                    luaContent += "---@class " + table.tableName + ":SettingTable\r\n";
+                    luaContent += "SettingTable." + table.tableName + "={\r\n";
+                    for (int j = 4; j < table.usedRowsCount + 4; j++)
+                    {
+                        var kStr = table.tableContent[table.primaryKeyName][j];
+                        var vStr = table.tableContent["Value"][j];
+                        var commentStr = table.tableContent["KeyDes"][j];
+                        if (table.valueKeyType == "string")
+                        {
+                            luaContent += "\t" + kStr + "=\"" + vStr + "\",--" + commentStr + "\r\n";
+                        }
+                        else
+                        {
+                            luaContent += "\t" + kStr + "=" + vStr + ",--" + commentStr + "\r\n";
+                        }
+                    }
+                    luaContent += "}\r\n";
+                }
+                else
+                {
+                    luaContent += "\r\n";
+                    luaContent += "---@field public " + table.tableName + " table\r\n";
+                    luaContent += "---@class " + table.tableName + ":SettingTable\r\n";
+                    luaContent += "SettingTable." + table.tableName + "={\r\n";
+                    for (int j = 4; j < table.usedRowsCount + 4; j++)
+                    {
+                        luaContent += "\t{";
+                        for (int k = 0; k < table.keys.Count; k++)
+                        {
+                            var keyName = table.keys[k];
+
+                            var value = table.tableContent[keyName][j];
+                            if (table.tableContent[keyName][0] == "string")
+                            {
+                                luaContent += keyName + "=\"" + value + "\",";
+                            }
+                            else
+                            {
+                                luaContent += keyName + "=" + value + ",";
+                            }
+                        }
+                        luaContent += "},\r\n";
+                    }
+                    luaContent += "}\r\n";
+
+
+                    luaContent += "SettingTable.Get" + table.tableName.Substring(0, table.tableName.Length - 7) + "By" + table.primaryKeyName + "=function(" + table.primaryKeyName + ")\r\n";
+                    luaContent += "\tfor i=1,#SettingTable." + table.tableName + " do\r\n";
+                    luaContent += "\t\tlocal tmp=SettingTable." + table.tableName + "[i]\r\n";
+                    luaContent += "\t\tif tmp." + table.primaryKeyName + "==" + table.primaryKeyName + " then\r\n";
+                    luaContent += "\t\t\treturn tmp\r\n";
+                    luaContent += "\t\tend\r\n";
+                    luaContent += "\tend\r\n";
+                    luaContent += "\tloge(\"error,get " + table.tableName.Substring(0, table.tableName.Length - 7) + " By " + table.primaryKeyName + ":\"+" + table.primaryKeyName + ")\r\n";
+                    luaContent += "\treturn nil\r\n";
+
+                    luaContent += "end\r\n";
+                }
+            }
+
+            luaContent += "return SettingTable";
+
+
+            File.WriteAllText(outputFile, luaContent.TrimEnd(), new UTF8Encoding(false));
+            Console.WriteLine("SettingTable.lua输出完毕");
         }
 
 
