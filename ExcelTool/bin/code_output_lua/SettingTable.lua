@@ -24,10 +24,10 @@ end
 ---@field public LanguageSetting table
 ---@class LanguageSetting:SettingTable
 SettingTable.LanguageSetting={
-	{Id=1000,Value="阵营:{0}",},
-	{Id=1001,Value="细胞数:{0}/{1}",},
-	{Id=1002,Value="已占领:{0}/{1}",},
-	{Id=1003,Value="分支数:{0}/{1}",},
+	{Id=1000,Value="阵营:s%",},
+	{Id=1001,Value="细胞数:s%}/s%",},
+	{Id=1002,Value="已占领:s%/s%",},
+	{Id=1003,Value="分支数:s%/s%",},
 	{Id=1004,Value="自己",},
 	{Id=1005,Value="敌人",},
 	{Id=1006,Value="友军",},
