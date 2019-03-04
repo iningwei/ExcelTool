@@ -17,7 +17,7 @@ public class GunNormalDamageSetting{
 	 /// <summary>
 	 /// 升级消耗金钱
 	 /// </summary>
-	 public  Price;
+	 public int Price;
 
 	 public static string FileName = "GunNormalDamageSetting";
 }

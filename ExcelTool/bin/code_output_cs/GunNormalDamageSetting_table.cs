@@ -45,7 +45,7 @@ namespace SelfTable{
 					entities[i]=new GunNormalDamageSetting();
 					entities[i].Level=int.Parse(vals[0].Trim());
 					entities[i].Damage=int.Parse(vals[1].Trim());
-					entities[i].Price= vals[2].Trim();
+					entities[i].Price=int.Parse(vals[2].Trim());
 					keyIndexMap[entities[i].Level]=i;
 				}
 			};
