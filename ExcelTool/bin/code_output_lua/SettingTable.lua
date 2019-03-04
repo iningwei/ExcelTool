@@ -1,23 +1,55 @@
 ---@class SettingTable
 local SettingTable={}
 
----@field public EnviromentGermSetting table
----@class EnviromentGermSetting:SettingTable
-SettingTable.EnviromentGermSetting={
-	{Level=0,Capacity=40,InvadeNeeded=5,InitCount=28,Size=1.2,},
-	{Level=1,Capacity=60,InvadeNeeded=10,InitCount=48,Size=1.2,},
-	{Level=2,Capacity=100,InvadeNeeded=20,InitCount=80,Size=1.2,},
-	{Level=3,Capacity=150,InvadeNeeded=50,InitCount=120,Size=1.2,},
-	{Level=4,Capacity=200,InvadeNeeded=80,InitCount=160,Size=1.2,},
+---@field public GunNormalDamageSetting table
+---@class GunNormalDamageSetting:SettingTable
+SettingTable.GunNormalDamageSetting={
+	{Level=0,Damage=1,Price=10,},
+	{Level=1,Damage=2,Price=20,},
+	{Level=2,Damage=4,Price=40,},
+	{Level=3,Damage=5,Price=100,},
+	{Level=4,Damage=7,Price=200,},
+	{Level=5,Damage=8,Price=500,},
+	{Level=6,Damage=10,Price=1200,},
+	{Level=7,Damage=12,Price=2500,},
+	{Level=8,Damage=13,Price=5000,},
+	{Level=9,Damage=15,Price=12000,},
+	{Level=10,Damage=18,Price=,},
 }
-SettingTable.GetEnviromentGermByLevel=function(Level)
-	for i=1,#SettingTable.EnviromentGermSetting do
-		local tmp=SettingTable.EnviromentGermSetting[i]
+SettingTable.GetGunNormalDamageByLevel=function(Level)
+	for i=1,#SettingTable.GunNormalDamageSetting do
+		local tmp=SettingTable.GunNormalDamageSetting[i]
 		if tmp.Level==Level then
 			return tmp
 		end
 	end
-	loge("error,get EnviromentGerm By Level:"+Level)
+	loge("error,get GunNormalDamage By Level:"+Level)
+	return nil
+end
+
+---@field public GunNormalSpeedSetting table
+---@class GunNormalSpeedSetting:SettingTable
+SettingTable.GunNormalSpeedSetting={
+	{Level=0,Speed=1,Price=5,},
+	{Level=1,Speed=2,Price=10,},
+	{Level=2,Speed=4,Price=20,},
+	{Level=3,Speed=5,Price=40,},
+	{Level=4,Speed=7,Price=100,},
+	{Level=5,Speed=8,Price=200,},
+	{Level=6,Speed=10,Price=500,},
+	{Level=7,Speed=12,Price=1000,},
+	{Level=8,Speed=13,Price=2000,},
+	{Level=9,Speed=15,Price=5000,},
+	{Level=10,Speed=18,Price=,},
+}
+SettingTable.GetGunNormalSpeedByLevel=function(Level)
+	for i=1,#SettingTable.GunNormalSpeedSetting do
+		local tmp=SettingTable.GunNormalSpeedSetting[i]
+		if tmp.Level==Level then
+			return tmp
+		end
+	end
+	loge("error,get GunNormalSpeed By Level:"+Level)
 	return nil
 end
 
