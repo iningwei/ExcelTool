@@ -1,0 +1,8 @@
+PowerMax	100
+PowerRecoverCount	5
+PowerRecoverTime	8
+DiamondRecoverTime	4000
+DiamondRecoverCount	1
+CoinRewardCount	10
+CoinRewardTime	10
+CoinRewardMax	100

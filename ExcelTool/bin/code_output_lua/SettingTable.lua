@@ -76,13 +76,16 @@ SettingTable.GetLanguageById=function(Id)
 	return nil
 end
 
----@field public BattleSceneSetting table
----@class BattleSceneSetting:SettingTable
-SettingTable.BattleSceneSetting={
-	BuildBridgeSpeed=1.4,--搭桥的速度，即每秒钟桥生长的距离（米）
-	BridgeCellSize=0.28,--搭桥细胞的尺寸，单位（米）
-	BridgeNeighborCellDis=0.28,--搭桥两相邻细胞之间的距离（中心点距离），单位（米）
-	BridgeShootCellMinDuration=600,--桥搭建完成后发射细胞的最短时间间隔，单位（毫秒）
-	BrokenBridgeRatio=6,--自己主动拆自己的桥的时候，value=建桥时细胞生成时间间隔/细胞消失时间间隔
+---@field public GameSetting table
+---@class GameSetting:SettingTable
+SettingTable.GameSetting={
+	PowerMax=100,--能量最大值
+	PowerRecoverCount=5,--每次恢复能量点数
+	PowerRecoverTime=8,--每次恢复能量耗时，单位（秒）
+	DiamondRecoverTime=4000,--每次恢复钻石耗时，单位(秒)
+	DiamondRecoverCount=1,--每次恢复钻石个数
+	CoinRewardCount=10,--金币奖励，每次奖励量
+	CoinRewardTime=10,--金币奖励，每次奖励时间间隔
+	CoinRewardMax=100,--金币奖励，最大值
 }
 return SettingTable
