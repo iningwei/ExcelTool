@@ -1,0 +1,80 @@
+﻿using System;
+using System.Text;
+
+namespace SelfTable{
+public class TrailSetting{
+	 /// <summary>
+	 /// 装备编号
+	 /// 装备序号
+	 /// </summary>
+	 public int ID;
+
+	 /// <summary>
+	 /// 装备名称
+	 /// 使用语言表
+	 /// </summary>
+	 public int Name;
+
+	 /// <summary>
+	 /// 装备类型
+	 /// </summary>
+	 public int EquipmentType;
+
+	 /// <summary>
+	 /// 频率
+	 /// </summary>
+	 public float Speed;
+
+	 /// <summary>
+	 /// 伤害
+	 /// </summary>
+	 public float Damage;
+
+	 /// <summary>
+	 /// 防御
+	 /// </summary>
+	 public float Defence;
+
+	 /// <summary>
+	 /// 金币收益
+	 /// </summary>
+	 public float CoinReward;
+
+	 /// <summary>
+	 /// 金币价值
+	 /// </summary>
+	 public float CoinMultiply;
+
+	 /// <summary>
+	 /// 默认子弹ID
+	 /// </summary>
+	 public int BulletID;
+
+	 /// <summary>
+	 /// 初始等级
+	 /// </summary>
+	 public int DefaultLv;
+
+	 /// <summary>
+	 /// 最大等级
+	 /// </summary>
+	 public int MaxLv;
+
+	 /// <summary>
+	 /// 解锁类型
+	 /// </summary>
+	 public int UnlockType;
+
+	 /// <summary>
+	 /// 解锁值
+	 /// </summary>
+	 public int UnlockValue;
+
+	 /// <summary>
+	 /// 
+	 /// </summary>
+	 public  ;
+
+	 public static string FileName = "TrailSetting";
+}
+}

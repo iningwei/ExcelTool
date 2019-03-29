@@ -158,7 +158,7 @@ namespace ExcelTool
                                 string key = table.Rows[0][k].ToString();
                                 string property = table.Rows[i][k].ToString();
                                 Console.WriteLine("table:" + et.tableName + " , key: " + key + " , property：" + property);
-                       
+
                                 //主键的数据要保持唯一性
                                 if (k == 0 && i > 4 && et.tableContent[key].Contains(property))
                                 {
@@ -168,7 +168,7 @@ namespace ExcelTool
                                 {
                                     et.tableContent[key].Add(property);
                                 }
-                                 
+
                             }
 
 
@@ -196,7 +196,7 @@ namespace ExcelTool
             Console.ReadLine();
         }
 
-        static void outputCSCode(string outputCSCodeDir,string outputTableDir, List<ExcelTable> tables)
+        static void outputCSCode(string outputCSCodeDir, string outputTableDir, List<ExcelTable> tables)
         {
             //生成CS代码
             if (!Directory.Exists(outputCSCodeDir))
