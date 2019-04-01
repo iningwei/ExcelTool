@@ -80,5 +80,11 @@ namespace SelfTable{
 				return default(GameSetting);
 			}
 		}
+		/// <summary>
+		/// 获得所有数据项
+		/// </summary>
+		public GameSetting[] AllItems(){
+			return this.entities;
+		}
 	}
 }

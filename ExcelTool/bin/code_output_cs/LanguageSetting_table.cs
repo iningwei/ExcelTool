@@ -80,5 +80,11 @@ namespace SelfTable{
 				return default(LanguageSetting);
 			}
 		}
+		/// <summary>
+		/// 获得所有数据项
+		/// </summary>
+		public LanguageSetting[] AllItems(){
+			return this.entities;
+		}
 	}
 }

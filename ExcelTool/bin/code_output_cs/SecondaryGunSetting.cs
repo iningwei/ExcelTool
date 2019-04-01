@@ -70,11 +70,6 @@ public class SecondaryGunSetting{
 	 /// </summary>
 	 public int UnlockValue;
 
-	 /// <summary>
-	 /// 
-	 /// </summary>
-	 public  ;
-
 	 public static string FileName = "SecondaryGunSetting";
 }
 }

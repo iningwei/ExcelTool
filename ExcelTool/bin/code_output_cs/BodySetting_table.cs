@@ -91,5 +91,11 @@ namespace SelfTable{
 				return default(BodySetting);
 			}
 		}
+		/// <summary>
+		/// 获得所有数据项
+		/// </summary>
+		public BodySetting[] AllItems(){
+			return this.entities;
+		}
 	}
 }

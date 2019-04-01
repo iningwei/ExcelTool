@@ -70,11 +70,6 @@ public class TrailSetting{
 	 /// </summary>
 	 public int UnlockValue;
 
-	 /// <summary>
-	 /// 
-	 /// </summary>
-	 public  ;
-
 	 public static string FileName = "TrailSetting";
 }
 }

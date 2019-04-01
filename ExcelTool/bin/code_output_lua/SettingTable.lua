@@ -21,8 +21,8 @@ end
 ---@field public SecondaryGunSetting table
 ---@class SecondaryGunSetting:SettingTable
 SettingTable.SecondaryGunSetting={
-	{ID=2001,Name=1010,EquipmentType=,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
-	{ID=2011,Name=1011,EquipmentType=,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
+	{ID=2001,Name=1010,EquipmentType=,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
+	{ID=2011,Name=1011,EquipmentType=,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
 }
 SettingTable.GetSecondaryGunByID=function(ID)
 	for i=1,#SettingTable.SecondaryGunSetting do
@@ -38,8 +38,8 @@ end
 ---@field public MissileSetting table
 ---@class MissileSetting:SettingTable
 SettingTable.MissileSetting={
-	{ID=3001,Name=1012,EquipmentType=,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
-	{ID=3011,Name=1013,EquipmentType=,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
+	{ID=3001,Name=1012,EquipmentType=,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
+	{ID=3011,Name=1013,EquipmentType=,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
 }
 SettingTable.GetMissileByID=function(ID)
 	for i=1,#SettingTable.MissileSetting do
@@ -55,8 +55,8 @@ end
 ---@field public TrailSetting table
 ---@class TrailSetting:SettingTable
 SettingTable.TrailSetting={
-	{ID=4001,Name=1014,EquipmentType=,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
-	{ID=4011,Name=1015,EquipmentType=,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,=,},
+	{ID=4001,Name=1014,EquipmentType=,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
+	{ID=4011,Name=1015,EquipmentType=,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=,MaxLv=,UnlockType=,UnlockValue=,},
 }
 SettingTable.GetTrailByID=function(ID)
 	for i=1,#SettingTable.TrailSetting do

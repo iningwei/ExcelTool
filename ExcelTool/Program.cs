@@ -373,6 +373,15 @@ namespace ExcelTool
                 content += "\t\t\t}\r\n";
                 content += "\t\t}\r\n";//GetEntityByPrimaryKey
 
+
+                content += "\t\t/// <summary>\r\n";
+                content += "\t\t/// 获得所有数据项\r\n";
+                content += "\t\t/// </summary>\r\n";
+                content += "\t\tpublic " + et.tableName + "[]" + " AllItems(){\r\n";
+                content += "\t\t\treturn this.entities;\r\n";
+                content += "\t\t}\r\n";//AllItems
+
+
                 content += "\t}\r\n";//class
                 content += "}";//namespace
 

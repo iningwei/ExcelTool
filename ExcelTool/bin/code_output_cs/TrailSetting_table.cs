@@ -56,7 +56,6 @@ namespace SelfTable{
 					entities[i].MaxLv=int.Parse(vals[10].Trim());
 					entities[i].UnlockType=int.Parse(vals[11].Trim());
 					entities[i].UnlockValue=int.Parse(vals[12].Trim());
-					entities[i].= vals[13].Trim();
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};
@@ -91,6 +90,12 @@ namespace SelfTable{
 				Debug.LogError("no entity with key:"+key);
 				return default(TrailSetting);
 			}
+		}
+		/// <summary>
+		/// 获得所有数据项
+		/// </summary>
+		public TrailSetting[] AllItems(){
+			return this.entities;
 		}
 	}
 }
