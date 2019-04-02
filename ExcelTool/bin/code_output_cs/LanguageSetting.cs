@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace SelfTable{
-public class LanguageSetting{
+public class LanguageSetting:Setting{
 	 /// <summary>
 	 /// 语言表id
 	 /// </summary>

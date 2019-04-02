@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace SelfTable{
-public class SecondaryGunSetting{
+public class SecondaryGunSetting:Setting{
 	 /// <summary>
 	 /// 装备编号
 	 /// 装备序号

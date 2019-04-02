@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace SelfTable{
-public class BodySetting{
+public class BodySetting:Setting{
 	 /// <summary>
 	 /// 装备编号
 	 /// 装备序号

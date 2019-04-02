@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace SelfTable{
-public class TrailSetting{
+public class TrailSetting:Setting{
 	 /// <summary>
 	 /// 装备编号
 	 /// 装备序号

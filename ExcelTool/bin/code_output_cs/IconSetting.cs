@@ -44,7 +44,7 @@ public class IconSettingKVP{
 		}
 	}
 }
-public class IconSetting{
+public class IconSetting:Setting{
 	 /// <summary>
 	 /// 
 	 ///  

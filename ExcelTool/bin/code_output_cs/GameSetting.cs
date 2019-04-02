@@ -84,7 +84,7 @@ public class GameSettingKVP{
 		}
 	}
 }
-public class GameSetting{
+public class GameSetting:Setting{
 	 /// <summary>
 	 /// 
 	 /// </summary>

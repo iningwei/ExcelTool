@@ -5,7 +5,7 @@ local SettingTable={}
 ---@class BodySetting:SettingTable
 SettingTable.BodySetting={
 	{ID=1001,Name=100,UnitType=1,Speed=0.8,Damage=0.8,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=0,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1001",PropertyPlus="1+2",},
-	{ID=1011,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=12,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1011",PropertyPlus="1+2",},
+	{ID=1011,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=2,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1011",PropertyPlus="1+2",},
 }
 SettingTable.GetBodyByID=function(ID)
 	for i=1,#SettingTable.BodySetting do
@@ -100,8 +100,8 @@ SettingTable.LanguageSetting={
 	{Id=2000,Value="速度:{0}",},
 	{Id=2001,Value="伤害:{0}",},
 	{Id=2002,Value="防御:{0}",},
-	{Id=2003,Value="金币价值:{0}",},
-	{Id=2004,Value="金币收益:{0}",},
+	{Id=2003,Value="金币收益:{0}",},
+	{Id=2004,Value="金币价值:{0}",},
 }
 SettingTable.GetLanguageById=function(Id)
 	for i=1,#SettingTable.LanguageSetting do
@@ -122,9 +122,9 @@ SettingTable.GameSetting={
 	PowerRecoverTime=10,--每次恢复能量耗时，单位（秒）
 	DiamondRecoverTime=4000,--每次恢复钻石耗时，单位(秒)
 	DiamondRecoverCount=0,--每次恢复钻石个数
-	CoinRewardCount=10,--金币奖励，每次奖励量
-	CoinRewardTime=10,--金币奖励，每次奖励时间间隔
-	CoinRewardMax=100,--金币奖励，最大值
+	CoinRewardCount=800,--金币奖励，每次奖励量
+	CoinRewardTime=8,--金币奖励，每次奖励时间间隔
+	CoinRewardMax=9999,--金币奖励，最大值
 	LevelMax=9999,--最大关卡值
 	BattleCostPower=5,--每次游戏消耗的能量点
 }
@@ -132,9 +132,9 @@ SettingTable.GameSetting={
 ---@field public IconSetting table
 ---@class IconSetting:SettingTable
 SettingTable.IconSetting={
-	Speed=PreparePage|防御,--速度（速率）
+	Speed=PreparePage|速度,--速度（速率）
 	Damage=PreparePage|伤害,--伤害
-	Defence=PreparePage|速度,--防御
+	Defence=PreparePage|防御,--防御
 	CoinPrice=PreparePage|金币价值,--金币价值
 	CoinGain=PreparePage|金币收益,--金币收益
 }

@@ -203,6 +203,21 @@ namespace ExcelTool
             {
                 Directory.CreateDirectory(outputCSCodeDir);
             }
+
+
+            //----------------------->生成Setting.cs基类
+            string settingStr = "namespace SelfTable{\r\n";
+            settingStr += "\tpublic class Setting{\r\n";
+            settingStr += "\t}\r\n";
+            settingStr += "}";
+            File.WriteAllText(outputCSCodeDir + @"\" + "Setting.cs", settingStr.TrimEnd(), Encoding.UTF8);
+
+
+
+
+
+
+
             int tableCount2 = tables.Count;
             for (int jj = 0; jj < tableCount2; jj++)//生成数据类代码(对于需要生成KeyConstStr的，还需要生成对应辅助类)
             {
@@ -237,7 +252,7 @@ namespace ExcelTool
 
 
 
-                content += "public class " + et.tableName + "{\r\n";
+                content += "public class " + et.tableName + ":Setting{\r\n";
 
                 for (int l = 0; l < columnCount; l++)
                 {
@@ -262,6 +277,10 @@ namespace ExcelTool
 
                 File.WriteAllText(outputCSCodeDir + @"\" + et.tableName + ".cs", content.TrimEnd(), Encoding.UTF8);
             }
+
+
+
+
 
             for (int kk = 0; kk < tableCount2; kk++)//生成文件加载和数据读取代码
             {
