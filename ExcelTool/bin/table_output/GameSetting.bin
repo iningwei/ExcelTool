@@ -1,8 +1,10 @@
 PowerMax	80
-PowerRecoverCount	1
-PowerRecoverTime	300
+PowerRecoverCount	10
+PowerRecoverTime	10
 DiamondRecoverTime	4000
 DiamondRecoverCount	0
 CoinRewardCount	10
 CoinRewardTime	10
 CoinRewardMax	100
+LevelMax	9999
+BattleCostPower	5

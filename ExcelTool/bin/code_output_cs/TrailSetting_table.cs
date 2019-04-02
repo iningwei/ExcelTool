@@ -45,7 +45,7 @@ namespace SelfTable{
 					entities[i]=new TrailSetting();
 					entities[i].ID=int.Parse(vals[0].Trim());
 					entities[i].Name=int.Parse(vals[1].Trim());
-					entities[i].EquipmentType=int.Parse(vals[2].Trim());
+					entities[i].UnitType=int.Parse(vals[2].Trim());
 					entities[i].Speed=float.Parse(vals[3].Trim());
 					entities[i].Damage=float.Parse(vals[4].Trim());
 					entities[i].Defence=float.Parse(vals[5].Trim());
@@ -56,6 +56,9 @@ namespace SelfTable{
 					entities[i].MaxLv=int.Parse(vals[10].Trim());
 					entities[i].UnlockType=int.Parse(vals[11].Trim());
 					entities[i].UnlockValue=int.Parse(vals[12].Trim());
+					entities[i].AtlasName= vals[13].Trim();
+					entities[i].SpriteName= vals[14].Trim();
+					entities[i].PropertyPlus= vals[15].Trim();
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};

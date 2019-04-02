@@ -67,6 +67,22 @@ public class GameSettingKVP{
 			return GameSetting_table.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
 		}
 	}
+	/// <summary>
+	/// 最大关卡值
+	/// </summary>
+	public static float LevelMax{
+		get{
+			return GameSetting_table.Instance.GetEntityByPrimaryKey("LevelMax").Value;
+		}
+	}
+	/// <summary>
+	/// 每次游戏消耗的能量点
+	/// </summary>
+	public static float BattleCostPower{
+		get{
+			return GameSetting_table.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
+		}
+	}
 }
 public class GameSetting{
 	 /// <summary>

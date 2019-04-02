@@ -18,7 +18,7 @@ public class MissileSetting{
 	 /// <summary>
 	 /// 装备类型
 	 /// </summary>
-	 public int EquipmentType;
+	 public int UnitType;
 
 	 /// <summary>
 	 /// 频率
@@ -69,6 +69,22 @@ public class MissileSetting{
 	 /// 解锁值
 	 /// </summary>
 	 public int UnlockValue;
+
+	 /// <summary>
+	 /// 图标所在图集名
+	 /// </summary>
+	 public string AtlasName;
+
+	 /// <summary>
+	 /// 图标名
+	 /// </summary>
+	 public string SpriteName;
+
+	 /// <summary>
+	 /// 属性加成
+	 /// 每种部件属性加成均为2种，用+分割
+	 /// </summary>
+	 public string PropertyPlus;
 
 	 public static string FileName = "MissileSetting";
 }

@@ -217,7 +217,7 @@ namespace ExcelTool
 
                 content += "namespace SelfTable{\r\n";
 
-                if (et.isKVPairTable)//生成对应辅助类
+                if (et.isKVPairTable)//是KVT，生成对应辅助类
                 {
                     content += "public class " + et.tableName + "KVP{\r\n";
                     for (int k = 4; k < et.tableContent[et.primaryKeyName].Count; k++)
@@ -328,9 +328,13 @@ namespace ExcelTool
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                     }
-                    else
+                    else if (typeStr == "string")
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "= vals[" + i + "].Trim();\r\n";
+                    }
+                    else if (typeStr == "string[]")
+                    {
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "= vals[" + i + "].Trim().Split(\'|\');\r\n";
                     }
                 }
 
