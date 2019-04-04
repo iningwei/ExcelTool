@@ -43,22 +43,22 @@ namespace SelfTable{
 					}
 					string[] vals=line.Split('\t');
 					entities[i]=new MissileSetting();
-					entities[i].ID=int.Parse(vals[0].Trim());
-					entities[i].Name=int.Parse(vals[1].Trim());
-					entities[i].UnitType=int.Parse(vals[2].Trim());
-					entities[i].Speed=float.Parse(vals[3].Trim());
-					entities[i].Damage=float.Parse(vals[4].Trim());
-					entities[i].Defence=float.Parse(vals[5].Trim());
-					entities[i].CoinReward=float.Parse(vals[6].Trim());
-					entities[i].CoinMultiply=float.Parse(vals[7].Trim());
-					entities[i].BulletID=int.Parse(vals[8].Trim());
-					entities[i].DefaultLv=int.Parse(vals[9].Trim());
-					entities[i].MaxLv=int.Parse(vals[10].Trim());
-					entities[i].UnlockType=int.Parse(vals[11].Trim());
-					entities[i].UnlockValue=int.Parse(vals[12].Trim());
-					entities[i].AtlasName= vals[13].Trim();
-					entities[i].SpriteName= vals[14].Trim();
-					entities[i].PropertyPlus= vals[15].Trim();
+					entities[i].ID=vals[0]==null?0:int.Parse(vals[0].Trim());
+					entities[i].Name=vals[1]==null?0:int.Parse(vals[1].Trim());
+					entities[i].UnitType=vals[2]==null?0:int.Parse(vals[2].Trim());
+					entities[i].Speed=vals[3]==null?0:float.Parse(vals[3].Trim());
+					entities[i].Damage=vals[4]==null?0:float.Parse(vals[4].Trim());
+					entities[i].Defence=vals[5]==null?0:float.Parse(vals[5].Trim());
+					entities[i].CoinReward=vals[6]==null?0:float.Parse(vals[6].Trim());
+					entities[i].CoinMultiply=vals[7]==null?0:float.Parse(vals[7].Trim());
+					entities[i].BulletID=vals[8]==null?0:int.Parse(vals[8].Trim());
+					entities[i].DefaultLv=vals[9]==null?0:int.Parse(vals[9].Trim());
+					entities[i].MaxLv=vals[10]==null?0:int.Parse(vals[10].Trim());
+					entities[i].UnlockType=vals[11]==null?0:int.Parse(vals[11].Trim());
+					entities[i].UnlockValue=vals[12]==null?0:int.Parse(vals[12].Trim());
+					entities[i].AtlasName=vals[13]==null?null:vals[13].Trim();
+					entities[i].SpriteName=vals[14]==null?null:vals[14].Trim();
+					entities[i].PropertyPlus=vals[15]==null?null:vals[15].Trim();
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};

@@ -43,8 +43,8 @@ namespace SelfTable{
 					}
 					string[] vals=line.Split('\t');
 					entities[i]=new IconSetting();
-					entities[i].Key= vals[0].Trim();
-					entities[i].Value= vals[1].Trim().Split('|');
+					entities[i].Key=vals[0]==null?null:vals[0].Trim();
+					entities[i].Value=vals[1]==null?null:vals[1].Trim().Split('|');
 					keyIndexMap[entities[i].Key]=i;
 				}
 			};

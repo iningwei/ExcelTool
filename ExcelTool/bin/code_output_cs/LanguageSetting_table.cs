@@ -43,8 +43,8 @@ namespace SelfTable{
 					}
 					string[] vals=line.Split('\t');
 					entities[i]=new LanguageSetting();
-					entities[i].Id=int.Parse(vals[0].Trim());
-					entities[i].Value= vals[1].Trim();
+					entities[i].Id=vals[0]==null?0:int.Parse(vals[0].Trim());
+					entities[i].Value=vals[1]==null?null:vals[1].Trim();
 					keyIndexMap[entities[i].Id]=i;
 				}
 			};
