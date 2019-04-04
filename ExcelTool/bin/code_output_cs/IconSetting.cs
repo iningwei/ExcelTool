@@ -46,13 +46,13 @@ public class IconSettingKVP{
 }
 public class IconSetting:Setting{
 	 /// <summary>
-	 /// 
+	 /// 囧
 	 ///  
 	 /// </summary>
 	 public string Key;
 
 	 /// <summary>
-	 /// 
+	 /// 囧
 	 /// [0]为图集名，[1]为精灵名
 	 /// </summary>
 	 public string[] Value;

@@ -86,12 +86,14 @@ public class GameSettingKVP{
 }
 public class GameSetting:Setting{
 	 /// <summary>
-	 /// 
+	 /// 囧
+	 /// 囧
 	 /// </summary>
 	 public string Key;
 
 	 /// <summary>
-	 /// 
+	 /// 囧
+	 /// 囧
 	 /// </summary>
 	 public float Value;
 

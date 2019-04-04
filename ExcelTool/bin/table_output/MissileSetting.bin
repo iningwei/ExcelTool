@@ -1,5 +1,5 @@
-3001	1020	3	1	4	0	0	0	1	1	49	1	11	PreparePage	导弹1	1+2
-3011	1021	3	1.1	5	0	0	0	1	1	49	1	13	PreparePage	导弹2	1+2
-3021	1022	3	1	7	0	0	0	1	1	49	1	21	PreparePage	导弹3	1+2
-3031	1023	3	1.2	9	0	0	0	1	1	49	1	22	PreparePage	导弹4	1+2
-3041	1024	3	1	12	0	0	0	1	1	49	1	32	PreparePage	导弹5	1+2
+3001	1020	3	1	4	0	0	0	1	49	1	4	PreparePage	导弹1	1+2	bulletMissile1	BulletMissile
+3011	1021	3	1.1	5	0	0	0	1	49	1	7	PreparePage	导弹2	1+2	bulletMissile1	BulletMissile
+3021	1022	3	1	7	0	0	0	1	49	1	21	PreparePage	导弹3	1+2	bulletMissile1	BulletMissile
+3031	1023	3	1.2	9	0	0	0	1	49	1	22	PreparePage	导弹4	1+2	bulletMissile1	BulletMissile
+3041	1024	3	1	12	0	0	0	1	49	1	32	PreparePage	导弹5	1+2	bulletMissile1	BulletMissile

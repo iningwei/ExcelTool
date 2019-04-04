@@ -4,8 +4,8 @@ local SettingTable={}
 ---@field public BodySetting table
 ---@class BodySetting:SettingTable
 SettingTable.BodySetting={
-	{ID=1001,Name=100,UnitType=1,Speed=0.8,Damage=0.8,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=0,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1001",PropertyPlus="1+2",},
-	{ID=1011,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=2,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1011",PropertyPlus="1+2",},
+	{ID=1001,Name=100,UnitType=1,Speed=0.8,Damage=0.8,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=0,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1001",PropertyPlus="1+2",BulletPrefabName="bulletLightBlue",BulletName="BulletNormal",},
+	{ID=1011,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=2,AtlasName="PreparePage",SpriteName="组5拷贝2@2x-1011",PropertyPlus="1+2",BulletPrefabName="bulletRed",BulletName="BulletNormal",},
 }
 SettingTable.GetBodyByID=function(ID)
 	for i=1,#SettingTable.BodySetting do
@@ -21,11 +21,11 @@ end
 ---@field public SecondaryGunSetting table
 ---@class SecondaryGunSetting:SettingTable
 SettingTable.SecondaryGunSetting={
-	{ID=2001,Name=1010,UnitType=2,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=5,AtlasName="PreparePage",SpriteName="机枪1",PropertyPlus="1+2",},
-	{ID=2011,Name=1011,UnitType=2,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=6,AtlasName="PreparePage",SpriteName="机枪2",PropertyPlus="1+2",},
-	{ID=2021,Name=1012,UnitType=2,Speed=1.3,Damage=1.3,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=8,AtlasName="PreparePage",SpriteName="机枪3",PropertyPlus="1+2",},
-	{ID=2031,Name=1013,UnitType=2,Speed=1.5,Damage=1.5,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=12,AtlasName="PreparePage",SpriteName="机枪4",PropertyPlus="1+2",},
-	{ID=2041,Name=1014,UnitType=2,Speed=2,Damage=2,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=24,AtlasName="PreparePage",SpriteName="机枪5",PropertyPlus="1+2",},
+	{ID=2001,Name=1010,UnitType=2,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=3,AtlasName="PreparePage",SpriteName="机枪1",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=2011,Name=1011,UnitType=2,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=5,AtlasName="PreparePage",SpriteName="机枪2",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=2021,Name=1012,UnitType=2,Speed=1.3,Damage=1.3,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=8,AtlasName="PreparePage",SpriteName="机枪3",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=2031,Name=1013,UnitType=2,Speed=1.5,Damage=1.5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=12,AtlasName="PreparePage",SpriteName="机枪4",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=2041,Name=1014,UnitType=2,Speed=2,Damage=2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=19,UnlockType=1,UnlockValue=24,AtlasName="PreparePage",SpriteName="机枪5",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
 }
 SettingTable.GetSecondaryGunByID=function(ID)
 	for i=1,#SettingTable.SecondaryGunSetting do
@@ -41,11 +41,11 @@ end
 ---@field public MissileSetting table
 ---@class MissileSetting:SettingTable
 SettingTable.MissileSetting={
-	{ID=3001,Name=1020,UnitType=3,Speed=1,Damage=4,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=11,AtlasName="PreparePage",SpriteName="导弹1",PropertyPlus="1+2",},
-	{ID=3011,Name=1021,UnitType=3,Speed=1.1,Damage=5,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=13,AtlasName="PreparePage",SpriteName="导弹2",PropertyPlus="1+2",},
-	{ID=3021,Name=1022,UnitType=3,Speed=1,Damage=7,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=21,AtlasName="PreparePage",SpriteName="导弹3",PropertyPlus="1+2",},
-	{ID=3031,Name=1023,UnitType=3,Speed=1.2,Damage=9,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=22,AtlasName="PreparePage",SpriteName="导弹4",PropertyPlus="1+2",},
-	{ID=3041,Name=1024,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinMultiply=0,BulletID=1,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PreparePage",SpriteName="导弹5",PropertyPlus="1+2",},
+	{ID=3001,Name=1020,UnitType=3,Speed=1,Damage=4,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=4,AtlasName="PreparePage",SpriteName="导弹1",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=3011,Name=1021,UnitType=3,Speed=1.1,Damage=5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=7,AtlasName="PreparePage",SpriteName="导弹2",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=3021,Name=1022,UnitType=3,Speed=1,Damage=7,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=21,AtlasName="PreparePage",SpriteName="导弹3",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=3031,Name=1023,UnitType=3,Speed=1.2,Damage=9,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=22,AtlasName="PreparePage",SpriteName="导弹4",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=3041,Name=1024,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PreparePage",SpriteName="导弹5",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
 }
 SettingTable.GetMissileByID=function(ID)
 	for i=1,#SettingTable.MissileSetting do
@@ -61,8 +61,8 @@ end
 ---@field public TrailSetting table
 ---@class TrailSetting:SettingTable
 SettingTable.TrailSetting={
-	{ID=4001,Name=1030,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=2222,AtlasName="PreparePage",SpriteName="拖尾1",PropertyPlus="4+5",},
-	{ID=4011,Name=1031,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinMultiply=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=3333,AtlasName="PreparePage",SpriteName="拖尾2",PropertyPlus="4+5",},
+	{ID=4001,Name=1030,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=5,AtlasName="PreparePage",SpriteName="拖尾1",PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
+	{ID=4011,Name=1031,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=122,AtlasName="PreparePage",SpriteName="拖尾2",PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
 }
 SettingTable.GetTrailByID=function(ID)
 	for i=1,#SettingTable.TrailSetting do

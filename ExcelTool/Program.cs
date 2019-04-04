@@ -166,6 +166,10 @@ namespace ExcelTool
                                 }
                                 else
                                 {
+                                    if (property=="")
+                                    {
+                                        property = "囧";//对于数据表中，用户没有填写的空格，默认赋值为 囧 ，读取的时候需要特殊处理
+                                    }
                                     et.tableContent[key].Add(property);
                                 }
 
@@ -345,19 +349,19 @@ namespace ExcelTool
                     string typeStr = et.tableContent[et.keys[i]][0];
                     if (typeStr == "int" || typeStr == "float")
                     {
-                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==null?0:" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?0:" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                     }
                     else if (typeStr == "bool")
                     {
-                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==null?false:" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?false:" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                     }
                     else if (typeStr == "string")
                     {
-                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==null?null:" + "vals[" + i + "].Trim();\r\n";
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?null:" + "vals[" + i + "].Trim();\r\n";
                     }
                     else if (typeStr == "string[]")
                     {
-                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==null?null:" + "vals[" + i + "].Trim().Split(\'|\');\r\n";
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?null:" + "vals[" + i + "].Trim().Split(\'|\');\r\n";
                     }
                 }
 
