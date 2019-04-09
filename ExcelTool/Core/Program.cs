@@ -5,52 +5,20 @@ using System.Text;
 using System.IO;
 using Excel;
 using System.Data;
+using ExcelTool.Core;
 
 /*
- *参考至： http://www.cnblogs.com/fly-100/p/4538975.html
-     */
+ *参考自： http://www.cnblogs.com/fly-100/p/4538975.html
+*/
 
 
 namespace ExcelTool
 {
-    public class ExcelTable
-    {
-        /// <summary>
-        /// 表的名称，后续用来做自动生成的代码的类名
-        /// </summary>
-        public string tableName;
 
-
-
-        /// <summary>
-        /// 具体内容行数，为excel数据表第五行开始的数据
-        /// </summary>
-        public int usedRowsCount;
-
-        /// <summary>
-        /// 存储字段名称
-        /// </summary>
-        public List<string> keys = new List<string>();
-
-        /// <summary>
-        /// 具体内容，key为字段名称， value为具体内容
-        /// value[0]数据类型，value[1]特殊标识， value[2]中文名称，value[3]详细描述，value[4]及之后才是具体的内容
-        /// </summary>
-        public Dictionary<string, List<string>> tableContent = new Dictionary<string, List<string>>();
-
-
-        public string primaryKeyName;
-        public string primaryKeyType;
-        public bool isKVPairTable = false;
-        public string valueKeyType;//当isKVPairTable为true的时候，Value字段的类型
-
-    }
 
 
     class Program
     {
-        static bool isEncrypt = false;
-        static string encryptKey = "hello";
 
         static string excelFileDir;
         static string[] excelFiles;
@@ -231,7 +199,7 @@ namespace ExcelTool
 
 
                 content += "using System;\r\n";
-                 content += "using UnityEngine;\r\n";
+                content += "using UnityEngine;\r\n";
                 content += "using System.Text;\r\n";
                 content += "\r\n";
 
@@ -469,14 +437,14 @@ namespace ExcelTool
 
                 string path = outputTableDir + @"\" + et.tableName + ".bin";
 
-                if (!isEncrypt)
+                if (!Setting.IsEncrypt)
                 {
                     //File.WriteAllText(path, content.TrimEnd(), Encoding.UTF8);
                     File.WriteAllText(path, content.TrimEnd(), new UTF8Encoding(false));//必须用no-bom的格式，否则读取的时候数据头会影响
                 }
                 else//加密
                 {
-                    content = TextEncrypt(content.TrimEnd(), encryptKey);
+                    content = TextEncrypt(content.TrimEnd(), Setting.EncryptKey);
 
                     //将string转为byte数组
                     byte[] array = Encoding.UTF8.GetBytes(content.TrimEnd());
