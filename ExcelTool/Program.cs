@@ -166,7 +166,7 @@ namespace ExcelTool
                                 }
                                 else
                                 {
-                                    if (property=="")
+                                    if (property == "")
                                     {
                                         property = "囧";//对于数据表中，用户没有填写的空格，默认赋值为 囧 ，读取的时候需要特殊处理
                                     }
@@ -362,6 +362,15 @@ namespace ExcelTool
                     else if (typeStr == "string[]")
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?null:" + "vals[" + i + "].Trim().Split(\'|\');\r\n";
+                    }
+                    else if (typeStr == "vector3")
+                    {
+                        content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?new Vector3(0,0,0):"
+                            + "new Vector3("
+                            + "vals[" + i + "].Trim().Split(\'|\')[0],"
+                            + "vals[" + i + "].Trim().Split(\'|\')[1],"
+                            + "vals[" + i + "].Trim().Split(\'|\')[2]"
+                            + ");\r\n";
                     }
                 }
 

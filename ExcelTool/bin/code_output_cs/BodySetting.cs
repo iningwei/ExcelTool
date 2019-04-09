@@ -88,6 +88,18 @@ public class BodySetting:Setting{
 	 public string SpriteName;
 
 	 /// <summary>
+	 /// 预制件名称
+	 /// 囧
+	 /// </summary>
+	 public string PrefabName;
+
+	 /// <summary>
+	 /// 预制件的坐标
+	 /// 囧
+	 /// </summary>
+	 public vector3 LocalPos;
+
+	 /// <summary>
 	 /// 属性加成
 	 /// 每种部件属性加成均为2种，用+分割
 	 /// </summary>

@@ -1,2 +1,2 @@
-1001	100	1	0.8	0.8	0	0	0	1	99	1	0	PreparePage	组5拷贝2@2x-1001	1+2	bulletLightBlue	BulletNormal
-1011	101	1	1	1	0	0	0	1	99	1	2	PreparePage	组5拷贝2@2x-1011	1+2	bulletRed	BulletNormal
+10001	100	1	0.8	0.8	0	0	0	1	99	1	0	PlaneFactory	10001	囧	囧	1+2	bulletLightBlue	BulletNormal
+20001	101	1	1	1	0	0	0	1	99	1	2	PlaneFactory	20001	囧	0|0.19|0	1+2	bulletRed	BulletNormal

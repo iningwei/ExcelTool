@@ -1,5 +1,7 @@
-3001	1020	3	1	4	0	0	0	1	49	1	4	PreparePage	导弹1	1+2	bulletMissile1	BulletMissile
-3011	1021	3	1.1	5	0	0	0	1	49	1	7	PreparePage	导弹2	1+2	bulletMissile1	BulletMissile
-3021	1022	3	1	7	0	0	0	1	49	1	21	PreparePage	导弹3	1+2	bulletMissile1	BulletMissile
-3031	1023	3	1.2	9	0	0	0	1	49	1	22	PreparePage	导弹4	1+2	bulletMissile1	BulletMissile
-3041	1024	3	1	12	0	0	0	1	49	1	32	PreparePage	导弹5	1+2	bulletMissile1	BulletMissile
+12001	1020	3	1	4	0	0	0	1	49	1	4	PlaneFactory	12001	1+2	bulletMissile1	BulletMissile
+22001	1021	3	1.1	5	0	0	0	1	49	1	7	PlaneFactory	22001	1+2	bulletMissile1	BulletMissile
+22011	1022	3	1	7	0	0	0	1	49	1	21	PlaneFactory	22011	1+2	bulletMissile1	BulletMissile
+22021	1023	3	1.2	9	0	0	0	1	49	1	22	PlaneFactory	22021	1+2	bulletMissile1	BulletMissile
+22031	1024	3	1	12	0	0	0	1	49	1	32	PlaneFactory	22031	1+2	bulletMissile1	BulletMissile
+22041	1025	3	1	12	0	0	0	1	49	1	32	PlaneFactory	22041	1+2	bulletMissile1	BulletMissile
+22051	1026	3	1	12	0	0	0	1	49	1	32	PlaneFactory	22051	1+2	bulletMissile1	BulletMissile
