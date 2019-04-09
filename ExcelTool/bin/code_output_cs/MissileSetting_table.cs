@@ -58,7 +58,7 @@ namespace SelfTable{
 					entities[i].AtlasName=vals[12]=="囧"?null:vals[12].Trim();
 					entities[i].SpriteName=vals[13]=="囧"?null:vals[13].Trim();
 					entities[i].PrefabName=vals[14]=="囧"?null:vals[14].Trim();
-					entities[i].LocalPos=vals[15]=="囧"?new Vector3(0,0,0):new Vector3(vals[15].Trim().Split('|')[0],vals[15].Trim().Split('|')[1],vals[15].Trim().Split('|')[2]);
+					entities[i].LocalPos=vals[15]=="囧"?new Vector3(0,0,0):new Vector3(float.Parse(vals[15].Trim().Split('|')[0]),float.Parse(vals[15].Trim().Split('|')[1]),float.Parse(vals[15].Trim().Split('|')[2]));
 					entities[i].PropertyPlus=vals[16]=="囧"?null:vals[16].Trim();
 					entities[i].BulletPrefabName=vals[17]=="囧"?null:vals[17].Trim();
 					entities[i].BulletName=vals[18]=="囧"?null:vals[18].Trim();

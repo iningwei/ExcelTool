@@ -368,9 +368,9 @@ namespace ExcelTool
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?new Vector3(0,0,0):"
                             + "new Vector3("
-                            + "vals[" + i + "].Trim().Split(\'|\')[0],"
-                            + "vals[" + i + "].Trim().Split(\'|\')[1],"
-                            + "vals[" + i + "].Trim().Split(\'|\')[2]"
+                            + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[0]),"
+                            + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[1]),"
+                            + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[2])"
                             + ");\r\n";
                     }
                 }
