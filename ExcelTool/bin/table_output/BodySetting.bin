@@ -1,2 +1,2 @@
-10001	100	1	0.8	0.8	0	0	0	1	99	1	0	PlaneFactory	10001	囧	囧	1+2	bulletLightBlue	BulletNormal
-20001	101	1	1	1	0	0	0	1	99	1	2	PlaneFactory	20001	囧	0|0.19|0	1+2	bulletRed	BulletNormal
+10001	100	1	0.8	0.8	0	0	0	1	99	1	0	PlaneFactory	10001	body10001	0|0|0	1+2	bulletLightBlue	BulletNormal
+20001	101	1	1	1	0	0	0	1	99	1	2	PlaneFactory	20001	body20001	0|0|0	1+2	bulletRed	BulletNormal

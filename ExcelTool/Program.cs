@@ -231,6 +231,7 @@ namespace ExcelTool
 
 
                 content += "using System;\r\n";
+                 content += "using UnityEngine;\r\n";
                 content += "using System.Text;\r\n";
                 content += "\r\n";
 
@@ -363,7 +364,7 @@ namespace ExcelTool
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?null:" + "vals[" + i + "].Trim().Split(\'|\');\r\n";
                     }
-                    else if (typeStr == "vector3")
+                    else if (typeStr == "Vector3")
                     {
                         content += "\t\t\t\t\tentities[i]." + et.keys[i] + "=" + "vals[" + i + "]==\"囧\"?new Vector3(0,0,0):"
                             + "new Vector3("

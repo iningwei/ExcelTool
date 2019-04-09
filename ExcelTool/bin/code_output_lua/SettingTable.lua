@@ -4,8 +4,8 @@ local SettingTable={}
 ---@field public BodySetting table
 ---@class BodySetting:SettingTable
 SettingTable.BodySetting={
-	{ID=10001,Name=100,UnitType=1,Speed=0.8,Damage=0.8,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=0,AtlasName="PlaneFactory",SpriteName="10001",PrefabName="囧",LocalPos=囧,PropertyPlus="1+2",BulletPrefabName="bulletLightBlue",BulletName="BulletNormal",},
-	{ID=20001,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=2,AtlasName="PlaneFactory",SpriteName="20001",PrefabName="囧",LocalPos=0|0.19|0,PropertyPlus="1+2",BulletPrefabName="bulletRed",BulletName="BulletNormal",},
+	{ID=10001,Name=100,UnitType=1,Speed=0.8,Damage=0.8,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=0,AtlasName="PlaneFactory",SpriteName="10001",PrefabName="body10001",LocalPos=0|0|0,PropertyPlus="1+2",BulletPrefabName="bulletLightBlue",BulletName="BulletNormal",},
+	{ID=20001,Name=101,UnitType=1,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=99,UnlockType=1,UnlockValue=2,AtlasName="PlaneFactory",SpriteName="20001",PrefabName="body20001",LocalPos=0|0|0,PropertyPlus="1+2",BulletPrefabName="bulletRed",BulletName="BulletNormal",},
 }
 SettingTable.GetBodyByID=function(ID)
 	for i=1,#SettingTable.BodySetting do
@@ -21,11 +21,14 @@ end
 ---@field public SecondaryGunSetting table
 ---@class SecondaryGunSetting:SettingTable
 SettingTable.SecondaryGunSetting={
-	{ID=11001,Name=1010,UnitType=2,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=3,AtlasName="PlaneFactory",SpriteName="11001",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
-	{ID=21001,Name=1011,UnitType=2,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=5,AtlasName="PlaneFactory",SpriteName="21001",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
-	{ID=21011,Name=1012,UnitType=2,Speed=1.3,Damage=1.3,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=8,AtlasName="PlaneFactory",SpriteName="21011",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
-	{ID=21021,Name=1013,UnitType=2,Speed=1.5,Damage=1.5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=12,AtlasName="PlaneFactory",SpriteName="21021",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
-	{ID=21031,Name=1014,UnitType=2,Speed=2,Damage=2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=24,AtlasName="PlaneFactory",SpriteName="21031",PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=11001,Name=1010,UnitType=2,Speed=1,Damage=1,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=3,AtlasName="PlaneFactory",SpriteName="11001",PrefabName="gun11001",LocalPos=0|0|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=21001,Name=1011,UnitType=2,Speed=1.2,Damage=1.2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=5,AtlasName="PlaneFactory",SpriteName="21001",PrefabName="gun21001",LocalPos=0|-0.18|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=21011,Name=1012,UnitType=2,Speed=1.3,Damage=1.3,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=8,AtlasName="PlaneFactory",SpriteName="21011",PrefabName="gun21011",LocalPos=-0.15|-0.5|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=21021,Name=1013,UnitType=2,Speed=1.5,Damage=1.5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=12,AtlasName="PlaneFactory",SpriteName="21021",PrefabName="gun21021",LocalPos=-0.17|-0.5|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=21031,Name=1014,UnitType=2,Speed=2,Damage=2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=24,AtlasName="PlaneFactory",SpriteName="21031",PrefabName="gun21031",LocalPos=-0.22|-0.31|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=21041,Name=1015,UnitType=2,Speed=3,Damage=3,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=25,AtlasName="PlaneFactory",SpriteName="21041",PrefabName="gun21041",LocalPos=-0.21|-0.37|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
+	{ID=囧,Name=囧,UnitType=囧,Speed=囧,Damage=囧,Defence=囧,CoinReward=囧,CoinPrice=囧,DefaultLv=囧,MaxLv=囧,UnlockType=囧,UnlockValue=囧,AtlasName="囧",SpriteName="囧",PrefabName="囧",LocalPos=囧,PropertyPlus="囧",BulletPrefabName="囧",BulletName="囧",},
+	{ID=囧,Name=囧,UnitType=囧,Speed=囧,Damage=囧,Defence=囧,CoinReward=囧,CoinPrice=囧,DefaultLv=囧,MaxLv=囧,UnlockType=囧,UnlockValue=囧,AtlasName="囧",SpriteName="囧",PrefabName="囧",LocalPos=囧,PropertyPlus="囧",BulletPrefabName="囧",BulletName="囧",},
 }
 SettingTable.GetSecondaryGunByID=function(ID)
 	for i=1,#SettingTable.SecondaryGunSetting do
@@ -41,13 +44,12 @@ end
 ---@field public MissileSetting table
 ---@class MissileSetting:SettingTable
 SettingTable.MissileSetting={
-	{ID=12001,Name=1020,UnitType=3,Speed=1,Damage=4,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=4,AtlasName="PlaneFactory",SpriteName="12001",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22001,Name=1021,UnitType=3,Speed=1.1,Damage=5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=7,AtlasName="PlaneFactory",SpriteName="22001",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22011,Name=1022,UnitType=3,Speed=1,Damage=7,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=21,AtlasName="PlaneFactory",SpriteName="22011",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22021,Name=1023,UnitType=3,Speed=1.2,Damage=9,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=22,AtlasName="PlaneFactory",SpriteName="22021",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22031,Name=1024,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PlaneFactory",SpriteName="22031",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22041,Name=1025,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PlaneFactory",SpriteName="22041",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
-	{ID=22051,Name=1026,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PlaneFactory",SpriteName="22051",PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=12001,Name=1020,UnitType=3,Speed=1,Damage=4,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=4,AtlasName="PlaneFactory",SpriteName="12001",PrefabName="missile12001",LocalPos=-0.31|0|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=22001,Name=1021,UnitType=3,Speed=1.1,Damage=5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=7,AtlasName="PlaneFactory",SpriteName="22001",PrefabName="missile22001",LocalPos=-0.31|0|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=22011,Name=1022,UnitType=3,Speed=1,Damage=7,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=21,AtlasName="PlaneFactory",SpriteName="22011",PrefabName="missile22011",LocalPos=-0.31|-0.4|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=22021,Name=1023,UnitType=3,Speed=1.2,Damage=9,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=22,AtlasName="PlaneFactory",SpriteName="22021",PrefabName="missile22021",LocalPos=-0.43|-0.23|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=22031,Name=1024,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PlaneFactory",SpriteName="22031",PrefabName="missile22031",LocalPos=-0.37|-0.29|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
+	{ID=22041,Name=1025,UnitType=3,Speed=1,Damage=12,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=49,UnlockType=1,UnlockValue=32,AtlasName="PlaneFactory",SpriteName="22041",PrefabName="missile22041",LocalPos=-0.59|0.03|0,PropertyPlus="1+2",BulletPrefabName="bulletMissile1",BulletName="BulletMissile",},
 }
 SettingTable.GetMissileByID=function(ID)
 	for i=1,#SettingTable.MissileSetting do
@@ -63,8 +65,8 @@ end
 ---@field public TrailSetting table
 ---@class TrailSetting:SettingTable
 SettingTable.TrailSetting={
-	{ID=4001,Name=1030,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=5,AtlasName="PreparePage",SpriteName="拖尾1",PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
-	{ID=4011,Name=1031,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=122,AtlasName="PreparePage",SpriteName="拖尾2",PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
+	{ID=4001,Name=1030,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=5,AtlasName="PreparePage",SpriteName="拖尾1",PrefabName="囧",LocalPos=0|0|0,PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
+	{ID=4011,Name=1031,UnitType=4,Speed=0,Damage=0,Defence=0,CoinReward=0.8,CoinPrice=0.8,BulletID=1,DefaultLv=1,MaxLv=199,UnlockType=1,UnlockValue=122,AtlasName="PreparePage",SpriteName="拖尾2",PrefabName="囧",LocalPos=0|0|0,PropertyPlus="4+5",BulletPrefabName="囧",BulletName="囧",},
 }
 SettingTable.GetTrailByID=function(ID)
 	for i=1,#SettingTable.TrailSetting do
@@ -92,6 +94,7 @@ SettingTable.LanguageSetting={
 	{Id=1012,Value="机枪111",},
 	{Id=1013,Value="机枪222",},
 	{Id=1014,Value="机枪333",},
+	{Id=1015,Value="龙虾钳子",},
 	{Id=1020,Value="爆破",},
 	{Id=1021,Value="粘弹",},
 	{Id=1022,Value="响尾蛇",},

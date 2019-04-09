@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Text;
 
 namespace SelfTable{
@@ -97,7 +98,7 @@ public class BodySetting:Setting{
 	 /// 预制件的坐标
 	 /// 囧
 	 /// </summary>
-	 public vector3 LocalPos;
+	 public Vector3 LocalPos;
 
 	 /// <summary>
 	 /// 属性加成

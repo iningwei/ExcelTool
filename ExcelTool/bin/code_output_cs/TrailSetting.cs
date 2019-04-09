@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Text;
 
 namespace SelfTable{
@@ -92,6 +93,18 @@ public class TrailSetting:Setting{
 	 /// 囧
 	 /// </summary>
 	 public string SpriteName;
+
+	 /// <summary>
+	 /// 预制件名称
+	 /// 囧
+	 /// </summary>
+	 public string PrefabName;
+
+	 /// <summary>
+	 /// 预制件的坐标
+	 /// 囧
+	 /// </summary>
+	 public Vector3 LocalPos;
 
 	 /// <summary>
 	 /// 属性加成
