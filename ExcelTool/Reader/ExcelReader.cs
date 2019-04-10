@@ -20,7 +20,7 @@ namespace ExcelTool.Reader
         public static List<ExcelTable> Read(string filePath)
         {
             List<ExcelTable> excelTables = new List<ExcelTable>();
-
+            string fileName = Path.GetFileName(filePath);
             FileStream fs = File.Open(filePath, FileMode.Open, FileAccess.Read);
             IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(fs);
             DataSet result = excelReader.AsDataSet();
@@ -32,10 +32,11 @@ namespace ExcelTool.Reader
             {
                 ExcelTable et = new ExcelTable();
                 et.tableName = table.TableName;
-                Console.WriteLine("-----begin read------>fileName:" + Path.GetFileName(filePath) + ",tableName:" + et.tableName);
+                Debug.Log("begin read------>fileName:" + fileName + ",tableName:" + et.tableName);
                 int rowCount = table.Rows.Count;
                 if (rowCount < 5)
                 {
+                    Debug.LogWarnning("fileName:" + fileName + ", tableName:" + et.tableName + ", line count less than 5, we will not handle with it");
                     continue;
                 }
 
