@@ -27,8 +27,6 @@ SettingTable.SecondaryGunSetting={
 	{ID=21021,Name=1013,UnitType=2,Speed=1.5,Damage=1.5,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=12,AtlasName="PlaneFactory",SpriteName="21021",PrefabName="gun21021",LocalPos=-0.17|-0.5|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
 	{ID=21031,Name=1014,UnitType=2,Speed=2,Damage=2,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=24,AtlasName="PlaneFactory",SpriteName="21031",PrefabName="gun21031",LocalPos=-0.22|-0.31|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
 	{ID=21041,Name=1015,UnitType=2,Speed=3,Damage=3,Defence=0,CoinReward=0,CoinPrice=0,DefaultLv=1,MaxLv=33,UnlockType=1,UnlockValue=25,AtlasName="PlaneFactory",SpriteName="21041",PrefabName="gun21041",LocalPos=-0.21|-0.37|0,PropertyPlus="1+2",BulletPrefabName="bulletSmallBrown",BulletName="BulletBasicTrace",},
-	{ID=囧,Name=囧,UnitType=囧,Speed=囧,Damage=囧,Defence=囧,CoinReward=囧,CoinPrice=囧,DefaultLv=囧,MaxLv=囧,UnlockType=囧,UnlockValue=囧,AtlasName="囧",SpriteName="囧",PrefabName="囧",LocalPos=囧,PropertyPlus="囧",BulletPrefabName="囧",BulletName="囧",},
-	{ID=囧,Name=囧,UnitType=囧,Speed=囧,Damage=囧,Defence=囧,CoinReward=囧,CoinPrice=囧,DefaultLv=囧,MaxLv=囧,UnlockType=囧,UnlockValue=囧,AtlasName="囧",SpriteName="囧",PrefabName="囧",LocalPos=囧,PropertyPlus="囧",BulletPrefabName="囧",BulletName="囧",},
 }
 SettingTable.GetSecondaryGunByID=function(ID)
 	for i=1,#SettingTable.SecondaryGunSetting do

@@ -19,7 +19,7 @@ namespace ExcelTool
 
     class Program
     {
-
+        static string binDir;
         static string excelFileDir;
         static string[] excelFiles;
 
@@ -35,12 +35,13 @@ namespace ExcelTool
 
 
             string curDir = Environment.CurrentDirectory;
-            excelFileDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
-            outputTableDir = excelFileDir + @"\table_output";
-            outputCSCodeDir = excelFileDir + @"\code_output_cs";
-            outputLuaCodeDir = excelFileDir + @"\code_output_lua";
+            Console.WriteLine("curDir:" + curDir);
+            binDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
+            outputTableDir = binDir + @"\table_output";
+            outputCSCodeDir = binDir + @"\code_output_cs";
+            outputLuaCodeDir = binDir + @"\code_output_lua";
 
-            excelFileDir = excelFileDir + @"\table";
+            excelFileDir = binDir + @"\table";
             Console.WriteLine("tableDir:" + excelFileDir);
 
             //.xls为03版本excel后缀
