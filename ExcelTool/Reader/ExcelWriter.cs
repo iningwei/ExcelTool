@@ -59,8 +59,8 @@ namespace ExcelTool.Reader
 
             for (int l = 0; l < et.fields.Count; l++)
             {
-                if (et.fields[l].name.ContainChinese()||
-                    et.fields[l].name=="KeyDes")
+                if (et.fields[l].name.ContainChinese() ||
+                    et.fields[l].name == "KeyDes")
                 {
                     continue;//key为汉字的时候跳过（汉字作为字段的 用于注释说明）
                 }
@@ -213,7 +213,7 @@ namespace ExcelTool.Reader
             content += "\t}\r\n";//class
             content += "}";//namespace
 
-            File.WriteAllText(outputDir + @"\" + et.tableName + "Reader.cs", content.TrimEnd(), Encoding.UTF8);            
+            File.WriteAllText(outputDir + @"\" + et.tableName + "Reader.cs", content.TrimEnd(), Encoding.UTF8);
             #endregion
             Debug.Log("write file " + et.tableName + ".cs");
         }
@@ -227,7 +227,10 @@ namespace ExcelTool.Reader
 
             ExcelField primaryField = et.GetPrimaryField();
 
-
+            if (et.tableName == "GameSetting")
+            {
+                int a = 1;
+            }
             string content = string.Empty;
             int rowCount = et.rowCount;
             int columnCount = et.fields.Count;
@@ -239,15 +242,18 @@ namespace ExcelTool.Reader
                     if (field.name == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段                            
                         continue;
 
-                    if (k == columnCount - 1)
-                    {
-                        content += (field.datas[j] + "\r\n");
-                    }
-                    else
-                    {
-                        content += (field.datas[j] + "\t");
-                    }
+                    content += (field.datas[j] + "\t");
+                    //////if (k == columnCount - 1)
+                    //////{
+                    //////    content += (field.datas[j] + "\r\n");
+                    //////}
+                    //////else
+                    //////{
+                    //////    content += (field.datas[j] + "\t");
+                    //////}
                 }
+                content = content.Remove(content.Length - 2);//移除行尾的\t字符               
+                content += "\r\n";
             }
 
             string path = outputDir + @"\" + et.tableName + ".bin";
