@@ -9,7 +9,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float PowerMax{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("PowerMax").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerMax").Value;
 		}
 	}
 	/// <summary>
@@ -17,7 +17,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float PowerRecoverCount{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("PowerRecoverCount").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverCount").Value;
 		}
 	}
 	/// <summary>
@@ -25,7 +25,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float PowerRecoverTime{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("PowerRecoverTime").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverTime").Value;
 		}
 	}
 	/// <summary>
@@ -33,7 +33,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float DiamondRecoverTime{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("DiamondRecoverTime").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverTime").Value;
 		}
 	}
 	/// <summary>
@@ -41,7 +41,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float DiamondRecoverCount{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("DiamondRecoverCount").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverCount").Value;
 		}
 	}
 	/// <summary>
@@ -49,7 +49,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float CoinRewardCount{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("CoinRewardCount").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardCount").Value;
 		}
 	}
 	/// <summary>
@@ -57,7 +57,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float CoinRewardTime{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("CoinRewardTime").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardTime").Value;
 		}
 	}
 	/// <summary>
@@ -65,7 +65,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float CoinRewardMax{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
 		}
 	}
 	/// <summary>
@@ -73,7 +73,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float LevelMax{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("LevelMax").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("LevelMax").Value;
 		}
 	}
 	/// <summary>
@@ -81,7 +81,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static float BattleCostPower{
 		get{
-			return GameSetting_table.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
 		}
 	}
 }

@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static SecondaryGunSetting_table instance=null;
-		public static SecondaryGunSetting_table Instance{
+		static SecondaryGunSettingReader instance=null;
+		public static SecondaryGunSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new SecondaryGunSetting_table();
+					instance=new SecondaryGunSettingReader();
 					instance.Load();
 				}
 				return instance;

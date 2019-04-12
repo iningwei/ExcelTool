@@ -9,7 +9,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] Speed{
 		get{
-			return IconSetting_table.Instance.GetEntityByPrimaryKey("Speed").Value;
+			return IconSettingReader.Instance.GetEntityByPrimaryKey("Speed").Value;
 		}
 	}
 	/// <summary>
@@ -17,7 +17,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] Damage{
 		get{
-			return IconSetting_table.Instance.GetEntityByPrimaryKey("Damage").Value;
+			return IconSettingReader.Instance.GetEntityByPrimaryKey("Damage").Value;
 		}
 	}
 	/// <summary>
@@ -25,7 +25,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] Defence{
 		get{
-			return IconSetting_table.Instance.GetEntityByPrimaryKey("Defence").Value;
+			return IconSettingReader.Instance.GetEntityByPrimaryKey("Defence").Value;
 		}
 	}
 	/// <summary>
@@ -33,7 +33,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] CoinPrice{
 		get{
-			return IconSetting_table.Instance.GetEntityByPrimaryKey("CoinPrice").Value;
+			return IconSettingReader.Instance.GetEntityByPrimaryKey("CoinPrice").Value;
 		}
 	}
 	/// <summary>
@@ -41,7 +41,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] CoinGain{
 		get{
-			return IconSetting_table.Instance.GetEntityByPrimaryKey("CoinGain").Value;
+			return IconSettingReader.Instance.GetEntityByPrimaryKey("CoinGain").Value;
 		}
 	}
 }

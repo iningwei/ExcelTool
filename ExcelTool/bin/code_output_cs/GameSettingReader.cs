@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static GameSetting_table instance=null;
-		public static GameSetting_table Instance{
+		static GameSettingReader instance=null;
+		public static GameSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new GameSetting_table();
+					instance=new GameSettingReader();
 					instance.Load();
 				}
 				return instance;

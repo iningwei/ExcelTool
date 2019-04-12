@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static IconSetting_table instance=null;
-		public static IconSetting_table Instance{
+		static IconSettingReader instance=null;
+		public static IconSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new IconSetting_table();
+					instance=new IconSettingReader();
 					instance.Load();
 				}
 				return instance;

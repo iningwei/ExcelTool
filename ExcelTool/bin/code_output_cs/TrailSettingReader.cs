@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static TrailSetting_table instance=null;
-		public static TrailSetting_table Instance{
+		static TrailSettingReader instance=null;
+		public static TrailSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new TrailSetting_table();
+					instance=new TrailSettingReader();
 					instance.Load();
 				}
 				return instance;

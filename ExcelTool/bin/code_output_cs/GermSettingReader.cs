@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static GermSetting_table instance=null;
-		public static GermSetting_table Instance{
+		static GermSettingReader instance=null;
+		public static GermSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new GermSetting_table();
+					instance=new GermSettingReader();
 					instance.Load();
 				}
 				return instance;

@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static BodySetting_table instance=null;
-		public static BodySetting_table Instance{
+		static BodySettingReader instance=null;
+		public static BodySettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new BodySetting_table();
+					instance=new BodySettingReader();
 					instance.Load();
 				}
 				return instance;

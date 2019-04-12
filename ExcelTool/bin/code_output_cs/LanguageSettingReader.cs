@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static LanguageSetting_table instance=null;
-		public static LanguageSetting_table Instance{
+		static LanguageSettingReader instance=null;
+		public static LanguageSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new LanguageSetting_table();
+					instance=new LanguageSettingReader();
 					instance.Load();
 				}
 				return instance;

@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static MissileSetting_table instance=null;
-		public static MissileSetting_table Instance{
+		static MissileSettingReader instance=null;
+		public static MissileSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new MissileSetting_table();
+					instance=new MissileSettingReader();
 					instance.Load();
 				}
 				return instance;

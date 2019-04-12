@@ -48,7 +48,7 @@ namespace ExcelTool.Reader
                     content += "\t/// </summary>\r\n";
                     content += "\tpublic static " + et.fields[1].typeDes + " " + keyName + "{\r\n";
                     content += "\t\tget{\r\n";
-                    content += "\t\t\treturn " + et.tableName + "_table.Instance.GetEntityByPrimaryKey(\"" + keyName + "\").Value;\r\n";
+                    content += "\t\t\treturn " + et.tableName + "Reader.Instance.GetEntityByPrimaryKey(\"" + keyName + "\").Value;\r\n";
                     content += "\t\t}\r\n";//get
                     content += "\t}\r\n";//attribute       
                 }
@@ -101,11 +101,11 @@ namespace ExcelTool.Reader
             content += "\t\t\tget{ return this.count;}\r\n";
             content += "\t\t}\r\n\r\n";
 
-            content += "\t\tstatic " + et.tableName + "_table instance=null;\r\n";
-            content += "\t\tpublic static " + et.tableName + "_table Instance{\r\n";
+            content += "\t\tstatic " + et.tableName + "Reader instance=null;\r\n";
+            content += "\t\tpublic static " + et.tableName + "Reader Instance{\r\n";
             content += "\t\t\tget{\r\n";
             content += "\t\t\t\tif(instance==null){\r\n";
-            content += "\t\t\t\t\tinstance=new " + et.tableName + "_table();\r\n";
+            content += "\t\t\t\t\tinstance=new " + et.tableName + "Reader();\r\n";
             content += "\t\t\t\t\tinstance.Load();\r\n";
             content += "\t\t\t\t}\r\n";
             content += "\t\t\t\treturn instance;\r\n";
