@@ -4,14 +4,11 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace SelfTable{
-	public class MissileSetting_table{
+	public class MissileSettingReader{
 		private MissileSetting[] entities;
 		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();
 
 		private int count;
-		/// <summary>
-		/// 数量
-		/// </summary>
 		 public int Count{
 			get{ return this.count;}
 		}
@@ -43,25 +40,25 @@ namespace SelfTable{
 					}
 					string[] vals=line.Split('\t');
 					entities[i]=new MissileSetting();
-					entities[i].ID=vals[0]=="囧"?0:int.Parse(vals[0].Trim());
-					entities[i].Name=vals[1]=="囧"?0:int.Parse(vals[1].Trim());
-					entities[i].UnitType=vals[2]=="囧"?0:int.Parse(vals[2].Trim());
-					entities[i].Speed=vals[3]=="囧"?0:float.Parse(vals[3].Trim());
-					entities[i].Damage=vals[4]=="囧"?0:float.Parse(vals[4].Trim());
-					entities[i].Defence=vals[5]=="囧"?0:float.Parse(vals[5].Trim());
-					entities[i].CoinReward=vals[6]=="囧"?0:float.Parse(vals[6].Trim());
-					entities[i].CoinPrice=vals[7]=="囧"?0:float.Parse(vals[7].Trim());
-					entities[i].DefaultLv=vals[8]=="囧"?0:int.Parse(vals[8].Trim());
-					entities[i].MaxLv=vals[9]=="囧"?0:int.Parse(vals[9].Trim());
-					entities[i].UnlockType=vals[10]=="囧"?0:int.Parse(vals[10].Trim());
-					entities[i].UnlockValue=vals[11]=="囧"?0:int.Parse(vals[11].Trim());
-					entities[i].AtlasName=vals[12]=="囧"?null:vals[12].Trim();
-					entities[i].SpriteName=vals[13]=="囧"?null:vals[13].Trim();
-					entities[i].PrefabName=vals[14]=="囧"?null:vals[14].Trim();
-					entities[i].LocalPos=vals[15]=="囧"?new Vector3(0,0,0):new Vector3(float.Parse(vals[15].Trim().Split('|')[0]),float.Parse(vals[15].Trim().Split('|')[1]),float.Parse(vals[15].Trim().Split('|')[2]));
-					entities[i].PropertyPlus=vals[16]=="囧"?null:vals[16].Trim();
-					entities[i].BulletPrefabName=vals[17]=="囧"?null:vals[17].Trim();
-					entities[i].BulletName=vals[18]=="囧"?null:vals[18].Trim();
+					entities[i].ID=int.Parse(vals[0].Trim());
+					entities[i].Name=int.Parse(vals[1].Trim());
+					entities[i].UnitType=int.Parse(vals[2].Trim());
+					entities[i].Speed=float.Parse(vals[3].Trim());
+					entities[i].Damage=float.Parse(vals[4].Trim());
+					entities[i].Defence=float.Parse(vals[5].Trim());
+					entities[i].CoinReward=float.Parse(vals[6].Trim());
+					entities[i].CoinPrice=float.Parse(vals[7].Trim());
+					entities[i].DefaultLv=int.Parse(vals[8].Trim());
+					entities[i].MaxLv=int.Parse(vals[9].Trim());
+					entities[i].UnlockType=int.Parse(vals[10].Trim());
+					entities[i].UnlockValue=int.Parse(vals[11].Trim());
+					entities[i].AtlasName=vals[12];
+					entities[i].SpriteName=vals[13];
+					entities[i].PrefabName=vals[14];
+					entities[i].LocalPos=new Vector3(float.Parse(vals[15].Trim().Split('|')[0]),float.Parse(vals[15].Trim().Split('|')[1]),float.Parse(vals[15].Trim().Split('|')[2]));
+					entities[i].PropertyPlus=vals[16];
+					entities[i].BulletPrefabName=vals[17];
+					entities[i].BulletName=vals[18];
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};
@@ -72,7 +69,7 @@ namespace SelfTable{
 
 		/// <summary>
 		/// 根据Index获得具体某行数据
-		/// index从0开始，对应excel数据中的对应行
+		/// index从0开始，和excel数据表中的行对应
 		/// </summary>
 		public MissileSetting GetEntityByRowIndex(int index){
 			if(index<0||index>count){

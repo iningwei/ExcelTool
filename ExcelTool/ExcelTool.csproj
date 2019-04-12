@@ -67,11 +67,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Encrypt.cs" />
     <Compile Include="Core\ExcelTable.cs" />
     <Compile Include="Core\Program.cs" />
     <Compile Include="Core\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\ExcelReader.cs" />
+    <Compile Include="Reader\ExcelWriter.cs" />
     <Compile Include="Tools\Debug.cs" />
     <Compile Include="Tools\StringExt.cs" />
   </ItemGroup>
