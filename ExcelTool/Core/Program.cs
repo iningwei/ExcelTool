@@ -12,13 +12,8 @@ using ExcelTool.Tools;
 /*
  *参考自： http://www.cnblogs.com/fly-100/p/4538975.html
 */
-
-
 namespace ExcelTool
 {
-
-
-
     class Program
     {
         static string binDir;
@@ -35,14 +30,14 @@ namespace ExcelTool
 
 
             string curDir = Environment.CurrentDirectory;
-           Debug.Log("curDir:" + curDir);
+            Debug.Log("curDir:" + curDir);
             binDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
             outputTableDir = binDir + @"\table_output";
             outputCSCodeDir = binDir + @"\code_output_cs";
             outputLuaCodeDir = binDir + @"\code_output_lua";
 
             excelFileDir = binDir + @"\table";
-           Debug.Log("excelFileDir:" + excelFileDir);
+            Debug.Log("excelFileDir:" + excelFileDir);
 
             //.xls为03版本excel后缀
             //经测试该库，不支持03版本excel
@@ -56,7 +51,7 @@ namespace ExcelTool
                 {
                     ExcelWriter.WriteCSCode(outputCSCodeDir, excelTables[i]);
                     ExcelWriter.WriteBinaryFile(outputTableDir, excelTables[i]);
-                }                 
+                }
                 #endregion
 
 
@@ -67,7 +62,7 @@ namespace ExcelTool
 
 
             }
-
+            Debug.Log("output finished");
             Console.ReadLine();
         }
 

@@ -1,2 +1,2 @@
-10001	100	1	5	3	0	0	0	1	99	1	0	PlaneFactory	10001	body10001	0|0|0	1+2	bulletLightBlue	ZGame.Logic.BulletNorma
-20001	101	1	1	1	0	0	0	1	99	1	2	PlaneFactory	20001	body20001	0|0|0	1+2	bulletRed	ZGame.Logic.BulletNormal
+10001	100	1	5	3	0	0	0	1	99	1	0	PlaneFactory	10001	body10001	0|0|0	1+2	bulletLightBlue	ZGame.Logic.BulletNormal
+20001	101	1	1	1	0	0	0	1	99	1	2	PlaneFactory	20001	body20001	0|0|0	1+2	bulletRed	ZGame.Logic.BulletNormal2
