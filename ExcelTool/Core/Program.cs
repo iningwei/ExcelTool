@@ -154,5 +154,14 @@ namespace ExcelTool
 
         //http://www.jb51.net/article/58442.htm
 
+
+
+
+        void xxx()
+        {
+            string a = "0|0|0";
+            string[] strs = a.Split('|');
+            int[] xx = strs.ToIntArray();
+        }
     }
 }

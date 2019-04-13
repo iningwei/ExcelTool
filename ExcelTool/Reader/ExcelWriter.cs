@@ -152,6 +152,14 @@ namespace ExcelTool.Reader
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\');\r\n";
                 }
+                else if (typeStr=="int[]")
+                {
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\').ToIntArray();\r\n";
+                }
+                else if (typeStr == "float[]")
+                {
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\').ToFloatArray();\r\n";
+                }
                 else if (typeStr == "Vector3")
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + "new Vector3("
