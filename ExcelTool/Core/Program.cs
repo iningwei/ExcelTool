@@ -145,23 +145,5 @@ namespace ExcelTool
         //////    File.WriteAllText(outputFile, luaContent.TrimEnd(), new UTF8Encoding(false));
         //////    Console.WriteLine("SettingTable.lua输出完毕");
         //////}
-
-
-
-
-
-
-
-        //http://www.jb51.net/article/58442.htm
-
-
-
-
-        void xxx()
-        {
-            string a = "0|0|0";
-            string[] strs = a.Split('|');
-            int[] xx = strs.ToIntArray();
-        }
     }
 }

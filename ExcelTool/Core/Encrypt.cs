@@ -7,6 +7,7 @@ namespace ExcelTool.Core
 {
     class Encrypt
     {
+        //http://www.jb51.net/article/58442.htm
         public static string TextEncrypt(string content, string secretKey)
         {
             char[] data = content.ToCharArray();

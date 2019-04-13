@@ -28,7 +28,6 @@ namespace ExcelTool.Reader
             File.WriteAllText(outputDir + @"\" + "Setting.cs", setting.TrimEnd(), Encoding.UTF8);
             #endregion
 
-
             #region output table class
             string content = ""; ;
             content += "using System;\r\n";
@@ -152,7 +151,7 @@ namespace ExcelTool.Reader
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\');\r\n";
                 }
-                else if (typeStr=="int[]")
+                else if (typeStr == "int[]")
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\').ToIntArray();\r\n";
                 }
@@ -235,10 +234,7 @@ namespace ExcelTool.Reader
 
             ExcelField primaryField = et.GetPrimaryField();
 
-            if (et.tableName == "GameSetting")
-            {
-                int a = 1;
-            }
+            
             string content = string.Empty;
             int rowCount = et.rowCount;
             int columnCount = et.fields.Count;
@@ -250,7 +246,7 @@ namespace ExcelTool.Reader
                     if (field.name == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段                            
                         continue;
 
-                    content += (field.datas[j] + "\t");                    
+                    content += (field.datas[j] + "\t");
                 }
 
                 content = content.Remove(content.Length - 1);//移除行尾的\t字符//注意\t在串里，只有1个字符长度               
