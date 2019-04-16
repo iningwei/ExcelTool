@@ -54,8 +54,8 @@ namespace SelfTable{
 		}
 
 		/// <summary>
-		/// 根据Index获得具体某行数据
-		/// index从0开始，和excel数据表中的行对应
+		/// get datas of a row by Index
+		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
 		public Test GetEntityByRowIndex(int index){
 			if(index<0||index>count){
@@ -67,8 +67,7 @@ namespace SelfTable{
 			}
 		}
 		/// <summary>
-		/// 根据主键获得具体某行数据
-		/// 需要确保主键不重复
+		/// get datas of a row by primary key
 		/// </summary>
 		public Test GetEntityByPrimaryKey(int key){
 			int index;
@@ -81,7 +80,7 @@ namespace SelfTable{
 			}
 		}
 		/// <summary>
-		/// 获得所有数据项
+		/// get all row datas
 		/// </summary>
 		public Test[] AllItems(){
 			return this.entities;

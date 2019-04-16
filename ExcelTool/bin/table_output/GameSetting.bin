@@ -8,3 +8,4 @@ CoinRewardTime	8
 CoinRewardMax	9999
 LevelMax	9999
 BattleCostPower	20
+PlaneHeadRadius	0.27

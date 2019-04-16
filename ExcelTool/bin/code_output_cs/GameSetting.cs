@@ -7,7 +7,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 能量最大值
 	/// </summary>
-	public static float PowerMax{
+	public static object PowerMax{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerMax").Value;
 		}
@@ -15,7 +15,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 每次恢复能量点数
 	/// </summary>
-	public static float PowerRecoverCount{
+	public static object PowerRecoverCount{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverCount").Value;
 		}
@@ -23,7 +23,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 每次恢复能量耗时，单位（秒）
 	/// </summary>
-	public static float PowerRecoverTime{
+	public static object PowerRecoverTime{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverTime").Value;
 		}
@@ -31,7 +31,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 每次恢复钻石耗时，单位(秒)
 	/// </summary>
-	public static float DiamondRecoverTime{
+	public static object DiamondRecoverTime{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverTime").Value;
 		}
@@ -39,7 +39,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 每次恢复钻石个数
 	/// </summary>
-	public static float DiamondRecoverCount{
+	public static object DiamondRecoverCount{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverCount").Value;
 		}
@@ -47,7 +47,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 金币奖励，每次奖励量
 	/// </summary>
-	public static float CoinRewardCount{
+	public static object CoinRewardCount{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardCount").Value;
 		}
@@ -55,7 +55,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 金币奖励，每次奖励时间间隔
 	/// </summary>
-	public static float CoinRewardTime{
+	public static object CoinRewardTime{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardTime").Value;
 		}
@@ -63,7 +63,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 金币奖励，最大值
 	/// </summary>
-	public static float CoinRewardMax{
+	public static object CoinRewardMax{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
 		}
@@ -71,7 +71,7 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 最大关卡值
 	/// </summary>
-	public static float LevelMax{
+	public static object LevelMax{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("LevelMax").Value;
 		}
@@ -79,9 +79,17 @@ public class GameSettingKVP{
 	/// <summary>
 	/// 每次游戏消耗的能量点
 	/// </summary>
-	public static float BattleCostPower{
+	public static object BattleCostPower{
 		get{
 			return GameSettingReader.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
+		}
+	}
+	/// <summary>
+	/// 飞机机头半径
+	/// </summary>
+	public static object PlaneHeadRadius{
+		get{
+			return GameSettingReader.Instance.GetEntityByPrimaryKey("PlaneHeadRadius").Value;
 		}
 	}
 }
@@ -94,7 +102,7 @@ public class GameSetting:Setting{
 	 /// <summary>
 	 /// 
 	 /// </summary>
-	 public float Value;
+	 public object Value;
 
 	 public static string FileName = "GameSetting";
 }

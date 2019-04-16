@@ -135,6 +135,10 @@ namespace ExcelTool.Reader
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
+                else if (typeStr=="object")
+                {                     
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=(" + typeStr + ")(vals[" + i + "].Trim());\r\n";
+                }
                 else if (typeStr == "bool")
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
