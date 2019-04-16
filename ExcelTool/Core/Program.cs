@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using Excel;
-using System.Data;
-using ExcelTool.Core;
+﻿using ExcelTool.Core;
 using ExcelTool.Reader;
 using ExcelTool.Tools;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 /*
  *参考自： http://www.cnblogs.com/fly-100/p/4538975.html
@@ -20,9 +16,9 @@ namespace ExcelTool
         static string excelFileDir;
         static string[] excelFiles;
 
-        static string outputTableDir;//excel导出表 目录
-        static string outputCSCodeDir;//CS导出代码 目录
-        static string outputLuaCodeDir;//Lua导出代码 目录
+        static string outputTableDir;//the directory for outputing bin files
+        static string outputCSCodeDir;//the directory for outputing c# code files
+        static string outputLuaCodeDir;//the direcotry for lua code outputs
         static void Main(string[] args)
         {
             Debug.Log("begin handle excel file");
@@ -39,14 +35,13 @@ namespace ExcelTool
             excelFileDir = binDir + @"\table";
             Debug.Log("excelFileDir:" + excelFileDir);
 
-            //.xls为03版本excel后缀
-            //经测试该库，不支持03版本excel
+            //do not support 03 excel file,which with postfix of .xls
             excelFiles = Directory.GetFiles(excelFileDir, "*.xlsx", SearchOption.TopDirectoryOnly);
 
             for (int q = 0; q < excelFiles.Length; q++)
             {
                 List<ExcelTable> excelTables = ExcelReader.Read(excelFiles[q]);
-                #region  导出C#代码
+                #region  output c# code files and bin files
                 for (int i = 0; i < excelTables.Count; i++)
                 {
                     ExcelWriter.WriteCSCode(outputCSCodeDir, excelTables[i]);
@@ -55,10 +50,8 @@ namespace ExcelTool
                 #endregion
 
 
-                //TODO:output Lua code
-                //////#region 导出lua代码
+                //TODO:output Lua code                
                 //////outputLuaCode(outputLuaCodeDir, excelTables);
-                //////#endregion
 
 
             }
@@ -67,6 +60,7 @@ namespace ExcelTool
         }
 
 
+        //here is some old code,which not suit current table format and data structure
         //////static void outputLuaCode(string outputFolderPath, List<ExcelTable> tables)
         //////{
         //////    string outputFile = outputFolderPath + @"\SettingTable.lua";

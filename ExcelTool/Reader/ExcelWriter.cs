@@ -1,9 +1,6 @@
 ﻿using ExcelTool.Core;
 using ExcelTool.Tools;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace ExcelTool.Reader
@@ -19,8 +16,7 @@ namespace ExcelTool.Reader
 
             ExcelField primaryField = et.GetPrimaryField();
 
-
-            #region output Setting.cs base class
+            #region step1:output Setting.cs base class
             string setting = "namespace SelfTable{\r\n";
             setting += "\tpublic class Setting{\r\n";
             setting += "\t}\r\n";
@@ -28,7 +24,7 @@ namespace ExcelTool.Reader
             File.WriteAllText(outputDir + @"\" + "Setting.cs", setting.TrimEnd(), Encoding.UTF8);
             #endregion
 
-            #region output table class
+            #region step2:output table class
             string content = ""; ;
             content += "using System;\r\n";
             content += "using UnityEngine;\r\n";
@@ -80,7 +76,7 @@ namespace ExcelTool.Reader
             File.WriteAllText(outputDir + @"\" + et.tableName + ".cs", content.TrimEnd(), Encoding.UTF8);
             #endregion
 
-            #region  output table reader class
+            #region  step3:output table reader class
             content = "";
 
             content += "using UnityEngine;\r\n";
@@ -234,7 +230,7 @@ namespace ExcelTool.Reader
 
             ExcelField primaryField = et.GetPrimaryField();
 
-            
+
             string content = string.Empty;
             int rowCount = et.rowCount;
             int columnCount = et.fields.Count;
