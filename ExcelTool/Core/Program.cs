@@ -24,16 +24,9 @@ namespace ExcelTool
             Debug.Log("begin handle excel file");
             Debug.Log("--->try get all excel file");
 
+            init(args);
 
-            string curDir = Environment.CurrentDirectory;
-            Debug.Log("curDir:" + curDir);
-            binDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
-            outputTableDir = binDir + @"\table_output";
-            outputCSCodeDir = binDir + @"\code_output_cs";
-            outputLuaCodeDir = binDir + @"\code_output_lua";
 
-            excelFileDir = binDir + @"\table";
-            Debug.Log("excelFileDir:" + excelFileDir);
 
             //do not support 03 excel file,which with postfix of .xls
             excelFiles = Directory.GetFiles(excelFileDir, "*.xlsx", SearchOption.TopDirectoryOnly);
@@ -55,8 +48,51 @@ namespace ExcelTool
 
 
             }
-            Debug.Log("output finished");
+            Debug.Log("------------- :-) output finished");
             Console.ReadLine();
+        }
+
+        private static void init(string[] args)
+        {
+            if (args.Length == 0)//if we not assign params
+            {
+                string curDir = Environment.CurrentDirectory;
+                Debug.Log("curDir:" + curDir);
+                binDir = curDir.Substring(0, curDir.LastIndexOf(@"\"));
+                outputTableDir = binDir + @"\table_output";
+                outputCSCodeDir = binDir + @"\code_output_cs";
+                outputLuaCodeDir = binDir + @"\code_output_lua";
+
+                excelFileDir = binDir + @"\table";
+                Debug.Log("excelFileDir:" + excelFileDir);
+            }
+            else
+            {
+                if (args.Length != 4)
+                {
+                    Debug.ThrowException("error,if you assign params then args.Length must be 4");
+                }
+                else
+                {
+                    excelFileDir = args[0];
+                    outputTableDir = args[1];
+                    outputCSCodeDir = args[2];
+                    outputLuaCodeDir = args[3];
+                    Debug.Log("excelFileDir:" + excelFileDir);
+                    Debug.Log("outputTableDir:" + outputTableDir);
+                    Debug.Log("outputCSCodeDir:" + outputCSCodeDir);
+                    Debug.Log("outputLuaCodeDir:" + outputLuaCodeDir);
+                    if (!Directory.Exists(excelFileDir)
+                        || !Directory.Exists(outputTableDir)
+                        || !Directory.Exists(outputCSCodeDir)
+                        || !Directory.Exists(outputLuaCodeDir))
+                    {
+                        Debug.ThrowException("directory has error,please check");
+
+                    }
+
+                }
+            }
         }
 
 

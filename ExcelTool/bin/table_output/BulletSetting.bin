@@ -1,0 +1,9 @@
+ZGame.Logic.BulletNormal	10	0	0	0	0
+ZGame.Logic.BulletNormal2	10	0	0	0	0
+ZGame.Logic.BulletRestrictDis	8	1	3	0	0
+ZGame.Logic.BulletBasicTrace	8	0	0	0	0
+ZGame.Logic.BulletDirectionTrace	8	0	0	0	0
+ZGame.Logic.BulletForce	10	0	0	0	0
+ZGame.Logic.BulletBianZhi	10	2	0	1	8
+ZGame.Logic.BulletBianZhiPro	7	2	0	1	8
+null	1	0	0	0	0
