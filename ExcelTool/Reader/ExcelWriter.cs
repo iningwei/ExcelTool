@@ -174,8 +174,8 @@ namespace ExcelTool.Reader
             content += "\t\t}\r\n\r\n";//Load()
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// 根据Index获得具体某行数据\r\n";
-            content += "\t\t/// index从0开始，和excel数据表中的行对应\r\n";
+            content += "\t\t/// get datas of a row by Index\r\n";
+            content += "\t\t/// index starts form 0,which marching the line 7 of excel table\r\n";
             content += "\t\t/// </summary>\r\n";
             content += "\t\tpublic " + et.tableName + " GetEntityByRowIndex(int index){\r\n";
             content += "\t\t\tif(index<0||index>count){\r\n";
@@ -189,8 +189,7 @@ namespace ExcelTool.Reader
             content += "\t\t}\r\n";//GetEntityByRowIndex
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// 根据主键获得具体某行数据\r\n";
-            content += "\t\t/// 需要确保主键不重复\r\n";
+            content += "\t\t/// get datas of a row by primary key\r\n";            
             content += "\t\t/// </summary>\r\n";
             content += "\t\tpublic " + et.tableName + " GetEntityByPrimaryKey(" + primaryField.typeDes + " key){\r\n";
             content += "\t\t\tint index;\r\n";
@@ -206,7 +205,7 @@ namespace ExcelTool.Reader
 
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// 获得所有数据项\r\n";
+            content += "\t\t/// get all row datas\r\n";
             content += "\t\t/// </summary>\r\n";
             content += "\t\tpublic " + et.tableName + "[]" + " AllItems(){\r\n";
             content += "\t\t\treturn this.entities;\r\n";

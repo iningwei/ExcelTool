@@ -63,7 +63,8 @@ namespace ExcelTool.Reader
                     if (i == 0 && tag == "KVT")//check KVT format whther correct
                     {
                         et.isKVT = true;
-                        if (table.Rows[0][1].ToString() != "Value"
+                        if (table.Rows[0][0].ToString() != "Key"
+                            || table.Rows[0][1].ToString() != "Value"
                             || table.Rows[0][2].ToString() != "KeyDes")
                         {
                             Debug.ThrowException("table:" + et.tableName + "is KVT,but field name is not correct!");
