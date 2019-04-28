@@ -3,7 +3,7 @@ ExcelTool aimed at exporting excel tables to easy-use binary files corresponding
 **Note that** in these c# files,they sometimes need reference Unity3D 's namespace,as I give support to Vector3 and other Unity3D types.
 
 ## Description
-There is a demo excel file called "飞机大战数据_程序用.xlsx" under folder bin/table.It shows the structure supported and other details.I suggest you read the following content before you jump into work.
+There is a demo excel file called "demo.xlsx" under folder bin/table.It shows the structure supported and other details.I suggest you read the following content before you jump into work.
 
  1. Table name
 
