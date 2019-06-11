@@ -66,7 +66,7 @@ namespace ExcelTool.Core
             {
                 if (datas.Contains(data))
                 {
-                    Debug.ThrowException("tableName:" + tableName + ", primary key " + name + " duplicated");
+                    Debug.ThrowException("tableName:" + tableName + ", primary key " + name + " duplicated" + ", " + name + "=" + data);
                 }
             }
 
@@ -115,6 +115,6 @@ namespace ExcelTool.Core
         public void AddExcelField(ExcelField field)
         {
             fields.Add(field);
-        }         
+        }
     }
 }

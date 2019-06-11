@@ -22,14 +22,37 @@ public class GermSetting:Setting{
 	 public string PrefabName;
 
 	 /// <summary>
-	 /// 细菌半径
+	 /// 细菌半径相关参数
+	 /// [0]细菌比例为1时候的半径，[1]细菌缩放
 	 /// </summary>
-	 public float Radius;
+	 public float[] RadiusParams;
 
 	 /// <summary>
 	 /// 移动速度
 	 /// </summary>
 	 public float MoveSpeed;
+
+	 /// <summary>
+	 /// 血量暴击率
+	 /// [0]为最低暴击率，[1]为最高暴击率。最终血量为根据公式算出的血量乘以随机的暴击率
+	 /// </summary>
+	 public float[] HpHitRatio;
+
+	 /// <summary>
+	 /// 是否分裂
+	 /// </summary>
+	 public bool IsSplit;
+
+	 /// <summary>
+	 /// 分裂后的细菌ID
+	 /// </summary>
+	 public int SplitGermId;
+
+	 /// <summary>
+	 /// 保护时间
+	 /// 细菌生成后，在该时间段内不会受到伤害，会受到攻击，只是不会产生伤害
+	 /// </summary>
+	 public float ProtectTime;
 
 	 public static string FileName = "GermSetting";
 }

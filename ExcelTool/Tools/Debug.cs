@@ -23,9 +23,17 @@ namespace ExcelTool.Tools
             Console.WriteLine(content);
         }
 
-        public static void ThrowException(string ex)
+        public static void ThrowException(string exStr)
         {
-            throw new Exception(ex);
+            throw new Exception(exStr);
+
+
+
+
+
+            //Console.ForegroundColor = ConsoleColor.Red;
+            //Console.WriteLine(new Exception(exStr).StackTrace.ToString());//StackTrace是null
+
         }
     }
 }

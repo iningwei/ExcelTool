@@ -1,11 +1,11 @@
 PowerMax	80
-PowerRecoverCount	10
-PowerRecoverTime	50
+PowerRecoverCount	30
+PowerRecoverTime	5
 DiamondRecoverTime	4000
 DiamondRecoverCount	0
 CoinRewardCount	800
 CoinRewardTime	8
 CoinRewardMax	9999
 LevelMax	9999
-BattleCostPower	20
+BattleCostPower	5
 PlaneHeadRadius	0.27

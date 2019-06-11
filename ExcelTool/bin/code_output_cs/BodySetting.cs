@@ -102,6 +102,21 @@ public class BodySetting:Setting{
 	 /// </summary>
 	 public string BulletName;
 
+	 /// <summary>
+	 /// 是否具有Damp跟随功能
+	 /// </summary>
+	 public bool SmoothDamp;
+
+	 /// <summary>
+	 /// 装备在发射时是否有发射动作
+	 /// </summary>
+	 public bool HasShootAnim;
+
+	 /// <summary>
+	 /// 发射的声音
+	 /// </summary>
+	 public string ShootAudioName;
+
 	 public static string FileName = "BodySetting";
 }
 }

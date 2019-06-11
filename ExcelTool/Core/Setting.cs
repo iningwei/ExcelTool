@@ -8,6 +8,6 @@ namespace ExcelTool.Core
     class Setting
     {
         public static bool IsEncrypt = false;
-        public static string EncryptKey = "firstblood";
+        public static string EncryptKey = "goodluck";
     }
 }

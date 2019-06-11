@@ -60,6 +60,9 @@ namespace SelfTable{
 					entities[i].PropertyPlus=vals[17];
 					entities[i].BulletPrefabName=vals[18];
 					entities[i].BulletName=vals[19];
+					entities[i].SmoothDamp=bool.Parse(vals[20].Trim());
+					entities[i].HasShootAnim=bool.Parse(vals[21].Trim());
+					entities[i].ShootAudioName=vals[22];
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};

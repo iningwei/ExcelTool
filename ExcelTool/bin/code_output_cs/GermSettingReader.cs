@@ -43,8 +43,12 @@ namespace SelfTable{
 					entities[i].ID=int.Parse(vals[0].Trim());
 					entities[i].Name=vals[1];
 					entities[i].PrefabName=vals[2];
-					entities[i].Radius=float.Parse(vals[3].Trim());
+					entities[i].RadiusParams=vals[3].Split('|').ToFloatArray();
 					entities[i].MoveSpeed=float.Parse(vals[4].Trim());
+					entities[i].HpHitRatio=vals[5].Split('|').ToFloatArray();
+					entities[i].IsSplit=bool.Parse(vals[6].Trim());
+					entities[i].SplitGermId=int.Parse(vals[7].Trim());
+					entities[i].ProtectTime=float.Parse(vals[8].Trim());
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};

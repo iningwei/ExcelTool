@@ -46,6 +46,15 @@ namespace SelfTable{
 					entities[i].Area=float.Parse(vals[3].Trim());
 					entities[i].AutoDestroyType=int.Parse(vals[4].Trim());
 					entities[i].LifeTime=float.Parse(vals[5].Trim());
+					entities[i].Ylength=float.Parse(vals[6].Trim());
+					entities[i].HarmInterval=float.Parse(vals[7].Trim());
+					entities[i].UniqueParams=vals[8].Split('|').ToFloatArray();
+					entities[i].RestrictPos=bool.Parse(vals[9].Trim());
+					entities[i].HasPrepareAnim=bool.Parse(vals[10].Trim());
+					entities[i].HasVanishAnim=bool.Parse(vals[11].Trim());
+					entities[i].HasHitEffect=bool.Parse(vals[12].Trim());
+					entities[i].HitEffectName=vals[13];
+					entities[i].BoomAudioName=vals[14];
 					keyIndexMap[entities[i].Name]=i;
 				}
 			};
