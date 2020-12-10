@@ -35,16 +35,18 @@ namespace ExcelTool.Reader
             {
                 ExcelTable et = new ExcelTable();
                 et.tableName = table.TableName;
-                if (et.tableName.ContainChinese())
+                ////中文表不读，用于整体性的说明、注释作用
+                ////要导出的表需要以t_开头
+                if (et.tableName.ContainChinese() || !et.tableName.StartsWith("t_"))
                 {
-                    continue;//中文表不读，用于整体性的说明、注释作用
+                    continue;
                 }
                 Debug.Log("begin read------>fileName:" + fileName + ",tableName:" + et.tableName);
 
                 et.rowCount = table.Rows.Count;
-                if (et.rowCount < 5)
+                if (et.rowCount < 6)
                 {
-                    Debug.LogWarnning("fileName:" + fileName + ", tableName:" + et.tableName + ", line count less than 5, we will not handle with it");
+                    Debug.LogWarnning("fileName:" + fileName + ", tableName:" + et.tableName + ", line count less than 6, we will not handle with it");
                     continue;
                 }
 
@@ -60,7 +62,7 @@ namespace ExcelTool.Reader
 
                     string typeDes = table.Rows[1][i].ToString();
                     string tag = table.Rows[3][i].ToString();
-                    if (i == 0 && tag == "KVT")//check KVT format whther correct
+                    if (i == 0 && tag == "KVT")//check KVT format whether correct
                     {
                         et.isKVT = true;
                         if (table.Rows[0][0].ToString() != "Key"
@@ -68,6 +70,11 @@ namespace ExcelTool.Reader
                             || table.Rows[0][2].ToString() != "KeyDes")
                         {
                             Debug.ThrowException("table:" + et.tableName + "is KVT,but field name is not correct!");
+                        }
+
+                        if (table.Rows[1][0].ToString()!="string")
+                        {
+                            Debug.ThrowException("table:" + et.tableName + "is KVT,but key's type is not string");
                         }
                     }
                     string defaultValue = table.Rows[2][i].ToString();

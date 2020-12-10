@@ -4,8 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ZGame.ZTable{
-	public class BulletSettingReader{
-		private BulletSetting[] entities;
+	public class t_gameReader{
+		private t_game[] entities;
 		private Dictionary<string,int> keyIndexMap = new Dictionary<string,int>();
 
 		private int count;
@@ -13,11 +13,11 @@ namespace ZGame.ZTable{
 			get{ return this.count;}
 		}
 
-		static BulletSettingReader instance=null;
-		public static BulletSettingReader Instance{
+		static t_gameReader instance=null;
+		public static t_gameReader Instance{
 			get{
 				if(instance==null){
-					instance=new BulletSettingReader();
+					instance=new t_gameReader();
 					instance.Load();
 				}
 				return instance;
@@ -32,34 +32,21 @@ namespace ZGame.ZTable{
 					return;
 				}
 				this.count = count;
-				entities=new BulletSetting[count];
+				entities=new t_game[count];
 				for(int i=0;i<count;i++){
 					string line=lines[i];
 					if(string.IsNullOrEmpty(line)){
 						Debug.LogError("data error, line "+i+" is null");
 					}
 					string[] vals=line.Split('\t');
-					entities[i]=new BulletSetting();
-					entities[i].Name=vals[0];
-					entities[i].MoveSpeed=float.Parse(vals[1].Trim());
-					entities[i].HitType=int.Parse(vals[2].Trim());
-					entities[i].Area=float.Parse(vals[3].Trim());
-					entities[i].AutoDestroyType=int.Parse(vals[4].Trim());
-					entities[i].LifeTime=float.Parse(vals[5].Trim());
-					entities[i].Ylength=float.Parse(vals[6].Trim());
-					entities[i].HarmInterval=float.Parse(vals[7].Trim());
-					entities[i].UniqueParams=vals[8].Split('|').ToFloatArray();
-					entities[i].RestrictPos=bool.Parse(vals[9].Trim());
-					entities[i].HasPrepareAnim=bool.Parse(vals[10].Trim());
-					entities[i].HasVanishAnim=bool.Parse(vals[11].Trim());
-					entities[i].HasHitEffect=bool.Parse(vals[12].Trim());
-					entities[i].HitEffectName=vals[13];
-					entities[i].BoomAudioName=vals[14];
-					keyIndexMap[entities[i].Name]=i;
+					entities[i]=new t_game();
+					entities[i].Key=vals[0];
+					entities[i].Value=(object)(vals[1].Trim());
+					keyIndexMap[entities[i].Key]=i;
 				}
 			};
 
-			string fileName=BulletSetting.FileName;
+			string fileName=t_game.FileName;
 			FileMgr.ReadFile(fileName,onTableLoad);
 		}
 
@@ -67,7 +54,7 @@ namespace ZGame.ZTable{
 		/// get datas of a row by Index
 		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
-		public BulletSetting GetEntityByRowIndex(int index){
+		public t_game GetEntityByRowIndex(int index){
 			if(index<0||index>count){
 				Debug.LogError("index:"+index+" is not valid");
 				return null;
@@ -79,20 +66,20 @@ namespace ZGame.ZTable{
 		/// <summary>
 		/// get datas of a row by primary key
 		/// </summary>
-		public BulletSetting GetEntityByPrimaryKey(string key){
+		public t_game GetEntityByPrimaryKey(string key){
 			int index;
 			if(keyIndexMap.TryGetValue(key,out index)){
 				return entities[index];
 			}
 			else{
 				Debug.LogError("no entity with key:"+key);
-				return default(BulletSetting);
+				return default(t_game);
 			}
 		}
 		/// <summary>
 		/// get all row datas
 		/// </summary>
-		public BulletSetting[] AllItems(){
+		public t_game[] AllItems(){
 			return this.entities;
 		}
 	}

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class SecondaryGunSetting:Setting{
+public class t_body:Setting{
 	 /// <summary>
 	 /// 装备编号
 	 /// 装备序号
@@ -117,6 +117,6 @@ public class SecondaryGunSetting:Setting{
 	 /// </summary>
 	 public string ShootAudioName;
 
-	 public static string FileName = "SecondaryGunSetting";
+	 public static string FileName = "t_body";
 }
 }

@@ -1,5 +1,7 @@
 ﻿using ExcelTool.Core;
 using ExcelTool.Tools;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -135,8 +137,8 @@ namespace ExcelTool.Reader
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
-                else if (typeStr=="object")
-                {                     
+                else if (typeStr == "object")
+                {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=(" + typeStr + ")(vals[" + i + "].Trim());\r\n";
                 }
                 else if (typeStr == "bool")
@@ -193,7 +195,7 @@ namespace ExcelTool.Reader
             content += "\t\t}\r\n";//GetEntityByRowIndex
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// get datas of a row by primary key\r\n";            
+            content += "\t\t/// get datas of a row by primary key\r\n";
             content += "\t\t/// </summary>\r\n";
             content += "\t\tpublic " + et.tableName + " GetEntityByPrimaryKey(" + primaryField.typeDes + " key){\r\n";
             content += "\t\t\tint index;\r\n";
@@ -242,13 +244,13 @@ namespace ExcelTool.Reader
                 for (int k = 0; k < columnCount; k++)
                 {
                     ExcelField field = et.fields[k];
-                    if (field.name == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段                            
+                    if (field.name == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段
                         continue;
 
                     content += (field.datas[j] + "\t");
                 }
 
-                content = content.Remove(content.Length - 1);//移除行尾的\t字符//注意\t在串里，只有1个字符长度               
+                content = content.Remove(content.Length - 1);//移除行尾的\t字符//注意\t在串里，只有1个字符长度
                 content += "\r\n";
             }
 
@@ -269,6 +271,160 @@ namespace ExcelTool.Reader
             }
 
             Debug.Log("write file " + et.tableName + ".bin");
+        }
+
+        public static void WriteLuaCode(string outputDir, List<ExcelTable> tables)
+        {
+            if (!Directory.Exists(outputDir))
+            {
+                Directory.CreateDirectory(outputDir);
+            }
+
+
+            string outputFile = outputDir + @"\ConfigTable.lua";
+            string luaContent = "---@class ConfigTable\r\n";
+            luaContent += "local ConfigTable={}\r\n";
+            for (int i = 0; i < tables.Count; i++)
+            {
+                var table = tables[i];
+                ExcelField primaryField = table.GetPrimaryField();
+                string luaContentSub = "";
+                if (table.isKVT)
+                {
+                    luaContentSub += "\r\n";
+
+
+                    luaContentSub += "---@class " + table.tableName + ":ConfigTable\r\n";
+                    luaContentSub += "ConfigTable." + table.tableName + "={\r\n";
+                    for (int j = 6; j < table.rowCount; j++)
+                    {
+                        var kStr = table.fields[0].datas[j - 6];
+                        var vStr = table.fields[1].datas[j - 6];
+                        //var kStr = table.tableContent[table.primaryKeyName][j];
+                        //var vStr = table.tableContent["Value"][j];
+                        var commentStr = table.fields[2].datas[j - 6];
+
+                        if (j == 6)
+                        {
+                            luaContentSub = "---@field public " + kStr + " @" + commentStr + luaContentSub;
+                        }
+                        else
+                        {
+                            luaContentSub = "---@field public " + kStr + " @" + commentStr + "\r\n" + luaContentSub;
+                        }
+
+                        luaContentSub += "\t" + kStr + "=\"" + vStr + "\",\r\n";
+
+                    }
+                    luaContentSub += "}\r\n";
+                }
+                else
+                {
+                    luaContentSub += "\r\n";
+
+                    luaContentSub += "---@class " + table.tableName + ":ConfigTable\r\n";
+                    luaContentSub += "ConfigTable." + table.tableName + "={\r\n";
+                    for (int j = 6; j < table.rowCount; j++)
+                    {
+                        var typeDes = table.fields[0].typeDes;
+                        if (typeDes == "int")
+                        {
+
+                            luaContentSub += "\t[" + table.fields[0].datas[j - 6] + "]={";
+                        }
+                        else if (typeDes == "string")
+                        {
+
+                            luaContentSub += "\t[\"" + table.fields[0].datas[j - 6] + "\"]={";
+                        }
+                        else
+                        {
+                            Debug.LogError("error, primary type only support int and string, cur is:" + typeDes);
+                        }
+
+
+                        for (int k = 0; k < table.fields.Count; k++)
+                        {
+                            var field = table.fields[k];
+                            var keyName = field.name;
+                            var value = field.datas[j - 6];
+                            if (field.typeDes == "string")
+                            {
+                                luaContentSub += keyName + "=\"" + value + "\",";
+                            }
+
+                            else if (field.typeDes == "Vector3"||field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "string[]")
+                            {
+                                luaContentSub += keyName + "=";
+                                //+ value + ",";
+                                var vs = value.Split('|');
+                                luaContentSub += "{";
+                                for (int p = 0; p < vs.Length; p++)
+                                {
+                                    if (field.typeDes == "float[]"|| field.typeDes == "Vector3")
+                                    {
+                                        luaContentSub += float.Parse(vs[p]);
+                                    }
+                                    else if (field.typeDes == "int[]")
+                                    {
+                                        luaContentSub += int.Parse(vs[p]);
+                                    }
+                                    else if (field.typeDes == "string[]")
+                                    {
+                                        luaContentSub += "\"" + vs[p] + "\"";
+                                    }
+                                    if (p < vs.Length - 1)
+                                    {
+                                        luaContentSub += ",";
+                                    }
+                                }
+
+                                luaContentSub.TrimEnd(',');
+                                luaContentSub += "},";
+                            }
+                            else
+                            {
+                                luaContentSub += keyName + "= " + value + " ,";
+                            }
+                        }
+                        luaContentSub += "},\r\n";
+                    }
+                    luaContentSub += "}\r\n";
+
+
+                    //////luaContent += "ConfigTable.Get" + table.tableName.Substring(0, table.tableName.Length - 7) + "By" + table.primaryKeyName + "=function(" + table.primaryKeyName + ")\r\n";
+                    //////luaContent += "\tfor i=1,#ConfigTable." + table.tableName + " do\r\n";
+                    //////luaContent += "\t\tlocal tmp=ConfigTable." + table.tableName + "[i]\r\n";
+                    //////luaContent += "\t\tif tmp." + table.primaryKeyName + "==" + table.primaryKeyName + " then\r\n";
+                    //////luaContent += "\t\t\treturn tmp\r\n";
+                    //////luaContent += "\t\tend\r\n";
+                    //////luaContent += "\tend\r\n";
+                    //////luaContent += "\tloge(\"error,get " + table.tableName.Substring(0, table.tableName.Length - 7) + " By " + table.primaryKeyName + ":\"+" + table.primaryKeyName + ")\r\n";
+                    //////luaContent += "\treturn nil\r\n";
+
+                    //////luaContent += "end\r\n";
+                }
+
+
+
+                luaContentSub += "local mt_" + table.tableName + "={}\r\n";
+                luaContentSub += "mt_" + table.tableName + ".__index=function(t,k)\r\n";
+                luaContentSub += "\tLogE(\"can not find item with key:\"..k..\" in " + table.tableName + "\")\r\n";
+                luaContentSub += "end\r\n";
+                luaContentSub += "setmetatable(ConfigTable." + table.tableName + ",mt_" + table.tableName + ")\r\n";
+                luaContentSub += "\r\n";
+
+                luaContent += luaContentSub;
+
+
+            }
+
+            luaContent += "return ConfigTable";
+
+
+            File.WriteAllText(outputFile, luaContent.TrimEnd(), new UTF8Encoding(false));
+            Console.WriteLine("ConfigTable.lua输出完毕");
+
         }
     }
 }

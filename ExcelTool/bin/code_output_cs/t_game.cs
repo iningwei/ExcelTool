@@ -3,13 +3,13 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class GameSettingKVP{
+public class t_gameKVP{
 	/// <summary>
 	/// 能量最大值
 	/// </summary>
 	public static object PowerMax{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerMax").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("PowerMax").Value;
 		}
 	}
 	/// <summary>
@@ -17,7 +17,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object PowerRecoverCount{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverCount").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("PowerRecoverCount").Value;
 		}
 	}
 	/// <summary>
@@ -25,7 +25,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object PowerRecoverTime{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("PowerRecoverTime").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("PowerRecoverTime").Value;
 		}
 	}
 	/// <summary>
@@ -33,7 +33,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object DiamondRecoverTime{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverTime").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("DiamondRecoverTime").Value;
 		}
 	}
 	/// <summary>
@@ -41,7 +41,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object DiamondRecoverCount{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("DiamondRecoverCount").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("DiamondRecoverCount").Value;
 		}
 	}
 	/// <summary>
@@ -49,7 +49,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object CoinRewardCount{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardCount").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("CoinRewardCount").Value;
 		}
 	}
 	/// <summary>
@@ -57,7 +57,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object CoinRewardTime{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardTime").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("CoinRewardTime").Value;
 		}
 	}
 	/// <summary>
@@ -65,7 +65,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object CoinRewardMax{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("CoinRewardMax").Value;
 		}
 	}
 	/// <summary>
@@ -73,7 +73,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object LevelMax{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("LevelMax").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("LevelMax").Value;
 		}
 	}
 	/// <summary>
@@ -81,7 +81,7 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object BattleCostPower{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("BattleCostPower").Value;
 		}
 	}
 	/// <summary>
@@ -89,11 +89,11 @@ public class GameSettingKVP{
 	/// </summary>
 	public static object PlaneHeadRadius{
 		get{
-			return GameSettingReader.Instance.GetEntityByPrimaryKey("PlaneHeadRadius").Value;
+			return t_gameReader.Instance.GetEntityByPrimaryKey("PlaneHeadRadius").Value;
 		}
 	}
 }
-public class GameSetting:Setting{
+public class t_game:Setting{
 	 /// <summary>
 	 /// 
 	 /// </summary>
@@ -104,6 +104,6 @@ public class GameSetting:Setting{
 	 /// </summary>
 	 public object Value;
 
-	 public static string FileName = "GameSetting";
+	 public static string FileName = "t_game";
 }
 }

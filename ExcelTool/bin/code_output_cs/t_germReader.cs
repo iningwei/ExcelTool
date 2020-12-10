@@ -4,20 +4,20 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ZGame.ZTable{
-	public class GameSettingReader{
-		private GameSetting[] entities;
-		private Dictionary<string,int> keyIndexMap = new Dictionary<string,int>();
+	public class t_germReader{
+		private t_germ[] entities;
+		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();
 
 		private int count;
 		 public int Count{
 			get{ return this.count;}
 		}
 
-		static GameSettingReader instance=null;
-		public static GameSettingReader Instance{
+		static t_germReader instance=null;
+		public static t_germReader Instance{
 			get{
 				if(instance==null){
-					instance=new GameSettingReader();
+					instance=new t_germReader();
 					instance.Load();
 				}
 				return instance;
@@ -32,21 +32,28 @@ namespace ZGame.ZTable{
 					return;
 				}
 				this.count = count;
-				entities=new GameSetting[count];
+				entities=new t_germ[count];
 				for(int i=0;i<count;i++){
 					string line=lines[i];
 					if(string.IsNullOrEmpty(line)){
 						Debug.LogError("data error, line "+i+" is null");
 					}
 					string[] vals=line.Split('\t');
-					entities[i]=new GameSetting();
-					entities[i].Key=vals[0];
-					entities[i].Value=(object)(vals[1].Trim());
-					keyIndexMap[entities[i].Key]=i;
+					entities[i]=new t_germ();
+					entities[i].ID=int.Parse(vals[0].Trim());
+					entities[i].Name=vals[1];
+					entities[i].PrefabName=vals[2];
+					entities[i].RadiusParams=vals[3].Split('|').ToFloatArray();
+					entities[i].MoveSpeed=float.Parse(vals[4].Trim());
+					entities[i].HpHitRatio=vals[5].Split('|').ToFloatArray();
+					entities[i].IsSplit=bool.Parse(vals[6].Trim());
+					entities[i].SplitGermId=int.Parse(vals[7].Trim());
+					entities[i].ProtectTime=float.Parse(vals[8].Trim());
+					keyIndexMap[entities[i].ID]=i;
 				}
 			};
 
-			string fileName=GameSetting.FileName;
+			string fileName=t_germ.FileName;
 			FileMgr.ReadFile(fileName,onTableLoad);
 		}
 
@@ -54,7 +61,7 @@ namespace ZGame.ZTable{
 		/// get datas of a row by Index
 		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
-		public GameSetting GetEntityByRowIndex(int index){
+		public t_germ GetEntityByRowIndex(int index){
 			if(index<0||index>count){
 				Debug.LogError("index:"+index+" is not valid");
 				return null;
@@ -66,20 +73,20 @@ namespace ZGame.ZTable{
 		/// <summary>
 		/// get datas of a row by primary key
 		/// </summary>
-		public GameSetting GetEntityByPrimaryKey(string key){
+		public t_germ GetEntityByPrimaryKey(int key){
 			int index;
 			if(keyIndexMap.TryGetValue(key,out index)){
 				return entities[index];
 			}
 			else{
 				Debug.LogError("no entity with key:"+key);
-				return default(GameSetting);
+				return default(t_germ);
 			}
 		}
 		/// <summary>
 		/// get all row datas
 		/// </summary>
-		public GameSetting[] AllItems(){
+		public t_germ[] AllItems(){
 			return this.entities;
 		}
 	}

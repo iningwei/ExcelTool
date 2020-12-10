@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class BulletSetting:Setting{
+public class t_bullet:Setting{
 	 /// <summary>
 	 /// 子弹名
 	 /// 和类名唯一对应
@@ -90,6 +90,6 @@ public class BulletSetting:Setting{
 	 /// </summary>
 	 public string BoomAudioName;
 
-	 public static string FileName = "BulletSetting";
+	 public static string FileName = "t_bullet";
 }
 }

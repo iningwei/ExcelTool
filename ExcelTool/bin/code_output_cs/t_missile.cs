@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class TrailSetting:Setting{
+public class t_missile:Setting{
 	 /// <summary>
 	 /// 装备编号
 	 /// 装备序号
@@ -45,11 +45,6 @@ public class TrailSetting:Setting{
 	 /// 金币价值
 	 /// </summary>
 	 public float CoinPrice;
-
-	 /// <summary>
-	 /// 默认子弹ID
-	 /// </summary>
-	 public int BulletID;
 
 	 /// <summary>
 	 /// 初始等级
@@ -122,6 +117,6 @@ public class TrailSetting:Setting{
 	 /// </summary>
 	 public string ShootAudioName;
 
-	 public static string FileName = "TrailSetting";
+	 public static string FileName = "t_missile";
 }
 }

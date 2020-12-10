@@ -3,13 +3,13 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class IconSettingKVP{
+public class t_iconKVP{
 	/// <summary>
 	/// 速度（速率）
 	/// </summary>
 	public static string[] Speed{
 		get{
-			return IconSettingReader.Instance.GetEntityByPrimaryKey("Speed").Value;
+			return t_iconReader.Instance.GetEntityByPrimaryKey("Speed").Value;
 		}
 	}
 	/// <summary>
@@ -17,7 +17,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] Damage{
 		get{
-			return IconSettingReader.Instance.GetEntityByPrimaryKey("Damage").Value;
+			return t_iconReader.Instance.GetEntityByPrimaryKey("Damage").Value;
 		}
 	}
 	/// <summary>
@@ -25,7 +25,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] Defence{
 		get{
-			return IconSettingReader.Instance.GetEntityByPrimaryKey("Defence").Value;
+			return t_iconReader.Instance.GetEntityByPrimaryKey("Defence").Value;
 		}
 	}
 	/// <summary>
@@ -33,7 +33,7 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] CoinPrice{
 		get{
-			return IconSettingReader.Instance.GetEntityByPrimaryKey("CoinPrice").Value;
+			return t_iconReader.Instance.GetEntityByPrimaryKey("CoinPrice").Value;
 		}
 	}
 	/// <summary>
@@ -41,11 +41,11 @@ public class IconSettingKVP{
 	/// </summary>
 	public static string[] CoinGain{
 		get{
-			return IconSettingReader.Instance.GetEntityByPrimaryKey("CoinGain").Value;
+			return t_iconReader.Instance.GetEntityByPrimaryKey("CoinGain").Value;
 		}
 	}
 }
-public class IconSetting:Setting{
+public class t_icon:Setting{
 	 /// <summary>
 	 /// 
 	 ///  
@@ -58,6 +58,6 @@ public class IconSetting:Setting{
 	 /// </summary>
 	 public string[] Value;
 
-	 public static string FileName = "IconSetting";
+	 public static string FileName = "t_icon";
 }
 }

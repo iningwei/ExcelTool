@@ -39,12 +39,14 @@ namespace ExcelTool
                 {
                     ExcelWriter.WriteCSCode(outputCSCodeDir, excelTables[i]);
                     ExcelWriter.WriteBinaryFile(outputTableDir, excelTables[i]);
+
+                   
                 }
                 #endregion
 
-
-                //TODO:output Lua code                
-                //////outputLuaCode(outputLuaCodeDir, excelTables);
+                ExcelWriter.WriteLuaCode(outputLuaCodeDir, excelTables);
+                //TODO:output Lua code
+                //outputLuaCode(outputLuaCodeDir, excelTables);
 
 
             }

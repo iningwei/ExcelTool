@@ -4,8 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ZGame.ZTable{
-	public class MissileSettingReader{
-		private MissileSetting[] entities;
+	public class t_bodyReader{
+		private t_body[] entities;
 		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();
 
 		private int count;
@@ -13,11 +13,11 @@ namespace ZGame.ZTable{
 			get{ return this.count;}
 		}
 
-		static MissileSettingReader instance=null;
-		public static MissileSettingReader Instance{
+		static t_bodyReader instance=null;
+		public static t_bodyReader Instance{
 			get{
 				if(instance==null){
-					instance=new MissileSettingReader();
+					instance=new t_bodyReader();
 					instance.Load();
 				}
 				return instance;
@@ -32,14 +32,14 @@ namespace ZGame.ZTable{
 					return;
 				}
 				this.count = count;
-				entities=new MissileSetting[count];
+				entities=new t_body[count];
 				for(int i=0;i<count;i++){
 					string line=lines[i];
 					if(string.IsNullOrEmpty(line)){
 						Debug.LogError("data error, line "+i+" is null");
 					}
 					string[] vals=line.Split('\t');
-					entities[i]=new MissileSetting();
+					entities[i]=new t_body();
 					entities[i].ID=int.Parse(vals[0].Trim());
 					entities[i].Name=int.Parse(vals[1].Trim());
 					entities[i].UnitType=int.Parse(vals[2].Trim());
@@ -66,7 +66,7 @@ namespace ZGame.ZTable{
 				}
 			};
 
-			string fileName=MissileSetting.FileName;
+			string fileName=t_body.FileName;
 			FileMgr.ReadFile(fileName,onTableLoad);
 		}
 
@@ -74,7 +74,7 @@ namespace ZGame.ZTable{
 		/// get datas of a row by Index
 		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
-		public MissileSetting GetEntityByRowIndex(int index){
+		public t_body GetEntityByRowIndex(int index){
 			if(index<0||index>count){
 				Debug.LogError("index:"+index+" is not valid");
 				return null;
@@ -86,20 +86,20 @@ namespace ZGame.ZTable{
 		/// <summary>
 		/// get datas of a row by primary key
 		/// </summary>
-		public MissileSetting GetEntityByPrimaryKey(int key){
+		public t_body GetEntityByPrimaryKey(int key){
 			int index;
 			if(keyIndexMap.TryGetValue(key,out index)){
 				return entities[index];
 			}
 			else{
 				Debug.LogError("no entity with key:"+key);
-				return default(MissileSetting);
+				return default(t_body);
 			}
 		}
 		/// <summary>
 		/// get all row datas
 		/// </summary>
-		public MissileSetting[] AllItems(){
+		public t_body[] AllItems(){
 			return this.entities;
 		}
 	}

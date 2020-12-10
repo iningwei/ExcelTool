@@ -4,8 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ZGame.ZTable{
-	public class GermSettingReader{
-		private GermSetting[] entities;
+	public class t_languageReader{
+		private t_language[] entities;
 		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();
 
 		private int count;
@@ -13,11 +13,11 @@ namespace ZGame.ZTable{
 			get{ return this.count;}
 		}
 
-		static GermSettingReader instance=null;
-		public static GermSettingReader Instance{
+		static t_languageReader instance=null;
+		public static t_languageReader Instance{
 			get{
 				if(instance==null){
-					instance=new GermSettingReader();
+					instance=new t_languageReader();
 					instance.Load();
 				}
 				return instance;
@@ -32,28 +32,23 @@ namespace ZGame.ZTable{
 					return;
 				}
 				this.count = count;
-				entities=new GermSetting[count];
+				entities=new t_language[count];
 				for(int i=0;i<count;i++){
 					string line=lines[i];
 					if(string.IsNullOrEmpty(line)){
 						Debug.LogError("data error, line "+i+" is null");
 					}
 					string[] vals=line.Split('\t');
-					entities[i]=new GermSetting();
+					entities[i]=new t_language();
 					entities[i].ID=int.Parse(vals[0].Trim());
-					entities[i].Name=vals[1];
-					entities[i].PrefabName=vals[2];
-					entities[i].RadiusParams=vals[3].Split('|').ToFloatArray();
-					entities[i].MoveSpeed=float.Parse(vals[4].Trim());
-					entities[i].HpHitRatio=vals[5].Split('|').ToFloatArray();
-					entities[i].IsSplit=bool.Parse(vals[6].Trim());
-					entities[i].SplitGermId=int.Parse(vals[7].Trim());
-					entities[i].ProtectTime=float.Parse(vals[8].Trim());
+					entities[i].EN=vals[1];
+					entities[i].IN=vals[2];
+					entities[i].CH=vals[3];
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};
 
-			string fileName=GermSetting.FileName;
+			string fileName=t_language.FileName;
 			FileMgr.ReadFile(fileName,onTableLoad);
 		}
 
@@ -61,7 +56,7 @@ namespace ZGame.ZTable{
 		/// get datas of a row by Index
 		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
-		public GermSetting GetEntityByRowIndex(int index){
+		public t_language GetEntityByRowIndex(int index){
 			if(index<0||index>count){
 				Debug.LogError("index:"+index+" is not valid");
 				return null;
@@ -73,20 +68,20 @@ namespace ZGame.ZTable{
 		/// <summary>
 		/// get datas of a row by primary key
 		/// </summary>
-		public GermSetting GetEntityByPrimaryKey(int key){
+		public t_language GetEntityByPrimaryKey(int key){
 			int index;
 			if(keyIndexMap.TryGetValue(key,out index)){
 				return entities[index];
 			}
 			else{
 				Debug.LogError("no entity with key:"+key);
-				return default(GermSetting);
+				return default(t_language);
 			}
 		}
 		/// <summary>
 		/// get all row datas
 		/// </summary>
-		public GermSetting[] AllItems(){
+		public t_language[] AllItems(){
 			return this.entities;
 		}
 	}

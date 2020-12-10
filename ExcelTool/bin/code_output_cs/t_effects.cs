@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class EffectSetting:Setting{
+public class t_effects:Setting{
 	 /// <summary>
 	 /// 特效编号
 	 /// </summary>
@@ -25,6 +25,6 @@ public class EffectSetting:Setting{
 	 /// </summary>
 	 public float Time;
 
-	 public static string FileName = "EffectSetting";
+	 public static string FileName = "t_effects";
 }
 }

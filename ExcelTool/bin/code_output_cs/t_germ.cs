@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class GermSetting:Setting{
+public class t_germ:Setting{
 	 /// <summary>
 	 /// 细菌id
 	 /// ID唯一标识细菌类型
@@ -54,6 +54,6 @@ public class GermSetting:Setting{
 	 /// </summary>
 	 public float ProtectTime;
 
-	 public static string FileName = "GermSetting";
+	 public static string FileName = "t_germ";
 }
 }
