@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Text;
 
-namespace SelfTable{
+namespace ZGame.ZTable{
 public class GameSettingKVP{
 	/// <summary>
 	/// 能量最大值

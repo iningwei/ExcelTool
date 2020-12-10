@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 
-namespace SelfTable{
+namespace ZGame.ZTable{
 	public class MissileSettingReader{
 		private MissileSetting[] entities;
 		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();

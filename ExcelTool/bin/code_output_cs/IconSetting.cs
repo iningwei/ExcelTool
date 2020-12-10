@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Text;
 
-namespace SelfTable{
+namespace ZGame.ZTable{
 public class IconSettingKVP{
 	/// <summary>
 	/// 速度（速率）

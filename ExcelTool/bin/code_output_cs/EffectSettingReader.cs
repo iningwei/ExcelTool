@@ -3,9 +3,9 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 
-namespace SelfTable{
-	public class TestReader{
-		private Test[] entities;
+namespace ZGame.ZTable{
+	public class EffectSettingReader{
+		private EffectSetting[] entities;
 		private Dictionary<int,int> keyIndexMap = new Dictionary<int,int>();
 
 		private int count;
@@ -13,11 +13,11 @@ namespace SelfTable{
 			get{ return this.count;}
 		}
 
-		static TestReader instance=null;
-		public static TestReader Instance{
+		static EffectSettingReader instance=null;
+		public static EffectSettingReader Instance{
 			get{
 				if(instance==null){
-					instance=new TestReader();
+					instance=new EffectSettingReader();
 					instance.Load();
 				}
 				return instance;
@@ -32,24 +32,23 @@ namespace SelfTable{
 					return;
 				}
 				this.count = count;
-				entities=new Test[count];
+				entities=new EffectSetting[count];
 				for(int i=0;i<count;i++){
 					string line=lines[i];
 					if(string.IsNullOrEmpty(line)){
 						Debug.LogError("data error, line "+i+" is null");
 					}
 					string[] vals=line.Split('\t');
-					entities[i]=new Test();
+					entities[i]=new EffectSetting();
 					entities[i].ID=int.Parse(vals[0].Trim());
-					entities[i].Name=vals[1];
-					entities[i].PrefabName=vals[2];
-					entities[i].Test2=vals[3].Split('|').ToIntArray();
-					entities[i].MoveSpeed=vals[4].Split('|').ToFloatArray();
+					entities[i].ResName=vals[1];
+					entities[i].ResType=vals[2];
+					entities[i].Time=float.Parse(vals[3].Trim());
 					keyIndexMap[entities[i].ID]=i;
 				}
 			};
 
-			string fileName=Test.FileName;
+			string fileName=EffectSetting.FileName;
 			FileMgr.ReadFile(fileName,onTableLoad);
 		}
 
@@ -57,7 +56,7 @@ namespace SelfTable{
 		/// get datas of a row by Index
 		/// index starts form 0,which marching the line 7 of excel table
 		/// </summary>
-		public Test GetEntityByRowIndex(int index){
+		public EffectSetting GetEntityByRowIndex(int index){
 			if(index<0||index>count){
 				Debug.LogError("index:"+index+" is not valid");
 				return null;
@@ -69,20 +68,20 @@ namespace SelfTable{
 		/// <summary>
 		/// get datas of a row by primary key
 		/// </summary>
-		public Test GetEntityByPrimaryKey(int key){
+		public EffectSetting GetEntityByPrimaryKey(int key){
 			int index;
 			if(keyIndexMap.TryGetValue(key,out index)){
 				return entities[index];
 			}
 			else{
 				Debug.LogError("no entity with key:"+key);
-				return default(Test);
+				return default(EffectSetting);
 			}
 		}
 		/// <summary>
 		/// get all row datas
 		/// </summary>
-		public Test[] AllItems(){
+		public EffectSetting[] AllItems(){
 			return this.entities;
 		}
 	}

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Text;
 
-namespace SelfTable{
+namespace ZGame.ZTable{
 public class TrailSetting:Setting{
 	 /// <summary>
 	 /// 装备编号

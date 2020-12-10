@@ -17,7 +17,7 @@ namespace ExcelTool.Reader
             ExcelField primaryField = et.GetPrimaryField();
 
             #region step1:output Setting.cs base class
-            string setting = "namespace SelfTable{\r\n";
+            string setting = "namespace ZGame.ZTable{\r\n";
             setting += "\tpublic class Setting{\r\n";
             setting += "\t}\r\n";
             setting += "}";
@@ -30,7 +30,7 @@ namespace ExcelTool.Reader
             content += "using UnityEngine;\r\n";
             content += "using System.Text;\r\n";
             content += "\r\n";
-            content += "namespace SelfTable{\r\n";
+            content += "namespace ZGame.ZTable{\r\n";
             if (et.isKVT)//if KVT,we should output addition class,which can direct get value by key
             {
                 content += "public class " + et.tableName + "KVP{\r\n";
@@ -85,7 +85,7 @@ namespace ExcelTool.Reader
             content += "using System.Collections.Generic;\r\n";
             content += "\r\n";
 
-            content += "namespace SelfTable{\r\n";
+            content += "namespace ZGame.ZTable{\r\n";
             content += "\tpublic class " + et.tableName + "Reader{\r\n";
 
             content += "\t\tprivate " + et.tableName + "[] entities;\r\n";

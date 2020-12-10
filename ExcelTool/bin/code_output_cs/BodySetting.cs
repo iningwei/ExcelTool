@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Text;
 
-namespace SelfTable{
+namespace ZGame.ZTable{
 public class BodySetting:Setting{
 	 /// <summary>
 	 /// 装备编号

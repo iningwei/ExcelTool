@@ -1,4 +1,4 @@
-﻿namespace SelfTable{
+﻿namespace ZGame.ZTable{
 	public class Setting{
 	}
 }
