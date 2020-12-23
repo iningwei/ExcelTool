@@ -357,32 +357,36 @@ namespace ExcelTool.Reader
                             {
                                 luaContentSub += keyName + "=";
                                 //+ value + ",";
-                                var vs = value.Split('|');
                                 luaContentSub += "{";
-                                for (int p = 0; p < vs.Length; p++)
+                                if (value!="")
                                 {
-                                    if (field.typeDes == "float[]"|| field.typeDes == "Vector3")
+                                    var vs = value.Split('|');
+                                    for (int p = 0; p < vs.Length; p++)
                                     {
-                                        luaContentSub += float.Parse(vs[p]);
-                                    }
-                                    else if (field.typeDes == "int[]")
-                                    {
-                                        luaContentSub += int.Parse(vs[p]);
-                                    }
-                                    else if (field.typeDes == "string[]")
-                                    {
-                                        luaContentSub += "\"" + vs[p] + "\"";
-                                    }
-                                    if (p < vs.Length - 1)
-                                    {
-                                        luaContentSub += ",";
+                                        if (field.typeDes == "float[]" || field.typeDes == "Vector3")
+                                        {
+                                            luaContentSub += float.Parse(vs[p]);
+                                        }
+                                        else if (field.typeDes == "int[]")
+                                        {
+                                            luaContentSub += int.Parse(vs[p]);
+                                        }
+                                        else if (field.typeDes == "string[]")
+                                        {
+                                            luaContentSub += "\"" + vs[p] + "\"";
+                                        }
+                                        if (p < vs.Length - 1)
+                                        {
+                                            luaContentSub += ",";
+                                        }
                                     }
                                 }
+                                
 
                                 luaContentSub.TrimEnd(',');
                                 luaContentSub += "},";
                             }
-                            else
+                            else if(field.typeDes != "")
                             {
                                 luaContentSub += keyName + "= " + value + " ,";
                             }
@@ -392,17 +396,7 @@ namespace ExcelTool.Reader
                     luaContentSub += "}\r\n";
 
 
-                    //////luaContent += "ConfigTable.Get" + table.tableName.Substring(0, table.tableName.Length - 7) + "By" + table.primaryKeyName + "=function(" + table.primaryKeyName + ")\r\n";
-                    //////luaContent += "\tfor i=1,#ConfigTable." + table.tableName + " do\r\n";
-                    //////luaContent += "\t\tlocal tmp=ConfigTable." + table.tableName + "[i]\r\n";
-                    //////luaContent += "\t\tif tmp." + table.primaryKeyName + "==" + table.primaryKeyName + " then\r\n";
-                    //////luaContent += "\t\t\treturn tmp\r\n";
-                    //////luaContent += "\t\tend\r\n";
-                    //////luaContent += "\tend\r\n";
-                    //////luaContent += "\tloge(\"error,get " + table.tableName.Substring(0, table.tableName.Length - 7) + " By " + table.primaryKeyName + ":\"+" + table.primaryKeyName + ")\r\n";
-                    //////luaContent += "\treturn nil\r\n";
-
-                    //////luaContent += "end\r\n";
+                     
                 }
 
 

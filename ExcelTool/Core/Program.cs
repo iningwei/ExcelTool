@@ -31,25 +31,27 @@ namespace ExcelTool
             //do not support 03 excel file,which with postfix of .xls
             excelFiles = Directory.GetFiles(excelFileDir, "*.xlsx", SearchOption.TopDirectoryOnly);
 
+            List<ExcelTable> allExcelTables = new List<ExcelTable>();
             for (int q = 0; q < excelFiles.Length; q++)
             {
                 List<ExcelTable> excelTables = ExcelReader.Read(excelFiles[q]);
+
+                allExcelTables.AddRange(excelTables);
                 #region  output c# code files and bin files
                 for (int i = 0; i < excelTables.Count; i++)
                 {
                     ExcelWriter.WriteCSCode(outputCSCodeDir, excelTables[i]);
                     ExcelWriter.WriteBinaryFile(outputTableDir, excelTables[i]);
 
-                   
+
                 }
-                #endregion
-
-                ExcelWriter.WriteLuaCode(outputLuaCodeDir, excelTables);
-                //TODO:output Lua code
-                //outputLuaCode(outputLuaCodeDir, excelTables);
-
-
+                #endregion                
             }
+            if (allExcelTables.Count > 0)
+            {
+                ExcelWriter.WriteLuaCode(outputLuaCodeDir, allExcelTables);
+            }
+
             Debug.Log("------------- :-) output finished");
             Console.ReadLine();
         }
