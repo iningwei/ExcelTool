@@ -45,7 +45,7 @@ namespace ExcelTool
 
 
                 }
-                #endregion                
+                #endregion
             }
             if (allExcelTables.Count > 0)
             {
@@ -99,85 +99,6 @@ namespace ExcelTool
             }
         }
 
-
-        //here is some old code,which not suit current table format and data structure
-        //////static void outputLuaCode(string outputFolderPath, List<ExcelTable> tables)
-        //////{
-        //////    string outputFile = outputFolderPath + @"\SettingTable.lua";
-        //////    string luaContent = "---@class SettingTable\r\n";
-        //////    luaContent += "local SettingTable={}\r\n";
-        //////    for (int i = 0; i < tables.Count; i++)
-        //////    {
-        //////        var table = tables[i];
-        //////        if (table.isKVPairTable)
-        //////        {
-        //////            luaContent += "\r\n";
-        //////            luaContent += "---@field public " + table.tableName + " table\r\n";
-        //////            luaContent += "---@class " + table.tableName + ":SettingTable\r\n";
-        //////            luaContent += "SettingTable." + table.tableName + "={\r\n";
-        //////            for (int j = 4; j < table.usedRowsCount + 4; j++)
-        //////            {
-        //////                var kStr = table.tableContent[table.primaryKeyName][j];
-        //////                var vStr = table.tableContent["Value"][j];
-        //////                var commentStr = table.tableContent["KeyDes"][j];
-        //////                if (table.valueKeyType == "string")
-        //////                {
-        //////                    luaContent += "\t" + kStr + "=\"" + vStr + "\",--" + commentStr + "\r\n";
-        //////                }
-        //////                else
-        //////                {
-        //////                    luaContent += "\t" + kStr + "=" + vStr + ",--" + commentStr + "\r\n";
-        //////                }
-        //////            }
-        //////            luaContent += "}\r\n";
-        //////        }
-        //////        else
-        //////        {
-        //////            luaContent += "\r\n";
-        //////            luaContent += "---@field public " + table.tableName + " table\r\n";
-        //////            luaContent += "---@class " + table.tableName + ":SettingTable\r\n";
-        //////            luaContent += "SettingTable." + table.tableName + "={\r\n";
-        //////            for (int j = 4; j < table.usedRowsCount + 4; j++)
-        //////            {
-        //////                luaContent += "\t{";
-        //////                for (int k = 0; k < table.keys.Count; k++)
-        //////                {
-        //////                    var keyName = table.keys[k];
-
-        //////                    var value = table.tableContent[keyName][j];
-        //////                    if (table.tableContent[keyName][0] == "string")
-        //////                    {
-        //////                        luaContent += keyName + "=\"" + value + "\",";
-        //////                    }
-        //////                    else
-        //////                    {
-        //////                        luaContent += keyName + "=" + value + ",";
-        //////                    }
-        //////                }
-        //////                luaContent += "},\r\n";
-        //////            }
-        //////            luaContent += "}\r\n";
-
-
-        //////            luaContent += "SettingTable.Get" + table.tableName.Substring(0, table.tableName.Length - 7) + "By" + table.primaryKeyName + "=function(" + table.primaryKeyName + ")\r\n";
-        //////            luaContent += "\tfor i=1,#SettingTable." + table.tableName + " do\r\n";
-        //////            luaContent += "\t\tlocal tmp=SettingTable." + table.tableName + "[i]\r\n";
-        //////            luaContent += "\t\tif tmp." + table.primaryKeyName + "==" + table.primaryKeyName + " then\r\n";
-        //////            luaContent += "\t\t\treturn tmp\r\n";
-        //////            luaContent += "\t\tend\r\n";
-        //////            luaContent += "\tend\r\n";
-        //////            luaContent += "\tloge(\"error,get " + table.tableName.Substring(0, table.tableName.Length - 7) + " By " + table.primaryKeyName + ":\"+" + table.primaryKeyName + ")\r\n";
-        //////            luaContent += "\treturn nil\r\n";
-
-        //////            luaContent += "end\r\n";
-        //////        }
-        //////    }
-
-        //////    luaContent += "return SettingTable";
-
-
-        //////    File.WriteAllText(outputFile, luaContent.TrimEnd(), new UTF8Encoding(false));
-        //////    Console.WriteLine("SettingTable.lua输出完毕");
-        //////}
+ 
     }
 }
