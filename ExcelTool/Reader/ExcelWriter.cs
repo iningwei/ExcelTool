@@ -73,7 +73,7 @@ namespace ExcelTool.Reader
                 content += "\t public " + et.fields[l].typeDes + " " + et.fields[l].fieldName + ";\r\n";
                 content += "\r\n";
             }
-            content += "\t public static string FileName = " + "\"" + "tb_" + et.tableName.ToString() + "\";\r\n";
+            content += "\t public static string FileName = " + "\"" + "tb_" + et.tableName.ToLower() + "\";\r\n";
             content += "}\r\n";
             content += "}";
 
