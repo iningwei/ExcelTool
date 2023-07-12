@@ -64,3 +64,15 @@ E:\MyGit\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.CoreCompileInputs.cache
 E:\MyGit\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.CopyComplete
 E:\MyGit\ExcelTool\ExcelTool\obj\Debug\ExcelTool.exe
 E:\MyGit\ExcelTool\ExcelTool\obj\Debug\ExcelTool.pdb
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\ExcelTool.exe.config
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\ExcelTool.exe
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\ExcelTool.pdb
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\Excel.dll
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\MyGitHub\ExcelTool\ExcelTool\bin\Debug\Excel.pdb
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.AssemblyReference.cache
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.SuggestedBindingRedirects.cache
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.CoreCompileInputs.cache
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.csproj.CopyComplete
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.exe
+E:\MyGitHub\ExcelTool\ExcelTool\obj\Debug\ExcelTool.pdb

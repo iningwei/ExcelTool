@@ -76,6 +76,7 @@
     <Compile Include="Core\ExcelTable.cs" />
     <Compile Include="Core\Program.cs" />
     <Compile Include="Core\Setting.cs" />
+    <Compile Include="Obfuscation\DES.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\ExcelReader.cs" />
     <Compile Include="Reader\ExcelWriter.cs" />

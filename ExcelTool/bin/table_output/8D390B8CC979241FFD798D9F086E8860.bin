@@ -1,0 +1,3 @@
+1	ZGame.Logic.GermBounce	guaiwu1	0.74|1	1	1|1	true	100	0
+2	ZGame.Logic.GermBoom	guaiwu2	0.795|1	2	5|8	false	0	0
+100	ZGame.Logic.GermBounce	guaiwu1	0.74|0.33	2	1|1	false	0	2

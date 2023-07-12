@@ -1,4 +1,5 @@
-﻿using ExcelTool.Core;
+using ExcelTool.Core;
+using ExcelTool.Obfuscation;
 using ExcelTool.Tools;
 using System;
 using System.Collections.Generic;
@@ -254,7 +255,12 @@ namespace ExcelTool.Reader
                 content += "\r\n";
             }
 
-            string path = outputDir + @"\" + et.tableName + ".bin";
+            string finalTableName = "tb_" + et.tableName.ToLower();//表名前加前缀tb_，尽量减低和其它资源同名的可能性
+            if (Setting.IsFileNameEncrypt)
+            {
+                finalTableName = DES.EncryptStrToHex(finalTableName, Setting.FileNameEncryptKey);
+            }
+            string path = outputDir + @"\" + finalTableName + ".bin";
 
             if (!Setting.IsEncrypt)
             {
@@ -353,12 +359,12 @@ namespace ExcelTool.Reader
                                 luaContentSub += keyName + "=\"" + value + "\",";
                             }
 
-                            else if (field.typeDes == "Vector3"||field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "string[]")
+                            else if (field.typeDes == "Vector3" || field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "string[]")
                             {
                                 luaContentSub += keyName + "=";
                                 //+ value + ",";
                                 luaContentSub += "{";
-                                if (value!="")
+                                if (value != "")
                                 {
                                     var vs = value.Split('|');
                                     for (int p = 0; p < vs.Length; p++)
@@ -381,12 +387,12 @@ namespace ExcelTool.Reader
                                         }
                                     }
                                 }
-                                
+
 
                                 luaContentSub.TrimEnd(',');
                                 luaContentSub += "},";
                             }
-                            else if(field.typeDes != "")
+                            else if (field.typeDes != "")
                             {
                                 luaContentSub += keyName + "= " + value + " ,";
                             }
@@ -396,7 +402,7 @@ namespace ExcelTool.Reader
                     luaContentSub += "}\r\n";
 
 
-                     
+
                 }
 
 

@@ -1,4 +1,4 @@
-﻿using ExcelTool.Core;
+using ExcelTool.Core;
 using ExcelTool.Reader;
 using ExcelTool.Tools;
 using System;
@@ -92,13 +92,12 @@ namespace ExcelTool
                         || !Directory.Exists(outputLuaCodeDir))
                     {
                         Debug.ThrowException("directory has error,please check");
-
                     }
 
                 }
             }
         }
 
- 
+
     }
 }

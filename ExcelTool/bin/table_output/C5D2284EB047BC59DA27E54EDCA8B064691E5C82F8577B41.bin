@@ -1,0 +1,3 @@
+0	1303	alchemist	Alchemist	SubGameAlchemist	AlchemistWindow	CMD_SLOT_ALCHEMIST_SPIN_CS	Hall|lianjinshushi	false		50	54	51			false	炼金术师
+1	1304	diamond777	Diamond777	SubGameDiamond777	Diamond777Window	CMD_SLOT_DIAMOND_SPIN_CS	Hall|zuan777	true	Hall|vip_jackpot01	50	55	52			false	Diamond777
+2	1306	mega777	Mega777	SubGameMega777	Mega777Window	CMD_SLOT_MEGA_SPIN_CS	Hall|mega777	true	Hall|vip_jackpot02	50	56	53			false	Mega777
