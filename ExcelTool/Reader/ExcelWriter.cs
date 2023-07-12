@@ -276,7 +276,7 @@ namespace ExcelTool.Reader
                 fs.Close();
             }
 
-            Debug.Log("write file " + et.tableName + ".bin");
+            Debug.Log("write file " + finalTableName + ".bin" + ", originName:" + et.tableName);
         }
 
         public static void WriteLuaCode(string outputDir, List<ExcelTable> tables)
