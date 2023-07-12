@@ -1,8 +1,0 @@
-0	301	fruitboom	FruitBigBang	SubGameFruitBoom	SubGameFruitBoomWindow	logic_subgamefruitboom	CMD_SLOT_SPIN_CS			Common|dt_yx_fruitbigbang_pic	Common|dt_yx_maga777_pic	true	Hall|dt_jackpot2_pic	Hall|dt_jackpot1_pic	Common|dt_yx_fruitbigbang_pic	5	false	0	水果大爆炸
-1	302	bountyhunter	BountyHunter	SubGameBountyHunter	SubGameBountyHunterWindow	logic_subgamebountyhunter	CMD_SLOT_HUNTER_SPIN_CS			Common|dt_yx_boumtyhunter_pic	Common|dt_yx_maga777_pic	false			Common|dt_yx_boumtyhunter_pic	5	false	0	赏金猎人
-2	303	alchemist	Alchemist	SubGameAlchemist	SubGameAlchemistWindow	logic_subgamealchemist	CMD_SLOT_ALCHEMIST_SPIN_CS			Common|dt_yx_alcheimist_pic	Common|dt_yx_maga777_pic	false			Common|dt_yx_alcheimist_pic	6	false	0	炼金术师
-3	304	diamond777	Diamond777	SubGameDiamond777	SubGameDiamond777Window	logic_subgamediamond777	CMD_SLOT_DIAMOND_SPIN_CS			Common|dt_yx_diamond777_pic	Common|dt_yx_maga777_pic	true	Hall|dt_jackpot2_pic	Hall|dt_jackpot1_pic	Common|dt_yx_diamond777_pic	1	false	0	Diamond777
-4	305	fishdragon	DragonLegend	SubGameFishDragon	SubGameFishDragonWindow	logic_subgamefishdragon	CMD_SLOT_FISH_SPIN_CS			Common|dt_yx_dragonlegend_pic	Common|dt_yx_maga777_pic	false			Common|dt_yx_dragonlegend_pic	9	false	0	鱼跃龙门
-5	306	mega777	Mega777	SubGameMega777	SubGameMega777Window	logic_subgamemega777	CMD_SLOT_MEGA_SPIN_CS			Common|dt_yx_maga777_pic	Common|dt_yx_maga777_pic	true	Hall|dt_jackpot2_pic	Hall|dt_jackpot1_pic	Common|dt_yx_maga777_pic	5	false	0	Mega777
-6	307	goldminer	BlastingGold	SubGameGoldMiner	SubGameGoldMinerWindow	logic_subgamegoldminer	CMD_SLOT_GOLDMINER_SPIN_CS		600	Common|bpjk-small	Common|dt_yx_hjkg_pic	true	Hall|dt_jackpot2_pic	Hall|dt_jackpot1_pic	Common|bpjk-small	50	false	0	黄金矿工
-7	-1									Common|dt_yx_comingsoon_pic		false

@@ -4,6 +4,7 @@ using ExcelTool.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace ExcelTool.Reader
@@ -57,8 +58,8 @@ namespace ExcelTool.Reader
 
             for (int l = 0; l < et.fields.Count; l++)
             {
-                if (et.fields[l].name.ContainChinese() ||
-                    et.fields[l].name == "KeyDes")
+                if (et.fields[l].fieldName.ContainChinese() ||
+                    et.fields[l].fieldName == "KeyDes")
                 {
                     continue;//key为汉字的时候跳过（汉字作为字段的 用于注释说明）
                 }
@@ -66,10 +67,10 @@ namespace ExcelTool.Reader
                 content += "\t /// " + et.fields[l].fieldDes + "\r\n";
                 if (et.fields[l].fieldDesMore != "")
                 {
-                    content += "\t /// " + et.fields[l].fieldDesMore + "\r\n";
+                    content += "\t /// " + et.fields[l].fieldDesMore.Trim().Replace("\n", "\n\t /// ") + "\r\n";
                 }
                 content += "\t /// </summary>\r\n";
-                content += "\t public " + et.fields[l].typeDes + " " + et.fields[l].name + ";\r\n";
+                content += "\t public " + et.fields[l].typeDes + " " + et.fields[l].fieldName + ";\r\n";
                 content += "\r\n";
             }
             content += "\t public static string FileName = " + "\"" + et.tableName + "\";\r\n";
@@ -132,9 +133,9 @@ namespace ExcelTool.Reader
 
             for (int i = 0; i < et.fields.Count; i++)
             {
-                string filedName = et.fields[i].name;
+                string filedName = et.fields[i].fieldName;
                 string typeStr = et.fields[i].typeDes;
-                if (typeStr == "int" || typeStr == "float")
+                if (typeStr == "int" || typeStr == "float" || typeStr == "uint")
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
@@ -152,28 +153,32 @@ namespace ExcelTool.Reader
                 }
                 else if (typeStr == "string[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\');\r\n";
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\');\r\n";
                 }
                 else if (typeStr == "int[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\').ToIntArray();\r\n";
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToIntArray();\r\n";
+                }
+                else if (typeStr == "uint[]")
+                {
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToUintArray();\r\n";
                 }
                 else if (typeStr == "float[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\'|\').ToFloatArray();\r\n";
+                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToFloatArray();\r\n";
                 }
                 else if (typeStr == "Vector3")
                 {
                     content += "\t\t\t\t\tentities[i]." + filedName + "=" + "new Vector3("
-                        + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[0]),"
-                        + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[1]),"
-                        + "float.Parse(vals[" + i + "].Trim().Split(\'|\')[2])"
+                        + "float.Parse(vals[" + i + "].Trim().Split(\',\')[0]),"
+                        + "float.Parse(vals[" + i + "].Trim().Split(\',\')[1]),"
+                        + "float.Parse(vals[" + i + "].Trim().Split(\',\')[2])"
                         + ");\r\n";
                 }
                 //TODO:support more type
             }
 
-            content += "\t\t\t\t\tkeyIndexMap[entities[i]." + primaryField.name + "]=i;\r\n";
+            content += "\t\t\t\t\tkeyIndexMap[entities[i]." + primaryField.fieldName + "]=i;\r\n";
             content += "\t\t\t\t}\r\n";//for
             content += "\t\t\t};\r\n\r\n";//Action
             content += "\t\t\tstring fileName=" + et.tableName + ".FileName;\r\n";
@@ -240,12 +245,12 @@ namespace ExcelTool.Reader
             string content = string.Empty;
             int rowCount = et.rowCount;
             int columnCount = et.fields.Count;
-            for (int j = 0; j < rowCount - 6; j++)
+            for (int j = 0; j < rowCount - FieldRowEnum.DATA_START_ROW; j++)
             {
                 for (int k = 0; k < columnCount; k++)
                 {
                     ExcelField field = et.fields[k];
-                    if (field.name == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段
+                    if (field.fieldName == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段
                         continue;
 
                     content += (field.datas[j] + "\t");
@@ -255,11 +260,12 @@ namespace ExcelTool.Reader
                 content += "\r\n";
             }
 
-            string finalTableName = "tb_" + et.tableName.ToLower();//表名前加前缀tb_，尽量减低和其它资源同名的可能性
+            string finalTableName = "tb_" + et.tableName.ToLower();//输出的二进制表名文件加个前缀tb_,尽量避免和其它资源重名;表名转成小写，是因为有些平台不区分大小写，项目中保证资源名都是小写，避免因为大小写导致文件加载出错。
             if (Setting.IsFileNameEncrypt)
             {
                 finalTableName = DES.EncryptStrToHex(finalTableName, Setting.FileNameEncryptKey);
             }
+
             string path = outputDir + @"\" + finalTableName + ".bin";
 
             if (!Setting.IsEncrypt)
@@ -276,7 +282,7 @@ namespace ExcelTool.Reader
                 fs.Close();
             }
 
-            Debug.Log("write file " + finalTableName + ".bin" + ", originName:" + et.tableName);
+            Debug.Log("write file " + finalTableName + ".bin, originName:" + et.tableName);
         }
 
         public static void WriteLuaCode(string outputDir, List<ExcelTable> tables)
@@ -286,31 +292,28 @@ namespace ExcelTool.Reader
                 Directory.CreateDirectory(outputDir);
             }
 
-
-            string outputFile = outputDir + @"\ConfigTable.lua";
-            string luaContent = "---@class ConfigTable\r\n";
-            luaContent += "local ConfigTable={}\r\n";
             for (int i = 0; i < tables.Count; i++)
             {
                 var table = tables[i];
+                string outTableName = table.tableName + "Table";
+                string outputFile = outputDir + @"\" + outTableName + ".lua";
+
                 ExcelField primaryField = table.GetPrimaryField();
                 string luaContentSub = "";
                 if (table.isKVT)
                 {
                     luaContentSub += "\r\n";
-
-
-                    luaContentSub += "---@class " + table.tableName + ":ConfigTable\r\n";
-                    luaContentSub += "ConfigTable." + table.tableName + "={\r\n";
-                    for (int j = 6; j < table.rowCount; j++)
+                    luaContentSub += "---@class " + outTableName + "\r\n";
+                    luaContentSub += "local " + outTableName + "={\r\n";
+                    for (int j = FieldRowEnum.DATA_START_ROW; j < table.rowCount; j++)
                     {
-                        var kStr = table.fields[0].datas[j - 6];
-                        var vStr = table.fields[1].datas[j - 6];
+                        var kStr = table.fields[0].datas[j - FieldRowEnum.DATA_START_ROW];
+                        var vStr = table.fields[1].datas[j - FieldRowEnum.DATA_START_ROW];
                         //var kStr = table.tableContent[table.primaryKeyName][j];
                         //var vStr = table.tableContent["Value"][j];
-                        var commentStr = table.fields[2].datas[j - 6];
+                        var commentStr = table.fields[2].datas[j - FieldRowEnum.DATA_START_ROW];
 
-                        if (j == 6)
+                        if (j == FieldRowEnum.DATA_START_ROW)
                         {
                             luaContentSub = "---@field public " + kStr + " @" + commentStr + luaContentSub;
                         }
@@ -328,20 +331,39 @@ namespace ExcelTool.Reader
                 {
                     luaContentSub += "\r\n";
 
-                    luaContentSub += "---@class " + table.tableName + ":ConfigTable\r\n";
-                    luaContentSub += "ConfigTable." + table.tableName + "={\r\n";
-                    for (int j = 6; j < table.rowCount; j++)
+                    luaContentSub += "---@class " + outTableName + "\r\n";
+                    for (int f = 0; f < table.fields.Count; f++)
+                    {
+                        //string luaFieldType = table.fields[f].typeDes.Replace("uint[]","number[]").Replace;
+                        string luaFieldType = "unknow";
+                        string typeDes = table.fields[f].typeDes;
+                        if (typeDes == "Vector2" || typeDes == "Vector3" || typeDes == "float[]" || typeDes == "int[]" || typeDes == "uint[]")
+                        {
+                            luaFieldType = "number[]";
+                        }
+                        else if (typeDes == "int" || typeDes == "uint" || typeDes == "float")
+                        {
+                            luaFieldType = "number";
+                        }
+                        else
+                        {
+                            luaFieldType = typeDes;
+                        }
+                        luaContentSub += "---@field " + table.fields[f].fieldName + " " + luaFieldType + "\r\n";
+                    }
+                    luaContentSub += "local " + outTableName + "={\r\n";
+                    for (int j = FieldRowEnum.DATA_START_ROW; j < table.rowCount; j++)
                     {
                         var typeDes = table.fields[0].typeDes;
                         if (typeDes == "int")
                         {
 
-                            luaContentSub += "\t[" + table.fields[0].datas[j - 6] + "]={";
+                            luaContentSub += "\t[" + table.fields[0].datas[j - FieldRowEnum.DATA_START_ROW] + "]={";
                         }
                         else if (typeDes == "string")
                         {
 
-                            luaContentSub += "\t[\"" + table.fields[0].datas[j - 6] + "\"]={";
+                            luaContentSub += "\t[\"" + table.fields[0].datas[j - FieldRowEnum.DATA_START_ROW] + "\"]={";
                         }
                         else
                         {
@@ -352,41 +374,57 @@ namespace ExcelTool.Reader
                         for (int k = 0; k < table.fields.Count; k++)
                         {
                             var field = table.fields[k];
-                            var keyName = field.name;
-                            var value = field.datas[j - 6];
+                            var keyName = field.fieldName;
+                            var value = field.datas[j - FieldRowEnum.DATA_START_ROW];
                             if (field.typeDes == "string")
                             {
                                 luaContentSub += keyName + "=\"" + value + "\",";
                             }
-
-                            else if (field.typeDes == "Vector3" || field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "string[]")
+                            else if (field.typeDes == "Vector2" || field.typeDes == "Vector3" || field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "uint[]" || field.typeDes == "string[]")
                             {
                                 luaContentSub += keyName + "=";
                                 //+ value + ",";
                                 luaContentSub += "{";
-                                if (value != "")
+                                //有的格式配置不统一，带有[]符号，强转了
+                                string v = value.Replace("[", "").Replace("]", "");
+                                try
                                 {
-                                    var vs = value.Split('|');
-                                    for (int p = 0; p < vs.Length; p++)
+                                    if (v != "")
                                     {
-                                        if (field.typeDes == "float[]" || field.typeDes == "Vector3")
+
+                                        var vs = value.Replace("[", "").Replace("]", "").Split(',');
+                                        for (int p = 0; p < vs.Length; p++)
                                         {
-                                            luaContentSub += float.Parse(vs[p]);
-                                        }
-                                        else if (field.typeDes == "int[]")
-                                        {
-                                            luaContentSub += int.Parse(vs[p]);
-                                        }
-                                        else if (field.typeDes == "string[]")
-                                        {
-                                            luaContentSub += "\"" + vs[p] + "\"";
-                                        }
-                                        if (p < vs.Length - 1)
-                                        {
-                                            luaContentSub += ",";
+                                            if (field.typeDes == "float[]" || field.typeDes == "Vector3")
+                                            {
+                                                luaContentSub += float.Parse(vs[p]);
+                                            }
+                                            else if (field.typeDes == "int[]")
+                                            {
+                                                luaContentSub += int.Parse(vs[p]);
+                                            }
+                                            else if (field.typeDes == "uint[]")
+                                            {
+                                                luaContentSub += uint.Parse(vs[p]);
+                                            }
+                                            else if (field.typeDes == "string[]")
+                                            {
+                                                luaContentSub += "\"" + vs[p] + "\"";
+                                            }
+                                            if (p < vs.Length - 1)
+                                            {
+                                                luaContentSub += ",";
+                                            }
                                         }
                                     }
                                 }
+                                catch (Exception)
+                                {
+                                    string src = $" 表：{table.tableName}，字段：{field.fieldName}，行数：{j + 1}";
+                                    Debug.ThrowException("field decode error:" + field.typeDes + src);
+                                    throw;
+                                }
+
 
 
                                 luaContentSub.TrimEnd(',');
@@ -394,7 +432,17 @@ namespace ExcelTool.Reader
                             }
                             else if (field.typeDes != "")
                             {
+                                if (value == "" && (field.typeDes == "uint" || field.typeDes == "int" || field.typeDes == "float"))
+                                {
+                                    value = "0";
+                                }
                                 luaContentSub += keyName + "= " + value + " ,";
+
+                            }
+                            else
+                            {
+                                string src = $" 表：{table.tableName}，字段：{field.fieldName}";
+                                Debug.ThrowException("field typeDes error:" + field.typeDes + src);
                             }
                         }
                         luaContentSub += "},\r\n";
@@ -407,23 +455,17 @@ namespace ExcelTool.Reader
 
 
 
-                luaContentSub += "local mt_" + table.tableName + "={}\r\n";
-                luaContentSub += "mt_" + table.tableName + ".__index=function(t,k)\r\n";
-                luaContentSub += "\tLogE(\"can not find item with key:\"..k..\" in " + table.tableName + "\")\r\n";
+                luaContentSub += "local mt_" + outTableName + "={}\r\n";
+                luaContentSub += "mt_" + outTableName + ".__index=function(t,k)\r\n";
+                luaContentSub += "\tLogE(\"can not find item with key:\"..k..\" in " + outTableName + "\")\r\n";
                 luaContentSub += "end\r\n";
-                luaContentSub += "setmetatable(ConfigTable." + table.tableName + ",mt_" + table.tableName + ")\r\n";
+                luaContentSub += "setmetatable(" + outTableName + ",mt_" + outTableName + ")\r\n";
                 luaContentSub += "\r\n";
-
-                luaContent += luaContentSub;
-
+                luaContentSub += "return " + outTableName;
+                File.WriteAllText(outputFile, luaContentSub.TrimEnd(), new UTF8Encoding(false));
 
             }
-
-            luaContent += "return ConfigTable";
-
-
-            File.WriteAllText(outputFile, luaContent.TrimEnd(), new UTF8Encoding(false));
-            Console.WriteLine("ConfigTable.lua输出完毕");
+            Console.WriteLine("*Table.lua输出完毕");
 
         }
     }

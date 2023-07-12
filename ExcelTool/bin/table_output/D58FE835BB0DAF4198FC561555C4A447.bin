@@ -1,7 +1,0 @@
-12001	1020	3	0.5	4	0	0	0	1	49	1	5	PlaneFactory	12001	missile12001	0|0|0	1+2	bullet2	ZGame.Logic.BulletRestrictDis	true	true	shoot1
-12041	1032	3	0.2	5	0	0	0	1	49	1	6	PlaneFactory	12041	missile12041	-0.08|0|0	1+2	bullet3	ZGame.Logic.BulletTwoFlashBall	false	false	shoot1
-22001	1021	3	0.2	5	0	0	0	1	49	1	5	PlaneFactory	22001	missile22001	0|0|0	1+2	bulletBianZhi	ZGame.Logic.BulletBianZhiPro	false	true	shoot1
-22011	1022	3	1	7	0	0	0	1	49	1	21	PlaneFactory	22011	missile22011	-0.31|-0.4|0	1+2	bullet2	ZGame.Logic.BulletRestrictDis	true	true	shoot1
-22021	1023	3	1.2	9	0	0	0	1	49	1	22	PlaneFactory	22021	missile22021	-0.43|-0.23|0	1+2	bulletMissile1	ZGame.Logic.BulletNormal	false	true	shoot1
-22031	1024	3	1	12	0	0	0	1	49	1	32	PlaneFactory	22031	missile22031	-0.37|-0.29|0	1+2	bulletMissile1	ZGame.Logic.BulletNormal	false	true	shoot1
-22041	1025	3	0.2	12	0	0	0	1	49	1	6	PlaneFactory	22041	missile22041	-0.08|0.03|0	1+2	bullet3	ZGame.Logic.BulletTwoFlashBall	false	false	shoot1

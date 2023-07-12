@@ -1,4 +1,4 @@
-﻿using ExcelTool.Tools;
+using ExcelTool.Tools;
 using System.Collections.Generic;
 
 namespace ExcelTool.Core
@@ -13,7 +13,7 @@ namespace ExcelTool.Core
         /// <summary>
         /// the name of a field
         /// </summary>
-        public string name;
+        public string fieldName;
         /// <summary>
         /// type of a field
         /// </summary>
@@ -43,11 +43,11 @@ namespace ExcelTool.Core
         public bool isPrimary;
 
         public List<string> datas = null;
-        public ExcelField(string tableName, string name, string typeDes, string defaultValue, string tag, string fieldDes,
+        public ExcelField(string tableName, string fieldName, string typeDes, string defaultValue, string tag, string fieldDes,
             string fieldDesMore, bool isPrimary)
         {
             this.tableName = tableName;
-            this.name = name;
+            this.fieldName = fieldName;
             this.typeDes = typeDes;
             this.defaultValue = defaultValue;
             this.tag = tag;
@@ -66,7 +66,7 @@ namespace ExcelTool.Core
             {
                 if (datas.Contains(data))
                 {
-                    Debug.ThrowException("tableName:" + tableName + ", primary key " + name + " duplicated" + ", " + name + "=" + data);
+                    Debug.ThrowException("tableName:" + tableName + ", primary key " + fieldName + " duplicated" + ", " + fieldName + "=" + data);
                 }
             }
 
@@ -116,5 +116,36 @@ namespace ExcelTool.Core
         {
             fields.Add(field);
         }
+    }
+
+    /// <summary>
+    /// 字段对应数据表中行数的枚举(假枚举类，方便调用，不需要做数据转换)
+    /// </summary>
+    public class FieldRowEnum
+    {
+        /// <summary>
+        /// 第一行为字段说明
+        /// </summary>
+        public const int FIELD_DES = 0;
+        /// <summary>
+        /// 第二行为字段名
+        /// </summary>
+        public const int FIELD_NAME = 1;
+        /// <summary>
+        /// 第三行字段详细说明
+        /// </summary>
+        public const int FIELD_DES_MORE = 2;
+        /// <summary>
+        /// 第四行字段数据类型
+        /// </summary>
+        public const int FIELD_TYPE = 3;
+        /// <summary>
+        /// 导出模式：0-客服端和服务器（默认不填），1-仅导出到客户端，2-仅导出到服务器，3-不导出
+        /// </summary>
+        public const int FIELD_EXPORT_MODE = 4;
+        /// <summary>
+        /// 数据开始的行数
+        /// </summary>
+        public const int DATA_START_ROW = 5;
     }
 }

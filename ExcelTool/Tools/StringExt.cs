@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace ExcelTool.Tools
 {
@@ -43,6 +43,29 @@ namespace ExcelTool.Tools
             return result;
         }
 
+        //TODO:check
+        public static uint[] ToUIntArray(this string[] strArray)
+        {
+            if (strArray == null || strArray.Length == 0)
+            {
+                Debug.LogError("error, input stringArray is null or length=0");
+            }
+            uint[] result = new uint[strArray.Length];
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                try
+                {
+                    result[i] = uint.Parse(strArray[i]);
+                }
+                catch (Exception ex)
+                {
+
+                    Debug.ThrowException("StringArrayToUIntArray exception:" + ex.Message);
+                }
+
+            }
+            return result;
+        }
 
         public static float[] ToFloatArray(this string[] strArray)
         {
