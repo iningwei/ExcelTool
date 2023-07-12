@@ -14,6 +14,6 @@ public class ConfigData:Setting{
 	 /// </summary>
 	 public string Value;
 
-	 public static string FileName = "ConfigData";
+	 public static string FileName = "tb_ConfigData";
 }
 }

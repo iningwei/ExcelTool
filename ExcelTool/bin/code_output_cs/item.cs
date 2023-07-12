@@ -136,6 +136,6 @@ public class item:Setting{
 	 /// </summary>
 	 public int quanititylimit;
 
-	 public static string FileName = "item";
+	 public static string FileName = "tb_item";
 }
 }
