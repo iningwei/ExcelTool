@@ -91,14 +91,9 @@ namespace ExcelTool.Reader
 
             content += "namespace ZGame.ZTable{\r\n";
             content += "\tpublic class " + et.tableName + "Reader{\r\n";
-
-            content += "\t\tprivate " + et.tableName + "[] entities;\r\n";
-            content += "\t\tprivate Dictionary<" + primaryField.typeDes + ",int> keyIndexMap = new Dictionary<" + primaryField.typeDes + ",int>();\r\n";
-
-            content += "\r\n\t\tprivate int count;\r\n";
-            content += "\t\t public int Count{\r\n";
-            content += "\t\t\tget{ return this.count;}\r\n";
-            content += "\t\t}\r\n\r\n";
+             
+            content += "\t\tprivate Dictionary<int," + et.tableName + "> entityMap = new Dictionary<int," + et.tableName + ">();\r\n";
+            content += "\r\n";
 
             content += "\t\tstatic " + et.tableName + "Reader instance=null;\r\n";
             content += "\t\tpublic static " + et.tableName + "Reader Instance{\r\n";
@@ -112,24 +107,32 @@ namespace ExcelTool.Reader
             content += "\t\t}\r\n\r\n";
 
             content += "\t\tvoid Load(){\r\n";
-            content += "\t\t\tAction<string> onTableLoad=(text)=>{\r\n";
+            content += "\t\t\tAction<string> onTableLoad=(txt)=>{\r\n";
             content += "\t\t\t\t";
-            content += @"string[] lines=text.Split(new string[]{""\r\n""},System.StringSplitOptions.RemoveEmptyEntries);";
+            content += @"string[] lines=txt.Split(new string[]{""\r\n""},System.StringSplitOptions.RemoveEmptyEntries);";
             content += "\r\n";
             content += "\t\t\t\tint count=lines.Length;\r\n";
             content += "\t\t\t\tif(count<0){\r\n";
             content += "\t\t\t\t\treturn;\r\n";
             content += "\t\t\t\t}\r\n";
-            content += "\t\t\t\tthis.count = count;\r\n";
-            content += "\t\t\t\tentities=new " + et.tableName + "[count];\r\n";
             content += "\t\t\t\tfor(int i=0;i<count;i++){\r\n";
             content += "\t\t\t\t\tstring line=lines[i];\r\n";
             content += "\t\t\t\t\tif(string.IsNullOrEmpty(line)){\r\n";
             content += "\t\t\t\t\t\t";
             content += @"Debug.LogError(""data error, line ""+i+"" is null"");";
-            content += "\r\n\t\t\t\t\t}\r\n";
+            content += "\r\n";
+            content += "\t\t\t\t\t\tcontinue;\r\n";
+            content += "\t\t\t\t\t}\r\n";
             content += "\t\t\t\t\tstring[] vals=line.Split('\\t');\r\n";
-            content += "\t\t\t\t\tentities[i]=new " + et.tableName + "();\r\n";
+            content += "\t\t\t\t\tint key=int.Parse(vals[0].Trim());\r\n";
+            content += "\t\t\t\t\tif(entityMap.ContainsKey(key)){\r\n";
+            content += "\t\t\t\t\t\t";
+            content += @"Debug.LogError(""error,already exist key: ""+key+"" in "+et.tableName+@",line content:""+line);";
+            content += "\r\n";
+            content += "\t\t\t\t\t\tcontinue;\r\n";
+            content += "\t\t\t\t\t}\r\n";
+
+            content += "\t\t\t\t\tvar entity=new " + et.tableName + "();\r\n";
 
             for (int i = 0; i < et.fields.Count; i++)
             {
@@ -137,39 +140,39 @@ namespace ExcelTool.Reader
                 string typeStr = et.fields[i].typeDes;
                 if (typeStr == "int" || typeStr == "float" || typeStr == "uint")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
                 else if (typeStr == "object")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=(" + typeStr + ")(vals[" + i + "].Trim());\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=(" + typeStr + ")(vals[" + i + "].Trim());\r\n";
                 }
                 else if (typeStr == "bool")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
                 else if (typeStr == "string")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "];\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "];\r\n";
                 }
                 else if (typeStr == "string[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\');\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\');\r\n";
                 }
                 else if (typeStr == "int[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToIntArray();\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToIntArray();\r\n";
                 }
                 else if (typeStr == "uint[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToUintArray();\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToUintArray();\r\n";
                 }
                 else if (typeStr == "float[]")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "vals[" + i + "].Split(\',\').ToFloatArray();\r\n";
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToFloatArray();\r\n";
                 }
                 else if (typeStr == "Vector3")
                 {
-                    content += "\t\t\t\t\tentities[i]." + filedName + "=" + "new Vector3("
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "new Vector3("
                         + "float.Parse(vals[" + i + "].Trim().Split(\',\')[0]),"
                         + "float.Parse(vals[" + i + "].Trim().Split(\',\')[1]),"
                         + "float.Parse(vals[" + i + "].Trim().Split(\',\')[2])"
@@ -178,38 +181,32 @@ namespace ExcelTool.Reader
                 //TODO:support more type
             }
 
-            content += "\t\t\t\t\tkeyIndexMap[entities[i]." + primaryField.fieldName + "]=i;\r\n";
+            content += "\t\t\t\t\tentityMap[key]=entity;\r\n";
             content += "\t\t\t\t}\r\n";//for
             content += "\t\t\t};\r\n\r\n";//Action
             content += "\t\t\tstring fileName=" + et.tableName + ".FileName;\r\n";
-            content += "\t\t\tFileMgr.ReadFile(fileName,onTableLoad);\r\n";
+            content += "\t\t\ttry{\r\n";
+            content += "\t\t\t\tFileMgr.ReadFile(fileName,onTableLoad);\r\n";
+            content+= "\t\t\t}\r\n";
+            content += "\t\t\tcatch(System.Exception ex){\r\n";
+            content += "\t\t\t\t";
+            content+=@"Debug.LogError(""error while read:""+fileName);";
+            content += "\r\n";
+            content += "\t\t\t}\r\n";
             content += "\t\t}\r\n\r\n";//Load()
 
-            content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// get datas of a row by Index\r\n";
-            content += "\t\t/// index starts form 0,which marching the line 7 of excel table\r\n";
-            content += "\t\t/// </summary>\r\n";
-            content += "\t\tpublic " + et.tableName + " GetEntityByRowIndex(int index){\r\n";
-            content += "\t\t\tif(index<0||index>count){\r\n";
-            content += "\t\t\t\t";
-            content += @"Debug.LogError(""index:""+index+"" is not valid"");";
-            content += "\r\n";
-            content += "\t\t\t\treturn null;\r\n";
-            content += "\t\t\t}\r\n\t\t\telse{\r\n";
-            content += "\t\t\t\treturn entities[index];\r\n";
-            content += "\t\t\t}\r\n";
-            content += "\t\t}\r\n";//GetEntityByRowIndex
+            
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// get datas of a row by primary key\r\n";
+            content += "\t\t/// get data by primary key\r\n";
             content += "\t\t/// </summary>\r\n";
-            content += "\t\tpublic " + et.tableName + " GetEntityByPrimaryKey(" + primaryField.typeDes + " key){\r\n";
-            content += "\t\t\tint index;\r\n";
-            content += "\t\t\tif(keyIndexMap.TryGetValue(key,out index)){\r\n";
-            content += "\t\t\t\treturn entities[index];\r\n";
+            content += "\t\tpublic " + et.tableName + " GetEntity(" + primaryField.typeDes + " key){\r\n";
+            content += "\t\t\t"+et.tableName+" data;\r\n";
+            content += "\t\t\tif(entityMap.TryGetValue(key,out data)){\r\n";
+            content += "\t\t\t\treturn data;\r\n";
             content += "\t\t\t}\r\n\t\t\telse{\r\n";
             content += "\t\t\t\t";
-            content += @"Debug.LogError(""no entity with key:""+key);";
+            content += @"Debug.LogError(""no entity with key:""+key+"" in " + et.tableName +@""");";
             content += "\r\n";
             content += "\t\t\t\treturn default(" + et.tableName + ");\r\n";
             content += "\t\t\t}\r\n";
@@ -217,10 +214,10 @@ namespace ExcelTool.Reader
 
 
             content += "\t\t/// <summary>\r\n";
-            content += "\t\t/// get all row datas\r\n";
+            content += "\t\t/// get all datas\r\n";
             content += "\t\t/// </summary>\r\n";
-            content += "\t\tpublic " + et.tableName + "[]" + " AllItems(){\r\n";
-            content += "\t\t\treturn this.entities;\r\n";
+            content += "\t\tpublic Dictionary<int," + et.tableName + "> GetEntityMap(){\r\n";
+            content += "\t\t\treturn this.entityMap;\r\n";
             content += "\t\t}\r\n";//AllItems
 
 

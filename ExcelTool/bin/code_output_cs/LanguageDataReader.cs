@@ -4,14 +4,14 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ZGame.ZTable{
-	public class ConfigDataReader{
-		private Dictionary<int,ConfigData> entityMap = new Dictionary<int,ConfigData>();
+	public class LanguageDataReader{
+		private Dictionary<int,LanguageData> entityMap = new Dictionary<int,LanguageData>();
 
-		static ConfigDataReader instance=null;
-		public static ConfigDataReader Instance{
+		static LanguageDataReader instance=null;
+		public static LanguageDataReader Instance{
 			get{
 				if(instance==null){
-					instance=new ConfigDataReader();
+					instance=new LanguageDataReader();
 					instance.Load();
 				}
 				return instance;
@@ -34,17 +34,19 @@ namespace ZGame.ZTable{
 					string[] vals=line.Split('\t');
 					int key=int.Parse(vals[0].Trim());
 					if(entityMap.ContainsKey(key)){
-						Debug.LogError("error,already exist key: "+key+" in ConfigData,line content:"+line);
+						Debug.LogError("error,already exist key: "+key+" in LanguageData,line content:"+line);
 						continue;
 					}
-					var entity=new ConfigData();
+					var entity=new LanguageData();
 					entity.ID=int.Parse(vals[0].Trim());
-					entity.Value=vals[1];
+					entity.EN=vals[1];
+					entity.CN=vals[2];
+					entity.TC=vals[3];
 					entityMap[key]=entity;
 				}
 			};
 
-			string fileName=ConfigData.FileName;
+			string fileName=LanguageData.FileName;
 			try{
 				FileMgr.ReadFile(fileName,onTableLoad);
 			}
@@ -56,20 +58,20 @@ namespace ZGame.ZTable{
 		/// <summary>
 		/// get data by primary key
 		/// </summary>
-		public ConfigData GetEntity(int key){
-			ConfigData data;
+		public LanguageData GetEntity(int key){
+			LanguageData data;
 			if(entityMap.TryGetValue(key,out data)){
 				return data;
 			}
 			else{
-				Debug.LogError("no entity with key:"+key+" in ConfigData");
-				return default(ConfigData);
+				Debug.LogError("no entity with key:"+key+" in LanguageData");
+				return default(LanguageData);
 			}
 		}
 		/// <summary>
 		/// get all datas
 		/// </summary>
-		public Dictionary<int,ConfigData> GetEntityMap(){
+		public Dictionary<int,LanguageData> GetEntityMap(){
 			return this.entityMap;
 		}
 	}
