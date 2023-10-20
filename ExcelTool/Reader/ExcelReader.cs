@@ -48,7 +48,7 @@ namespace ExcelTool.Reader
                     Debug.LogWarnning("表\"" + et.tableName + "\"未导出,表名是中文!");
                     continue;
                 }
-                
+
                 if (Regex.IsMatch(et.tableName, @"Sheet\d$"))
                 {
                     Debug.LogWarnning("表文件\"" + filePath + "\"未导出,表名使用了默认命名：" + et.tableName);
@@ -59,7 +59,7 @@ namespace ExcelTool.Reader
                 et.rowCount = table.Rows.Count;
                 if (et.rowCount < FieldRowEnum.DATA_START_ROW)
                 {
-                    Debug.LogWarnning("fileName:" + fileName + ", tableName:" + et.tableName + ", line count less than "+ FieldRowEnum.DATA_START_ROW + ", we will not handle with it");
+                    Debug.LogWarnning("fileName:" + fileName + ", tableName:" + et.tableName + ", line count less than " + FieldRowEnum.DATA_START_ROW + ", we will not handle with it");
                     continue;
                 }
                 Regex regExp = new Regex("[ \\[ \\] \\^ \\-_*×――(^)$%~!＠@＃#$…&%￥—+=<>《》!！??？:：•`·、。，；,.;/\'\"{}（）‘’“”-]");
@@ -82,7 +82,7 @@ namespace ExcelTool.Reader
                     string exportModeStr = table.Rows[FieldRowEnum.FIELD_EXPORT_MODE][i].ToString().Trim();
                     exportModeStr = exportModeStr == "" ? "0" : exportModeStr;
                     int exportMode = 0;
-                    if (!int.TryParse(exportModeStr, out exportMode)) 
+                    if (!int.TryParse(exportModeStr, out exportMode))
                     {
                         Debug.LogWarnning($"数值错误，table:{table.TableName},field:{fieldName},cloumn:{i},value:{exportModeStr}");
 
@@ -110,7 +110,7 @@ namespace ExcelTool.Reader
                             Debug.ThrowException("table:" + et.tableName + "is KVT,but field name is not correct!");
                         }
                         //约束键值对数据结构的key值字段类型必须为string
-                        if (table.Rows[FieldRowEnum.FIELD_TYPE][0].ToString()!="string")
+                        if (table.Rows[FieldRowEnum.FIELD_TYPE][0].ToString() != "string")
                         {
                             Debug.ThrowException("table:" + et.tableName + "is KVT,but key's type is not string");
                         }
@@ -130,84 +130,6 @@ namespace ExcelTool.Reader
                     et.AddExcelField(field);
                 }
 
-
-
-
-
-                #region old
-                //////for (int i = 0; i < et.rowCount; i++)
-                //////{
-                //////    if (i == 0)//获得key  
-                //////    {
-                //////        for (int j = 0; j < et.columnCount; j++)
-                //////        {
-                //////            var key = table.Rows[0][j].ToString();
-
-                //////            if (j == 0)//主键
-                //////            {
-                //////                et.primaryKeyName = key;
-                //////                et.primaryKeyType = table.Rows[1][j].ToString();
-                //////                if (table.Rows[2][j].ToString().Contains("KVT"))
-                //////                {
-                //////                    et.isKVPairTable = true;
-                //////                    et.valueKeyType = table.Rows[1][1].ToString();
-                //////                    if (table.Rows[0][1].ToString() != "Value" || table.Rows[0][2].ToString() != "KeyDes")
-                //////                    {
-                //////                        throw new Exception(et.tableName + "表有问题，KVT表，要求第二个字段名为 Value，第三个字段名为 KeyDes");
-                //////                    }
-                //////                }
-                //////                else
-                //////                {
-                //////                    et.isKVPairTable = false;
-                //////                }
-                //////            }
-
-                //////            Console.WriteLine("@@初始化map, key:" + key);
-                //////            et.tableContent[key] = new List<string>();
-
-                //////            if (et.keys.Contains(key))
-                //////            {
-                //////                throw new Exception("fatal error, table:" + et.tableName + ",有重复的字段:" + key);
-                //////            }
-                //////            else
-                //////            {
-                //////                if (!key.ContainChinese() && key != "KeyDes")//字段非中文才加入,且 KeyDes字段不用加入
-                //////                {
-                //////                    et.keys.Add(key);
-                //////                }
-                //////            }
-
-                //////        }
-                //////        Console.WriteLine("@@初始化map key完毕");
-                //////    }
-                //////    else
-                //////    {
-                //////        for (int k = 0; k < et.columnCount; k++)
-                //////        {
-                //////            string key = table.Rows[0][k].ToString();
-                //////            string property = table.Rows[i][k].ToString();
-                //////            Console.WriteLine("table:" + et.tableName + " , key: " + key + " , property：" + property);
-
-                //////            //主键的数据要保持唯一性
-                //////            if (k == 0 && i > 4 && et.tableContent[key].Contains(property))
-                //////            {
-                //////                throw new Exception("fatal error, table:" + et.tableName + "的主键" + key + "，property:" + property);
-                //////            }
-                //////            else
-                //////            {
-                //////                if (property == "")
-                //////                {
-                //////                    property = "囧";//对于数据表中，用户没有填写的空格，默认赋值为 囧 ，读取的时候需要特殊处理
-                //////                }
-                //////                et.tableContent[key].Add(property);
-                //////            }
-
-                //////        }
-
-
-                //////    }
-                //////}
-                #endregion
 
                 excelTables.Add(et);
             }
