@@ -190,7 +190,7 @@ namespace ExcelTool.Reader
             content+= "\t\t\t}\r\n";
             content += "\t\t\tcatch(System.Exception ex){\r\n";
             content += "\t\t\t\t";
-            content+=@"Debug.LogError(""error while read:""+fileName);";
+            content+= @"Debug.LogError(""error while read:""+fileName+ "", ex:"" + ex.ToString());";
             content += "\r\n";
             content += "\t\t\t}\r\n";
             content += "\t\t}\r\n\r\n";//Load()

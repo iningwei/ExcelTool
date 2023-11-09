@@ -63,7 +63,7 @@ namespace ZGame.ZTable{
 				FileMgr.ReadFile(fileName,onTableLoad);
 			}
 			catch(System.Exception ex){
-				Debug.LogError("error while read:"+fileName);
+				Debug.LogError("error while read:"+fileName+ ", ex:" + ex.ToString());
 			}
 		}
 
