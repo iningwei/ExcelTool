@@ -31,7 +31,7 @@ namespace ZGame.ZTable{
 						Debug.LogError("data error, line "+i+" is null");
 						continue;
 					}
-					string[] vals=line.Split('\t');
+					string[] vals=line.Split("@~ExcelTool!@");
 					int key=int.Parse(vals[0].Trim());
 					if(entityMap.ContainsKey(key)){
 						Debug.LogError("error,already exist key: "+key+" in ConfigData,line content:"+line);

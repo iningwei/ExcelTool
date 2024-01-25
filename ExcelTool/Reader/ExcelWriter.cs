@@ -123,7 +123,7 @@ namespace ExcelTool.Reader
             content += "\r\n";
             content += "\t\t\t\t\t\tcontinue;\r\n";
             content += "\t\t\t\t\t}\r\n";
-            content += "\t\t\t\t\tstring[] vals=line.Split('\\t');\r\n";
+            content += $"\t\t\t\t\tstring[] vals=line.Split(\"{Setting.SeprateStr}\");\r\n";
             content += "\t\t\t\t\tint key=int.Parse(vals[0].Trim());\r\n";
             content += "\t\t\t\t\tif(entityMap.ContainsKey(key)){\r\n";
             content += "\t\t\t\t\t\t";
