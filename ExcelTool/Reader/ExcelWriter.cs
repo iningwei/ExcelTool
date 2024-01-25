@@ -250,10 +250,10 @@ namespace ExcelTool.Reader
                     if (field.fieldName == "KeyDes")  //输出CS对应的.txt文本文件时，不输出KeyDes字段
                         continue;
 
-                    content += (field.datas[j] + "\t");
+                    content += (field.datas[j] + Setting.SeprateStr);
                 }
 
-                content = content.Remove(content.Length - 1);//移除行尾的\t字符//注意\t在串里，只有1个字符长度
+                content = content.Remove(content.Length - Setting.SeprateStr.Length);//移除行尾的分割符
                 content += "\r\n";
             }
 

@@ -97,29 +97,21 @@ namespace ExcelTool.Reader
                     string fieldDesMore = table.Rows[FieldRowEnum.FIELD_DES_MORE][i].ToString();
                     //数据类型
                     string typeDes = table.Rows[FieldRowEnum.FIELD_TYPE][i].ToString();
-                    //字段特殊标签
-                    string tag = "";//table.Rows[-1][i].ToString(); //当前表没有扩展字段标签"tag"
-                    //检查数据和字段标签的格式是否正确对应
-                    if (i == 0 && tag == "KVT")//check KVT format whether correct
-                    {
-                        et.isKVT = true;
-                        if (table.Rows[FieldRowEnum.FIELD_NAME][0].ToString() != "Key"
-                            || table.Rows[FieldRowEnum.FIELD_NAME][1].ToString() != "Value"
-                            || table.Rows[FieldRowEnum.FIELD_NAME][2].ToString() != "KeyDes")
-                        {
-                            Debug.ThrowException("table:" + et.tableName + "is KVT,but field name is not correct!");
-                        }
-                        //约束键值对数据结构的key值字段类型必须为string
-                        if (table.Rows[FieldRowEnum.FIELD_TYPE][0].ToString() != "string")
-                        {
-                            Debug.ThrowException("table:" + et.tableName + "is KVT,but key's type is not string");
-                        }
-                    }
-                    //字段默认值
-                    string defaultValue = ""; // table.Rows[-1][i].ToString(); 当前表没有扩展默认值
-                    ExcelField field = new ExcelField(et.tableName, fieldName, typeDes, defaultValue, tag, fieldDes, fieldDesMore, i == 0 ? true : false);
 
-                    //前6行定义了字段名、类型、默认值等一系类数据格式和解析规范，6行之后则是具体数据
+                    //字段默认值
+                    string defaultValue = "0";
+                    if (!TypeDefaultValueDic.keyValuePairs.ContainsKey(typeDes))
+                    {
+                        Debug.LogError("error,current not support type:" + typeDes);
+                    }
+                    else
+                    {
+                        defaultValue = TypeDefaultValueDic.keyValuePairs[typeDes];
+                    }
+
+                    ExcelField field = new ExcelField(et.tableName, fieldName, typeDes, defaultValue, fieldDes, fieldDesMore, i == 0 ? true : false);
+
+                    //前5行定义了:字段描述、字段名、字段详细描述、字段类型、导出方式
                     //read Field datas
                     for (int j = FieldRowEnum.DATA_START_ROW; j < et.rowCount; j++)
                     {

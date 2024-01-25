@@ -25,10 +25,6 @@ namespace ExcelTool.Core
         public string defaultValue;
 
         /// <summary>
-        /// specail tag for a field
-        /// </summary>
-        public string tag;
-        /// <summary>
         /// the short des of a field
         /// </summary>
         public string fieldDes;
@@ -43,14 +39,13 @@ namespace ExcelTool.Core
         public bool isPrimary;
 
         public List<string> datas = null;
-        public ExcelField(string tableName, string fieldName, string typeDes, string defaultValue, string tag, string fieldDes,
+        public ExcelField(string tableName, string fieldName, string typeDes, string defaultValue, string fieldDes,
             string fieldDesMore, bool isPrimary)
         {
             this.tableName = tableName;
             this.fieldName = fieldName;
             this.typeDes = typeDes;
             this.defaultValue = defaultValue;
-            this.tag = tag;
             this.fieldDes = fieldDes;
             this.fieldDesMore = fieldDesMore;
             this.isPrimary = isPrimary;
@@ -147,5 +142,24 @@ namespace ExcelTool.Core
         /// 数据开始的行数
         /// </summary>
         public const int DATA_START_ROW = 5;
+    }
+
+
+    public class TypeDefaultValueDic
+    {
+        public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
+        {
+            { "int","0"},
+              { "uint","0"},
+                { "float","0"},
+                  { "object","0"},
+                    { "int[]","0"},
+                      { "uint[]","0"},
+                        { "float[]","0"},
+                          { "string","0"},
+                            { "string[]","0"},
+                              { "bool","false"},
+                                { "Vector3","0,0,0"},
+        };
     }
 }

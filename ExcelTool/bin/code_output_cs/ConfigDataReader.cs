@@ -39,7 +39,8 @@ namespace ZGame.ZTable{
 					}
 					var entity=new ConfigData();
 					entity.ID=int.Parse(vals[0].Trim());
-					entity.Value=vals[1];
+					entity.des=vals[1];
+					entity.Value=vals[2];
 					entityMap[key]=entity;
 				}
 			};

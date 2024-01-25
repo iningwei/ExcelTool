@@ -10,6 +10,11 @@ public class ConfigData:Setting{
 	 public int ID;
 
 	 /// <summary>
+	 /// 说明
+	 /// </summary>
+	 public string des;
+
+	 /// <summary>
 	 /// 值
 	 /// </summary>
 	 public string Value;
