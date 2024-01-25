@@ -19,16 +19,8 @@ namespace ExcelTool.Reader
             }
 
             ExcelField primaryField = et.GetPrimaryField();
-
-            #region step1:output Setting.cs base class
-            string setting = "namespace ZGame.ZTable{\r\n";
-            setting += "\tpublic class Setting{\r\n";
-            setting += "\t}\r\n";
-            setting += "}";
-            File.WriteAllText(outputDir + @"\" + "Setting.cs", setting.TrimEnd(), Encoding.UTF8);
-            #endregion
-
-            #region step2:output table class
+             
+            #region step1:output table class
             string content = ""; ;
             content += "using System;\r\n";
             content += "using UnityEngine;\r\n";
@@ -80,7 +72,7 @@ namespace ExcelTool.Reader
             File.WriteAllText(outputDir + @"\" + et.tableName + ".cs", content.TrimEnd(), Encoding.UTF8);
             #endregion
 
-            #region  step3:output table reader class
+            #region  step2:output table reader class
             content = "";
 
             content += "using UnityEngine;\r\n";
