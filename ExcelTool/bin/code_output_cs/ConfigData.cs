@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class ConfigData:Setting{
+public class ConfigData{
 	 /// <summary>
 	 /// 配置编号
 	 /// </summary>

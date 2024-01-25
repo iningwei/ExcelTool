@@ -46,7 +46,7 @@ namespace ExcelTool.Reader
                 content += "}\r\n";//class                
             }
 
-            content += "public class " + et.tableName + ":Setting{\r\n";
+            content += "public class " + et.tableName + "{\r\n";
 
             for (int l = 0; l < et.fields.Count; l++)
             {

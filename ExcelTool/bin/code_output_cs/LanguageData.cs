@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Text;
 
 namespace ZGame.ZTable{
-public class LanguageData:Setting{
+public class LanguageData{
 	 /// <summary>
 	 /// 序号
 	 /// 语言表ID
