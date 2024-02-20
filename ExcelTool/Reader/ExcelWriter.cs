@@ -19,7 +19,7 @@ namespace ExcelTool.Reader
             }
 
             ExcelField primaryField = et.GetPrimaryField();
-             
+
             #region step1:output table class
             string content = ""; ;
             content += "using System;\r\n";
@@ -83,8 +83,8 @@ namespace ExcelTool.Reader
 
             content += "namespace ZGame.ZTable{\r\n";
             content += "\tpublic class " + et.tableName + "Reader{\r\n";
-             
-            content += "\t\tprivate Dictionary<int," + et.tableName + "> entityMap = new Dictionary<int," + et.tableName + ">();\r\n";
+
+            content += "\t\tprivate Dictionary<" + primaryField.typeDes + "," + et.tableName + "> entityMap = new Dictionary<" + primaryField.typeDes + "," + et.tableName + ">();\r\n";
             content += "\r\n";
 
             content += "\t\tstatic " + et.tableName + "Reader instance=null;\r\n";
@@ -119,7 +119,7 @@ namespace ExcelTool.Reader
             content += "\t\t\t\t\tint key=int.Parse(vals[0].Trim());\r\n";
             content += "\t\t\t\t\tif(entityMap.ContainsKey(key)){\r\n";
             content += "\t\t\t\t\t\t";
-            content += @"Debug.LogError(""error,already exist key: ""+key+"" in "+et.tableName+@",line content:""+line);";
+            content += @"Debug.LogError(""error,already exist key: ""+key+"" in " + et.tableName + @",line content:""+line);";
             content += "\r\n";
             content += "\t\t\t\t\t\tcontinue;\r\n";
             content += "\t\t\t\t\t}\r\n";
@@ -130,7 +130,7 @@ namespace ExcelTool.Reader
             {
                 string filedName = et.fields[i].fieldName;
                 string typeStr = et.fields[i].typeDes;
-                if (typeStr == "int" || typeStr == "float" || typeStr == "uint")
+                if (typeStr == "int" || typeStr == "float" || typeStr == "uint" || typeStr == "long")
                 {
                     content += "\t\t\t\t\tentity." + filedName + "=" + typeStr + ".Parse(vals[" + i + "].Trim());\r\n";
                 }
@@ -158,6 +158,10 @@ namespace ExcelTool.Reader
                 {
                     content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToUintArray();\r\n";
                 }
+                else if (typeStr == "long[]")
+                {
+                    content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToLongArray();\r\n";
+                }
                 else if (typeStr == "float[]")
                 {
                     content += "\t\t\t\t\tentity." + filedName + "=" + "vals[" + i + "].Split(\',\').ToFloatArray();\r\n";
@@ -179,26 +183,26 @@ namespace ExcelTool.Reader
             content += "\t\t\tstring fileName=" + et.tableName + ".FileName;\r\n";
             content += "\t\t\ttry{\r\n";
             content += "\t\t\t\tFileMgr.ReadFile(fileName,onTableLoad);\r\n";
-            content+= "\t\t\t}\r\n";
+            content += "\t\t\t}\r\n";
             content += "\t\t\tcatch(System.Exception ex){\r\n";
             content += "\t\t\t\t";
-            content+= @"Debug.LogError(""error while read:""+fileName+ "", ex:"" + ex.ToString());";
+            content += @"Debug.LogError(""error while read:""+fileName+ "", ex:"" + ex.ToString());";
             content += "\r\n";
             content += "\t\t\t}\r\n";
             content += "\t\t}\r\n\r\n";//Load()
 
-            
+
 
             content += "\t\t/// <summary>\r\n";
             content += "\t\t/// get data by primary key\r\n";
             content += "\t\t/// </summary>\r\n";
             content += "\t\tpublic " + et.tableName + " GetEntity(" + primaryField.typeDes + " key){\r\n";
-            content += "\t\t\t"+et.tableName+" data;\r\n";
+            content += "\t\t\t" + et.tableName + " data;\r\n";
             content += "\t\t\tif(entityMap.TryGetValue(key,out data)){\r\n";
             content += "\t\t\t\treturn data;\r\n";
             content += "\t\t\t}\r\n\t\t\telse{\r\n";
             content += "\t\t\t\t";
-            content += @"Debug.LogError(""no entity with key:""+key+"" in " + et.tableName +@""");";
+            content += @"Debug.LogError(""no entity with key:""+key+"" in " + et.tableName + @""");";
             content += "\r\n";
             content += "\t\t\t\treturn default(" + et.tableName + ");\r\n";
             content += "\t\t\t}\r\n";
@@ -208,7 +212,7 @@ namespace ExcelTool.Reader
             content += "\t\t/// <summary>\r\n";
             content += "\t\t/// get all datas\r\n";
             content += "\t\t/// </summary>\r\n";
-            content += "\t\tpublic Dictionary<int," + et.tableName + "> GetEntityMap(){\r\n";
+            content += "\t\tpublic Dictionary<" + primaryField.typeDes + "," + et.tableName + "> GetEntityMap(){\r\n";
             content += "\t\t\treturn this.entityMap;\r\n";
             content += "\t\t}\r\n";//AllItems
 
@@ -326,11 +330,11 @@ namespace ExcelTool.Reader
                         //string luaFieldType = table.fields[f].typeDes.Replace("uint[]","number[]").Replace;
                         string luaFieldType = "unknow";
                         string typeDes = table.fields[f].typeDes;
-                        if (typeDes == "Vector2" || typeDes == "Vector3" || typeDes == "float[]" || typeDes == "int[]" || typeDes == "uint[]")
+                        if (typeDes == "Vector2" || typeDes == "Vector3" || typeDes == "float[]" || typeDes == "int[]" || typeDes == "uint[]" || typeDes == "long[]")
                         {
                             luaFieldType = "number[]";
                         }
-                        else if (typeDes == "int" || typeDes == "uint" || typeDes == "float")
+                        else if (typeDes == "int" || typeDes == "uint" || typeDes == "long" || typeDes == "float")
                         {
                             luaFieldType = "number";
                         }
@@ -344,7 +348,7 @@ namespace ExcelTool.Reader
                     for (int j = FieldRowEnum.DATA_START_ROW; j < table.rowCount; j++)
                     {
                         var typeDes = table.fields[0].typeDes;
-                        if (typeDes == "int")
+                        if (typeDes == "int" || typeDes == "long")
                         {
 
                             luaContentSub += "\t[" + table.fields[0].datas[j - FieldRowEnum.DATA_START_ROW] + "]={";
@@ -356,9 +360,8 @@ namespace ExcelTool.Reader
                         }
                         else
                         {
-                            Debug.LogError("error, primary type only support int and string, cur is:" + typeDes);
+                            Debug.LogError("error, primary type only support int、long and string, cur is:" + typeDes);
                         }
-
 
                         for (int k = 0; k < table.fields.Count; k++)
                         {
@@ -369,7 +372,7 @@ namespace ExcelTool.Reader
                             {
                                 luaContentSub += keyName + "=\"" + value + "\",";
                             }
-                            else if (field.typeDes == "Vector2" || field.typeDes == "Vector3" || field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "uint[]" || field.typeDes == "string[]")
+                            else if (field.typeDes == "Vector2" || field.typeDes == "Vector3" || field.typeDes == "float[]" || field.typeDes == "int[]" || field.typeDes == "uint[]" || field.typeDes == "long[]" || field.typeDes == "string[]")
                             {
                                 luaContentSub += keyName + "=";
                                 //+ value + ",";
@@ -395,6 +398,10 @@ namespace ExcelTool.Reader
                                             else if (field.typeDes == "uint[]")
                                             {
                                                 luaContentSub += uint.Parse(vs[p]);
+                                            }
+                                            else if (field.typeDes == "long[]")
+                                            {
+                                                luaContentSub += long.Parse(vs[p]);
                                             }
                                             else if (field.typeDes == "string[]")
                                             {

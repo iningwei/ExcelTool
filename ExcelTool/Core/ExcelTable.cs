@@ -151,10 +151,12 @@ namespace ExcelTool.Core
         {
             { "int","0"},
               { "uint","0"},
+              { "long","0"},
                 { "float","0"},
                   { "object","0"},
                     { "int[]","0"},
                       { "uint[]","0"},
+                      { "long[]","0"},
                         { "float[]","0"},
                           { "string","0"},
                             { "string[]","0"},

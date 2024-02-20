@@ -1,4 +1,4 @@
-1.数值类型：int , uint ,float , object , int[] , uint[] ,float[] , string , string[] , bool , Vector3
+1.数值类型：int , uint , long , float , object , int[] , uint[] , long[] , float[] , string , string[] , bool , Vector3
 
 2.表格填写数组类型的写法:1,2,3 ,使用西文逗号分隔；填写的表格为空的时候，数值类型会自动转换为0，字符串会转换为”“
 
