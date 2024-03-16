@@ -35,6 +35,7 @@ namespace ExcelTool.Reader
             foreach (DataTable table in tables)
             {
                 ExcelTable et = new ExcelTable();
+                et.originFilePath = filePath;
                 et.tableName = table.TableName;
                 ////中文表不读，用于整体性的说明、注释作用
                 ////要导出的表需要以t_开头

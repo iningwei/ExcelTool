@@ -74,6 +74,7 @@ namespace ExcelTool.Core
 
     public class ExcelTable
     {
+        public string originFilePath;
         /// <summary>
         /// name of excel table.
         /// also the output cs class will use this name.

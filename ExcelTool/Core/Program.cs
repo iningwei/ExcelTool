@@ -20,6 +20,7 @@ namespace ExcelTool
         static string outputTableDir;//the directory for outputing bin files
         static string outputCSCodeDir;//the directory for outputing c# code files
         static string outputLuaCodeDir;//the direcotry for lua code outputs
+
         static void Main(string[] args)
         {
             Debug.Log("begin handle excel file");
@@ -27,33 +28,45 @@ namespace ExcelTool
 
             init(args);
 
-
-
             //do not support 03 excel file,which with postfix of .xls
             excelFiles = Directory.GetFiles(tmpExcelFileDir, "*.xlsx", SearchOption.TopDirectoryOnly);
 
             List<ExcelTable> allExcelTables = new List<ExcelTable>();
+            bool flag = true;
             for (int q = 0; q < excelFiles.Length; q++)
             {
                 List<ExcelTable> excelTables = ExcelReader.Read(excelFiles[q]);
 
-                allExcelTables.AddRange(excelTables);
-                #region  output c# code files and bin files
-                for (int i = 0; i < excelTables.Count; i++)
+                //避免表名重复或者转小写后一样的表名
+                for (int j = 0; j < excelTables.Count; j++)
                 {
-                    ExcelWriter.WriteCSCode(outputCSCodeDir, excelTables[i]);
-                    ExcelWriter.WriteBinaryFile(outputTableDir, excelTables[i]);
+                    string tableName = excelTables[j].tableName.Trim().ToLower();
+                    for (int k = 0; k < allExcelTables.Count; k++)
+                    {
+                        if (allExcelTables[k].tableName.Trim().ToLower() == tableName)
+                        {
+                            Debug.ThrowException("重复表名:" + tableName + ", file1:" + excelFiles[q] + ", file2:" + allExcelTables[k].originFilePath);
+                            flag = false;
+                        }
+                    }
+                }
 
-
+                allExcelTables.AddRange(excelTables);
+            }
+            if (allExcelTables.Count > 0 && flag)
+            {
+                #region  output c# code files and bin files
+                for (int i = 0; i < allExcelTables.Count; i++)
+                {
+                    ExcelWriter.WriteCSCode(outputCSCodeDir, allExcelTables[i]);
+                    ExcelWriter.WriteBinaryFile(outputTableDir, allExcelTables[i]);
                 }
                 #endregion
-            }
-            if (allExcelTables.Count > 0)
-            {
+
                 ExcelWriter.WriteLuaCode(outputLuaCodeDir, allExcelTables);
             }
 
-            Debug.Log("------------- :-) output finished");
+            Debug.Log("------------- :-) output finished:" + flag);
             Console.ReadLine();
         }
 
