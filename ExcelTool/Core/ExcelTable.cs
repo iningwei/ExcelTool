@@ -159,8 +159,8 @@ namespace ExcelTool.Core
                       { "uint[]","0"},
                       { "long[]","0"},
                         { "float[]","0"},
-                          { "string","0"},
-                            { "string[]","0"},
+                          { "string",""},
+                            { "string[]",""},
                               { "bool","false"},
                                 { "Vector3","0,0,0"},
         };
